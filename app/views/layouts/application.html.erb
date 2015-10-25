@@ -7,12 +7,20 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<%= render partial: "layouts/application_header" %> 
+		<div class="header">
+			<%= render partial: "layouts/application_header" %>
+		</div> 
 		
-		<p class="notice"><%= notice %></p>
-	       <p class="alert"><%= alert %></p>
-	       
-		<%= yield %>
+		<div class="container">
+			<% if notice.present? %>
+				<p class="notice"><%= notice %></p>
+			<% end %>
+			<% if alert.present? %>
+		       	<p class="alert"><%= alert %></p>
+		       <% end %>
+		       
+			<%= yield %>
+		</div>
 
 	</body>
 </html>

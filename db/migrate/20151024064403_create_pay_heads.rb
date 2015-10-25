@@ -6,7 +6,7 @@ class CreatePayHeads < ActiveRecord::Migration
     	t.integer	:pay
     	t.integer 	:number_of_items
 
-    	t.integer 	:contract_id
+    	t.integer 	:contract_id #this coloumn is renamed in next migration to branch_id
       t.timestamps null: false
     end
   end

@@ -23,7 +23,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+# without this page jquery will not load untill the page not refreshed
+#Due to which some jquery thing not working after redirect_to
+gem 'jquery-turbolinks'
 #User signup, signin and session management
 gem 'devise'
 # Use ActiveModel has_secure_password

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}
+  
+  resources :user do
+    get :dashboard
+    get :settings 
+  end
+
+  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}, :controllers => { :registrations => "registrations" }
   root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

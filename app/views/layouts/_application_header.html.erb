@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -8,14 +8,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Core Factory</a>
+      <%= link_to "Core Factory" , root_path, :class => "navbar-brand" %> 
+      <!-- <a class="navbar-brand" href="<%= root_url %>">Core Factory</a> -->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.present? %>
-          <li> <%= link_to "Logout" , destroy_user_session_path, method: "delete" %> </li>
+          <li>
+                <a class="dropdown-toggle" type="button" data-toggle="dropdown"> Hi <%= current_user.first_name %>
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li> <%= link_to "Logout" , destroy_user_session_path, method: "delete" %> </li>
+                  <li> <%= link_to "Settings" , user_settings_path(current_user) %> </li>
+                </ul>
+            </li>
         <% else %>
           <li> <%= link_to "Signup" , new_user_registration_path %> </li>
           <li> <%= link_to "SignIn" , new_user_session_path %> </li>

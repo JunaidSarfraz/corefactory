@@ -1,0 +1,7 @@
+<% if @user.owner? %>
+	<%= render partial: "user/dashboards/owner_dashboard" %>
+<% elsif @user.manager? %>
+	<%= render partial: "user/dashboards/manager_dashboard" %>
+<% elsif @user.worker? %>
+	<%= render partial: "user/dashboards/worker_dashboard" %>
+<% end %>

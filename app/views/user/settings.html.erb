@@ -1,0 +1,7 @@
+<% if @user.owner? %>
+	<%= render partial: "user/settings/owner_settings" %>
+<% elsif @user.manager? %>
+	<%= render partial: "user/settings/manager_settings" %>
+<% elsif @user.worker? %>
+	<%= render partial: "user/settings/worker_settings" %>
+<% end %>

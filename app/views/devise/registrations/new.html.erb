@@ -4,8 +4,23 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
@@ -21,6 +36,65 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :CNIC, "CNIC (with dashes included)" %><br />
+    <%= f.number_field :cnic %>
+  </div>  
+  
+  <div class="field">
+    <%= f.label :religion %><br />
+    <%= f.text_field :religion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [["Not Telling", 'undefinded'], ["Male", 'male'], ["Female", 'female']] %>
+  </div>  
+
+  <div class="field">
+    <%= f.label :cast %><br />
+    <%= f.text_field :cast %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height, "Height (height in feets)" %><br />
+    <%= f.text_field :height %>
+  </div>
+
+  <div class="field">
+    <%= f.label :blood_group %><br />
+    <%= f.select :blood_group,[["A+","A+"],["A-","A-"],["AB+","AB+"],["AB-","AB-"],["O+","O+"],["O-","O-"]] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= f.label :primary_phone %><br />
+    <%= f.text_field :primary_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :secondary_phone %><br />
+    <%= f.text_field :secondary_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :_type, :value => "owner" %>
+  </div>
+    
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
