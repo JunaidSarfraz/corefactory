@@ -16,6 +16,7 @@ div.right{
   	display: inline
 }
 
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -30,10 +31,10 @@ div.right{
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     left: 250px;
     width: 0;
-    height: 86%;
+    height: 100%;
     margin-left: -250px;
     overflow-y: auto;
     background: #000;

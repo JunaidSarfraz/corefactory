@@ -1,15 +1,14 @@
-<div id="sidebar-wrapper">
-	<ul class="sidebar-nav">
-	    <li><%= link_to "Dashboard", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Factories", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Suppliers", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Clients", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Accounts", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Sales", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Workers", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Payroll", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Pay Heads", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Reports", user_dashboard_path(current_user) %></li>
-	    <li><%= link_to "Settings", user_dashboard_path(current_user) %></li>
-	</ul>
-</div>
+
+<ul class="sidebar-nav">
+    <li><%= link_to "Dashboard", user_dashboard_path(current_user) %></li>
+    <li><%= link_to "Factories", factories_path(current_user) %></li>
+    <li><%= link_to "Suppliers", suppliers_path(current_user) %></li>
+    <li><%= link_to "Clients", clients_path(current_user) %></li>
+    <li><%= link_to "Accounts", accounts_path(current_user) %></li>
+    <li><%= link_to "Sales", sales_path(current_user) %></li>
+    <li><%= link_to "Workers", workers_path(current_user) %></li>
+    <li><%= link_to "Payroll", payrolls_path(current_user) %></li>
+    <li><%= link_to "Work Heads", work_heads_path(current_user) %></li>
+    <li><%= link_to "Reports", reports_path(current_user) %></li>
+    <li><%= link_to "Settings", settings_path(current_user) %></li>
+</ul>

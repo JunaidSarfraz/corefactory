@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
   
+  resources :factories, only: [:index]
+  resources :accounts, only: [:index]
+  resources :clients, only: [:index]
+  resources :payrolls, only: [:index]
+  resources :reports, only: [:index]
+  resources :sales, only: [:index]
+  resources :settings, only: [:index]
+  resources :suppliers, only: [:index]
+  resources :work_heads, only: [:index]
+  resources :workers, only: [:index]
+
   resources :user do
     get :dashboard
-    get :settings 
   end
 
   devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}, :controllers => { :registrations => "registrations" }
