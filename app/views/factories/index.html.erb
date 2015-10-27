@@ -1,2 +1,35 @@
-<h1>Factories#index</h1>
-<p>Find me in app/views/factories/index.html.erb</p>
+
+<%= link_to "Add New Factory", new_factory_path, :class => "btn btn-primary" %>
+
+<% if @factories.count > 0%>
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Number of Branches</td>
+				<td>Number of employees</td>
+				<td>Last year sales</td>
+				<td>Last year Profit</td>
+				<td>Show</td>
+				<td>Edit</td>
+				<td>Delete</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @factories.each do |factory| %>
+				<tr>
+					<td class="text-center"><%= factory.name %></td>
+					<td class="text-center"><%= factory.branches.count %></td>
+					<td class="text-center"><%= calculate_number_of_employees(factory) %></td>
+					<td class="text-center"><%= calculate_last_year_sale(factory) %></td>
+					<td class="text-center"><%= calculate_last_year_profit(factory) %></td>
+					<td class="text-center"><%= link_to "Show", factory_path(factory) %></td>
+					<td class="text-center"><%= link_to "Edit", edit_factory_path(factory) %></td>
+					<td class="text-center"><%= link_to "Delete", factory_path(factory), method: "delete" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<h3>No Factory to show</h3>
+<% end %>

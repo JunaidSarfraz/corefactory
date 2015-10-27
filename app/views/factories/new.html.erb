@@ -1,0 +1,40 @@
+<%= form_for @factory, url: factories_path do |f| %>
+	<table class="table">
+		<tr>
+			<td class="text-center">Name</td>
+			<td><%= f.text_field :name, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Vision</td>
+			<td><%= f.text_area :vision, :class => "btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Work Description</td>
+			<td><%= f.text_area :work_description, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Email</td>
+			<td><%= f.email_field :email , :class =>"btn-block btn-block-level-input"%></td>
+		</tr>
+		<tr>
+			<td class="text-center">Password for email</td>
+			<td><%= f.password_field :password_of_factory_email, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Primary Phone</td>
+			<td><%= f.text_field :primary_phone, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Secondary Phone</td>
+			<td><%= f.text_field :secondary_phone, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td class="text-center">Tax Information</td>
+			<td><%= f.text_area :tax_information, :class =>"btn-block btn-block-level-input" %></td>
+		</tr>
+		<tr>
+			<td>&nbsp</td>
+			<td><%= f.submit "Create", :class =>"btn-block btn-block-level-input btn-primary" %></td>
+		</tr>
+	</table>
+<% end %>

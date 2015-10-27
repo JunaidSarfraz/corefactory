@@ -1,6 +1,65 @@
 class FactoriesController < ApplicationController
   before_action :authenticate_user!
+  helper_method :calculate_number_of_employees
+  helper_method :calculate_last_year_sale
+  helper_method :calculate_last_year_profit
+  before_action :load_factory
   def index
-  	
+  	@factories = current_user.factories
+  end
+  
+  def new
+  	@factory = Factory.new
+  end
+  
+  def create
+  	@factory = Factory.create(factory_params)
+  	@factory.owner = current_user
+  	@factory.save!
+  	redirect_to :action => "index"
+  end
+
+  def show
+
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  	@factory.destroy
+  	redirect_to :action => "index"
+  end
+
+  private
+
+  def factory_params
+  	params.require(:factory).permit(:name, :vision, :work_description, :email, 
+  	:password_of_factory_email, :primary_phone, :secondary_phone, :tax_information)
+  end
+
+  def load_factory
+  	if params[:id].present?
+  		@factory = Factory.find(params[:id])
+  	end
+  end
+
+  def calculate_number_of_employees(factory)
+  	result = 0
+  	factory.branches.each do |branch|
+  		result = result + branch.employees
+  	end
+  	return result
+  end
+
+  def calculate_last_year_sale(factory)
+  	return 0
+  end
+
+  def calculate_last_year_profit(factory)
+  	return 0
   end
 end

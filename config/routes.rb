@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :factories, only: [:index]
+  resources :factories
   resources :accounts, only: [:index]
   resources :clients, only: [:index]
   resources :payrolls, only: [:index]
