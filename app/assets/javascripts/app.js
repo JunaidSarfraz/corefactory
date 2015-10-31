@@ -11,5 +11,5 @@ $(document).ready(function () {
 		$('#work_head_items').val("");
 		$('#work_head_pay').val("");
 	});
-
+	
 }); // end of document.ready
