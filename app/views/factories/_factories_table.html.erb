@@ -1,0 +1,67 @@
+<table class="table table-bordered">
+	<tr>
+		<td class="text-center">Name</td>
+		<td class="text-center"><%= f.text_field :name, :class =>"btn-block btn-block-level-input" %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Vision</td>
+		<td class="text-center"><%= f.text_area :vision, :class => "btn-block btn-block-level-input" %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Work Description</td>
+		<td class="text-center">
+			<%= f.text_area :work_description, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Email</td>
+		<td class="text-center"><%= f.email_field :email , :class =>"btn-block btn-block-level-input"%></td>
+	</tr>
+	<tr>
+		<td class="text-center">Password for email</td>
+		<td class="text-center">
+			<%= f.password_field :password_of_factory_email, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Primary Phone</td>
+		<td class="text-center">
+			<%= f.text_field :primary_phone, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Secondary Phone</td>
+		<td class="text-center">
+			<%= f.text_field :secondary_phone, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Tax Information</td>
+		<td class="text-center">
+			<%= f.text_area :tax_information, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+</table>
+<hr />
+<h4>Branches</h3>
+<div id="branches">
+	<%= f.fields_for :branches, :wrapper => true do |branch_form| %>
+		<table class="table fields table-bordered">
+			<%= render partial: "factories/nested_branches_form" , locals: {branch_form: branch_form} %>
+		</table>
+	<% end %>
+</div>
+<p><%= f.link_to_add "Add a Add a branch", :branches, :data => { :target => "#branches" } %></p>
+<table class="table">
+	<tr>
+		<% if params[:action] == "new" %>
+			<td class="text-center">
+				<%= f.submit "Create", :class =>"btn-block btn-block-level-input btn-primary" %>
+			</td>
+		<% else %>
+			<td class="text-center">
+				<%= f.submit "Update", :class =>"btn-block btn-block-level-input btn-primary" %>
+			</td>
+		<% end %>
+	</tr>
+</table>

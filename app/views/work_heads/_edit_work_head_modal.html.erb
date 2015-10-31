@@ -1,0 +1,27 @@
+<div id="edit_pay_head<%= head.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Work Head</h4>
+      </div>
+      <%= form_tag(work_head_path(head.id), method: "patch") do %>
+        <div class="modal-body">
+          <%= label_tag "Name", nil, :class => "pull-left" %>
+          <%= text_field_tag :name, head.name, class: "btn-block btn-block-level-input", id: "work_head_name" %>
+          <%= label_tag "Work Description", nil, :class => "pull-left" %>
+          <%= text_field_tag :work_description,head.work_description,class: "btn-block btn-block-level-input",id: "work_head_description" %>
+          <%= label_tag "Number of Items", nil, :class => "pull-left" %>
+          <%= number_field_tag :number_of_items, head.number_of_items, class: "btn-block btn-block-level-input", id: "work_head_items" %>
+          <%= label_tag "Pay", nil, :class => "pull-left" %>
+          <%= number_field_tag :pay, head.pay, class: "btn-block btn-block-level-input", id: "work_head_pay" %>
+          <%= hidden_field_tag :head_id, head.id %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Update", class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
