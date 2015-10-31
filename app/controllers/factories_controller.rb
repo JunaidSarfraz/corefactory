@@ -20,13 +20,15 @@ class FactoriesController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
   end
 
   def update
+  	@factory.update_attributes(factory_params)
+  	@factory.save
+  	redirect_to action: "index"
   end
 
   def destroy
@@ -37,8 +39,10 @@ class FactoriesController < ApplicationController
   private
 
   def factory_params
-  	params.require(:factory).permit(:name, :vision, :work_description, :email, 
-  	:password_of_factory_email, :primary_phone, :secondary_phone, :tax_information)
+  	params.require(:factory).permit(:id, :name, :vision, :work_description, :email, 
+  	:password_of_factory_email, :primary_phone, :secondary_phone, :tax_information,
+  	branches_attributes: [:id, :name, :address, :city, :country, :zip_code, :primary_phone, :secondary_phone, :email,
+  	:branch_head_id, :_destroy])
   end
 
   def load_factory
@@ -50,7 +54,7 @@ class FactoriesController < ApplicationController
   def calculate_number_of_employees(factory)
   	result = 0
   	factory.branches.each do |branch|
-  		result = result + branch.employees
+  		result = result + branch.employees.count
   	end
   	return result
   end

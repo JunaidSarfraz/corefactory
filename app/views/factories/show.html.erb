@@ -1,1 +1,70 @@
-<h1>Show</h1>
+<table class="table">
+	<tr>
+		<td class="text-center">Name</td>
+		<td class="text-center"><%= label_tag :name, @factory.name %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Vision</td>
+		<td class="text-center"><%= label_tag :vision, @factory.vision %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Work Description</td>
+		<td class="text-center">
+			<%= label_tag :work_description, @factory.work_description %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Email</td>
+		<td class="text-center"><%= label_tag :email , @factory.email %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Password for email</td>
+		<td class="text-center">
+			<%= label_tag :password_of_factory_email, @factory.password_of_factory_email %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Primary Phone</td>
+		<td class="text-center">
+			<%= label_tag :primary_phone, @factory.primary_phone %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Secondary Phone</td>
+		<td class="text-center">
+			<%= label_tag :secondary_phone, @factory.secondary_phone %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Tax Information</td>
+		<td class="text-center">
+			<%= text_area_tag :tax_information, @factory.tax_information, :readonly => "true" %>
+		</td>
+	</tr>
+</table>
+<hr />
+<h4>Branches</h3>
+<table class="table">
+	<thead>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Primary Phone</th>
+		<th>Secondary Phone</th>
+		<th>Email</th>
+		<th>Number Of Employees</th>
+	</thead>
+	<tbody>
+		<% @factory.branches.each do |branch| %>
+			<tr>
+				<td><%= branch.name %></td>
+				<td>
+					<%= branch.address+" "+branch.city+" ,"+branch.country+" ("+branch.zip_code.to_s+")" %>
+				</td>
+				<td><%= branch.primary_phone %></td>
+				<td><%= branch.secondary_phone %></td>
+				<td><%= branch.email_address %></td>
+				<td><%= branch.employees.count %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

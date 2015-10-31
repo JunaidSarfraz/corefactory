@@ -19,3 +19,4 @@
 //= require bootstrap
 //= require bootstrap.min
 //= require app
+//= require jquery_nested_form

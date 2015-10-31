@@ -1,1 +1,3 @@
-<h1>Edit</h1>
+<%= nested_form_for @factory, url: factory_path, method: "put" do |form| %>
+	<%= render partial: "factories/factories_table", locals: { f: form}%>
+<% end %>
