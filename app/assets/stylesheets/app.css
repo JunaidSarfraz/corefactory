@@ -13,9 +13,21 @@ div.right{
 	float: right;
   	text-align: right;
  	margin: 15px 2px;
-  	display: inline
+  	display: inline;
 }
 
+textarea {
+    resize: none;
+}
+.horizontal-scroll{
+    overflow-x: scroll;
+}
+
+td.panel-title{
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
 
 #wrapper {
     padding-left: 0;
@@ -29,9 +41,10 @@ div.right{
     padding-left: 250px;
 }
 
+
 #sidebar-wrapper {
     z-index: 1000;
-    position: fixed;
+    position: absolute;
     left: 250px;
     width: 0;
     height: 100%;

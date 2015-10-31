@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :sales, only: [:index]
   resources :settings, only: [:index]
   resources :suppliers, only: [:index]
-  resources :work_heads, only: [:index]
+  resources :work_heads, only: [:index, :create, :destroy, :update]
   resources :workers, only: [:index]
 
   resources :user do
