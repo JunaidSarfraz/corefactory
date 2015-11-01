@@ -1,0 +1,7 @@
+
+<%= select_tag :option, options_for_select([['All Workers',''],['Managers', 'manager'], ['Workers', 'worker']]), { :class => 'btn btn-default pull-right relative-position' } %>
+<%= collection_select(:branch, :id, current_user.factories[0].branches, :id, :name, {:include_blank => 'All Branches'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) %>
+<%= collection_select(:factory, :id, current_user.factories, :id, :name,{:include_blank => 'All Factories'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) %>
+<br />
+<hr />
+<hr />

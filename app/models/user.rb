@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
    enum gender: [:male, :female, :undefinded]
-   enum blood_group: [:"A+",:"A-",:"AB+",:"AB-",:"O+",:"O-"]
+   enum blood_group: [:"A+",:"A-",:"AB+",:"AB-",:"O+",:"O-",:unknown]
    enum _type: [:owner, :manager, :worker]
    has_many	:factories, :dependent => :delete_all
    has_many  	:hobbies, :dependent => :delete_all

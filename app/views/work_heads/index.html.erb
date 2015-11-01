@@ -1,8 +1,18 @@
+<% if current_user.factories.present? %>
+	<div>
+		<h1 class="element-inline">Work Heads</h1>
+		<%= select_tag :option, options_for_select([['All Workers',''],['Managers', 'manager'], ['Workers', 'worker']]), { :class => 'btn btn-default pull-right relative-position' } rescue nil %>
+		<%= collection_select(:branch, :id, current_user.factories[0].branches, :id, :name, {:include_blank => 'All Branches'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
+		<%= collection_select(:factory, :id, current_user.factories, :id, :name, {:include_blank => 'All Factories'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
+		<hr />
+		<hr />
+	</div>
+<% end %>
+
 <% if @branches.count > 0 %>
-	<h1>Work Heads</h1>
 	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
-			<table class="table table-bordered">
+			<table class="table table-condensed table-hover">
 				<% @branches.each do |branch| %>
 					<tr class="panel-heading panel-title accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= branch.id %>">
 						<td class="text-center panel-title"><%= branch.factory.name %></td>

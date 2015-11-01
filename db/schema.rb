@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025090911) do
+ActiveRecord::Schema.define(version: 20151101201647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20151025090911) do
     t.integer  "blood_group"
     t.boolean  "disabled",               default: true
     t.integer  "_type"
+    t.integer  "zip_code",               default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
