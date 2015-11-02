@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :factories
+  resources :factories do
+    collection do
+      post :get_all_branches
+    end
+  end
   resources :accounts, only: [:index]
   resources :clients, only: [:index]
   resources :payrolls, only: [:index]
