@@ -21,7 +21,7 @@ $(document).ready(function () {
 		// add elements to branches dropdown
 		$.ajax({
 			type: "post",
-			url: "/factories/get_all_branches",
+			url: "/work_heads/get_all_branches",
 			dataType: "json",
 			data: {
 				factory_id: factory_id
@@ -40,7 +40,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/factories/get_all_branches",
+			url: "/work_heads/get_all_branches",
 			dataType: "html",
 			data: {
 				factory_id: factory_id
@@ -58,7 +58,36 @@ $(document).ready(function () {
 	});
 
 	$(document).on('change', '#all_branches_dropdown_work_heads', function(e){
-		alert($('#all_branches_dropdown_work_heads').find(":selected").val());
+		debugger;
+		var branch_id = $('#all_branches_dropdown_work_heads').find(":selected").val();
+		var factory_id = $('#all_factories_dropdown_work_heads').find(":selected").val();
+		// In this state signal is don't care
+		var signal = "";
+		if(branch_id == "" && factory_id == ""){
+			branch_id = nil;
+			signal = "All";
+		}
+		else if(branch_id == "" && factory_id != ""){
+			branch_id = 0;
+			signal = "";
+		}
+		else if(branch_id != ""){
+			signal = "consider"
+		}
+		// Update page content
+		$.ajax({
+			type: "post",
+			url: "/work_heads/get_work_heads_of_branch",
+			data: {
+				branch_id: branch_id,
+				signal: signal,
+				factory_id: factory_id
+			},
+			success: function(data){
+				$('#all_work_heads').html("");
+				$('#all_work_heads').html(data);
+			}
+		}); // end of ajax call
 	});
 	
 }); // end of document.ready

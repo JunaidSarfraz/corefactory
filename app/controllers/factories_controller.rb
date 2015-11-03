@@ -36,28 +36,6 @@ class FactoriesController < ApplicationController
   	redirect_to :action => "index"
   end
 
-  def get_all_branches
-    if params[:factory_id] == "0"
-      @branches = Array.new
-      current_user.factories.each do |factory|
-        @branches = @branches + factory.branches
-      end
-    else
-      @factory = Factory.find(params[:factory_id])
-      @branches = @factory.branches
-    end
-    respond_to do |format|
-      format.html { render partial: "work_heads/work_heads_index"}
-      format.json {
-        if @factory.present? 
-          render json: @factory.branches.to_json
-        else
-          render json: false
-        end 
-      }
-    end
-  end
-
   private
 
   def factory_params

@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :factories do
-    collection do
-      post :get_all_branches
-    end
-  end
+  resources :factories
   resources :accounts, only: [:index]
   resources :clients, only: [:index]
   resources :payrolls, only: [:index]
@@ -12,7 +8,12 @@ Rails.application.routes.draw do
   resources :sales, only: [:index]
   resources :settings, only: [:index]
   resources :suppliers, only: [:index]
-  resources :work_heads, only: [:index, :create, :destroy, :update]
+  resources :work_heads, only: [:index, :create, :destroy, :update] do
+    collection do
+      post :get_all_branches
+      post :get_work_heads_of_branch
+    end
+  end
   resources :workers
 
   resources :user do
