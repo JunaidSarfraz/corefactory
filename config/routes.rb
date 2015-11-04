@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       post :get_work_heads_of_branch
     end
   end
-  resources :workers
+  resources :workers do
+    member do
+      post :change_status
+    end
+  end
 
   resources :user do
     get :dashboard

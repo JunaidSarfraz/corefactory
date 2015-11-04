@@ -12,7 +12,11 @@ $(document).ready(function () {
 		$('#work_head_pay').val("");
 	});
 
-	// Extract factories on the base of selected option using ajax
+
+
+
+
+	// Extract factories on the base of selected option using ajax in work head index page
 	$(document).on('change', '#all_factories_dropdown_work_heads', function(e){
 		var factory_id = $('#all_factories_dropdown_work_heads').find(":selected").val();
 		if(factory_id == ""){
@@ -24,7 +28,8 @@ $(document).ready(function () {
 			url: "/work_heads/get_all_branches",
 			dataType: "json",
 			data: {
-				factory_id: factory_id
+				factory_id: factory_id,
+				page_identity: "work_heads"
 			},
 			success: function(data){
 				$('#all_branches_dropdown_work_heads').children().remove().end();
@@ -43,7 +48,8 @@ $(document).ready(function () {
 			url: "/work_heads/get_all_branches",
 			dataType: "html",
 			data: {
-				factory_id: factory_id
+				factory_id: factory_id,
+				page_identity: "work_heads"
 			},
 			success: function(data){
 				$('#all_work_heads').html("");
@@ -53,10 +59,63 @@ $(document).ready(function () {
 
 	});
 
+
+	// Extract factories on the base of selected option using ajax in workers index page
+	$(document).on('change', '#all_factories_dropdown_workers', function(e){
+		var factory_id = $('#all_factories_dropdown_workers').find(":selected").val();
+		var page_identity = "workers"
+		if(factory_id == ""){
+			factory_id = 0;
+		}
+		// add elements to branches dropdown
+		$.ajax({
+			type: "post",
+			url: "/work_heads/get_all_branches",
+			dataType: "json",
+			data: {
+				factory_id: factory_id,
+				page_identity: "workers"
+			},
+			success: function(data){
+				$('#all_branches_dropdown_workers').children().remove().end();
+				$('#all_branches_dropdown_workers').append("<option selected value='' selected='selected'>All Branches</option>");
+				if(data != false){					
+					$.each(data, function(index,value){
+						$('#all_branches_dropdown_workers').append("<option value='"+value.id+"'>"+value.name+"</option>");
+					});
+				}
+			}
+		}); // end of ajax call
+
+		// Update page content
+		$.ajax({
+			type: "post",
+			url: "/work_heads/get_all_branches",
+			dataType: "html",
+			data: {
+				factory_id: factory_id,
+				page_identity: "workers"
+			},
+			success: function(data){
+				$('#all_workers_table').html("");
+				$('#all_workers_table').html(data);
+			}
+		}); // end of ajax call
+
+	});
+
+
+
+
+
 	$(document).on('change', '#workers_or_manager_work_heads', function(e){
 		alert($('#workers_or_manager_work_heads').find(":selected").val());
 	});
 
+
+
+
+	// Branch level filtration in work heads
 	$(document).on('change', '#all_branches_dropdown_work_heads', function(e){
 		debugger;
 		var branch_id = $('#all_branches_dropdown_work_heads').find(":selected").val();
@@ -81,7 +140,8 @@ $(document).ready(function () {
 			data: {
 				branch_id: branch_id,
 				signal: signal,
-				factory_id: factory_id
+				factory_id: factory_id,
+				page_identity: "work_heads"
 			},
 			success: function(data){
 				$('#all_work_heads').html("");
@@ -89,5 +149,63 @@ $(document).ready(function () {
 			}
 		}); // end of ajax call
 	});
-	
+
+	// Branch level filtration in workers
+	$(document).on('change', '#all_branches_dropdown_workers', function(e){
+		debugger;
+		var branch_id = $('#all_branches_dropdown_workers').find(":selected").val();
+		var factory_id = $('#all_factories_dropdown_workers').find(":selected").val();
+		// In this state signal is don't care
+		var signal = "";
+		if(branch_id == "" && factory_id == ""){
+			branch_id = nil;
+			signal = "All";
+		}
+		else if(branch_id == "" && factory_id != ""){
+			branch_id = 0;
+			signal = "";
+		}
+		else if(branch_id != ""){
+			signal = "consider"
+		}
+		// Update page content
+		$.ajax({
+			type: "post",
+			url: "/work_heads/get_work_heads_of_branch",
+			data: {
+				branch_id: branch_id,
+				signal: signal,
+				factory_id: factory_id,
+				page_identity: "workers"
+			},
+			success: function(data){
+				$('#all_workers_table').html("");
+				$('#all_workers_table').html(data);
+			}
+		}); // end of ajax call
+	});
+
+
+
+	$(document).on('click', '.worker_enable_disable_button', function(e){
+		var worker_id = $(this).parent().parent().find('.worker_id').val();
+		var button_text = $(this).text();
+		var element = this;
+		$.ajax({
+			type: "post",
+			url: "/workers/"+worker_id+"/change_status",
+			data: {
+			},
+			success: function(data){	
+				// Actual this is not accessable here so I use element instead of this
+				if(button_text == "Enable"){
+					$(element).text("Disable");
+				}else if(button_text == "Disable"){
+					$(element).text("Enable");
+				}
+			}
+		}); // end of ajax call
+	});
+
+
 }); // end of document.ready

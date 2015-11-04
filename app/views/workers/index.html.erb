@@ -1,46 +1,18 @@
 <div>
 	<%= link_to "Add New Worker", new_worker_path, :class => "btn btn-primary" %>
-	<%= select_tag :option, options_for_select([['All Workers',''],['Managers', 'manager'], ['Workers', 'worker']]), { :class => 'btn btn-default pull-right relative-position' } %>
-	<%= collection_select(:branch, :id, current_user.factories[0].branches, :id, :name, {:include_blank => 'All Branches'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) %>
-	<%= collection_select(:factory, :id, current_user.factories, :id, :name,{:include_blank => 'All Factories'}, {:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) %>
+	
+
+	<%= select_tag :option, options_for_select([['All Workers',''],['Managers', 'manager'], ['Workers', 'worker']]), { :id => "workers_managers_dropdown_workers", :class => 'btn btn-default pull-right relative-position' } rescue nil %>
+	
+
+	<%= collection_select(:branch, :id, Array.new, :id, :name, {:include_blank => 'All Branches'}, {:id => "all_branches_dropdown_workers",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
+	
+
+	<%= collection_select(:factory, :id, current_user.factories, :id, :name,{:include_blank => 'All Factories'}, {:id => "all_factories_dropdown_workers", :class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
 	<hr />
 	<hr />
 </div>
-<% if @workers.count > 0 %>
-	<table class="table table-bordered table-hover">
-		<tr>
-			<td>Factory Name</td>
-			<td>Branch Name</td>
-			<td>First Name</td>
-			<td>Primary Phone</td>
-			<td>Secondary Phone</td>
-			<td>Type</td>
-			<td>Status</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
-		</tr>
-		<% @workers.each do |worker| %>
-			<tr>
-				<td><%= worker.branch.factory.name rescue nil %></td>
-				<td><%= worker.branch.name rescue nil %></td>
-				<td><%= worker.first_name rescue nil%></td>
-				<td><%= worker.primary_phone rescue nil%></td>
-				<td><%= worker.secondary_phone rescue nil%></td>
-				<td><%= worker._type rescue nil %></td>
-				<% if worker.disabled %>
-					<td><%= link_to "Enable" , "#", :class => "btn btn-primary" %></td>
-				<% else %>
-					<td><%= link_to "Disable" , "#", :class => "btn btn-primary" %></td>
-				<% end %>
-				<td><%= link_to "Show", "#", :class => "btn btn-primary" %></td>
-				<td><%= link_to "Edit", "#", :class => "btn btn-primary" %></td>
-				<td>
-					<%= link_to "Delete", worker_path(worker), :class => "btn btn-primary", method: "delete" %>
-				</td>
-			</tr>
-		<% end %>
-	</table>
-<% else %>
-	<h1>No Workers to show</h1>
-<% end %>
+
+<div id="all_workers_table">
+	<%= render partial: "workers/workers_table" %>
+</div>

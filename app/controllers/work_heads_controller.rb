@@ -1,3 +1,4 @@
+require 'shared_functions'
 class WorkHeadsController < ApplicationController
 	def index
 		@branches = Array.new
@@ -33,17 +34,34 @@ class WorkHeadsController < ApplicationController
 
 	#Filteration Logic of factories drop-down
 	def get_all_branches
-	    if params[:factory_id] == "0"
+	    if params[:factory_id] == "0" && params[:page_identity] == "work_heads"
 	      @branches = Array.new
 	      current_user.factories.each do |factory|
 	        @branches = @branches + factory.branches
 	      end
-	    else
-	      @factory = Factory.find(params[:factory_id])
+	    elsif params[:page_identity] == "work_heads"
+	      @factory = Factory.find(params[:factory_id].to_i)
 	      @branches = @factory.branches
 	    end
+
+	    if params[:factory_id] == "0" && params[:page_identity] == "workers"
+	    	load_workers
+	    elsif params[:page_identity] == "workers"
+	    	@workers = Array.new
+	    	@factory = Factory.find(params[:factory_id].to_i)
+	    	@factory.branches.each do |branch|
+	    		@workers = @workers + branch.employees
+	    	end
+	    end
+
 	    respond_to do |format|
-	      format.html { render partial: "work_heads/work_heads_index"}
+	      format.html {
+	      		if params[:page_identity] == "workers"
+	      			render partial: "workers/workers_table"
+	      		else 
+	      			render partial: "work_heads/work_heads_index"
+	      		end
+	      	}
 	      format.json {
 	        if @factory.present? 
 	          render json: @factory.branches.to_json
@@ -58,20 +76,35 @@ class WorkHeadsController < ApplicationController
   	#Filtration Logic of Branches Dropdown
   	def get_work_heads_of_branch
   		signal = params[:signal]
-  		puts "-=-=-=-=-=-\n" * 10
-  		puts params[:factory_id]
-  		puts "-=-=-=-=-=-\n" * 10
+  		
+  		#one of the following branches or workers are used in this controller
   		@branches = Array.new
-  		if(signal == "")
+  		@workers = Array.new
+
+  		if signal == "" && params[:page_identity] == "work_heads"
   			@factory = Factory.find(params[:factory_id].to_i)
   			@branches = @factory.branches
-  		elsif(signal == "All")
+  		elsif signal == "All" && params[:page_identity] == "work_heads"
 			current_user.factories.each do |factory|
 				@branches = @branches + factory.branches
 	  		end
-	  	elsif(signal == "consider")
+	  	elsif signal == "consider" && params[:page_identity] == "work_heads"
 	  		@branches << Branch.find(params[:branch_id])
 	  	end
-	  	render partial: "work_heads/work_heads_index"
+		
+		if signal == "" && params[:page_identity] == "workers"
+  			@factory.branches.each do |branch|
+	    			@workers = @workers + branch.employees
+	    		end
+  		elsif signal == "All" && params[:page_identity] == "workers"
+			load_workers
+	  	elsif signal == "consider" && params[:page_identity] == "workers"
+	  		@workers = Branch.find(params[:branch_id].to_i).employees
+	  	end	
+	  	if params[:page_identity] == "work_heads" 	
+	  		render partial: "work_heads/work_heads_index"
+	  	elsif params[:page_identity] == "workers"
+	  		render partial: "workers/workers_table"
+	  	end
   	end
 end
