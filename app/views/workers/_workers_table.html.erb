@@ -26,8 +26,8 @@
 				<% else %>
 					<td><%= link_to "Disable" , "#", :class => "btn btn-primary worker_enable_disable_button", :value => "Disable" %></td>
 				<% end %>
-				<td><%= link_to "Show", "#", :class => "btn btn-primary" %></td>
-				<td><%= link_to "Edit", "#", :class => "btn btn-primary" %></td>
+				<td><%= link_to "Show", worker_path(worker), :class => "btn btn-primary" %></td>
+				<td><%= link_to "Edit", edit_worker_path(worker), :class => "btn btn-primary" %></td>
 				<td>
 					<%= link_to "Delete", worker_path(worker), :class => "btn btn-primary", method: "delete" %>
 				</td>

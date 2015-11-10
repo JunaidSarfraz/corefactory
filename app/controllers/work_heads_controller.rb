@@ -33,7 +33,7 @@ class WorkHeadsController < ApplicationController
 
 
 	#Filteration Logic of factories drop-down
-	def get_all_branches
+	def filtration_logic_of_factories
 	    if params[:factory_id] == "0" && params[:page_identity] == "work_heads"
 	      @branches = Array.new
 	      current_user.factories.each do |factory|
@@ -74,15 +74,14 @@ class WorkHeadsController < ApplicationController
 
 
   	#Filtration Logic of Branches Dropdown
-  	def get_work_heads_of_branch
+  	def filtration_logic_of_branches
   		signal = params[:signal]
   		
   		#one of the following branches or workers are used in this controller
   		@branches = Array.new
   		@workers = Array.new
-
+  		@factory = Factory.find(params[:factory_id].to_i)
   		if signal == "" && params[:page_identity] == "work_heads"
-  			@factory = Factory.find(params[:factory_id].to_i)
   			@branches = @factory.branches
   		elsif signal == "All" && params[:page_identity] == "work_heads"
 			current_user.factories.each do |factory|

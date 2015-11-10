@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :suppliers, only: [:index]
   resources :work_heads, only: [:index, :create, :destroy, :update] do
     collection do
-      post :get_all_branches
-      post :get_work_heads_of_branch
+      post :filtration_logic_of_factories
+      post :filtration_logic_of_branches
     end
   end
   resources :workers do

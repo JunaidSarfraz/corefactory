@@ -25,7 +25,7 @@ $(document).ready(function () {
 		// add elements to branches dropdown
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_all_branches",
+			url: "/work_heads/filtration_logic_of_factories",
 			dataType: "json",
 			data: {
 				factory_id: factory_id,
@@ -45,7 +45,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_all_branches",
+			url: "/work_heads/filtration_logic_of_factories",
 			dataType: "html",
 			data: {
 				factory_id: factory_id,
@@ -70,7 +70,7 @@ $(document).ready(function () {
 		// add elements to branches dropdown
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_all_branches",
+			url: "/work_heads/filtration_logic_of_factories",
 			dataType: "json",
 			data: {
 				factory_id: factory_id,
@@ -90,7 +90,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_all_branches",
+			url: "/work_heads/filtration_logic_of_factories",
 			dataType: "html",
 			data: {
 				factory_id: factory_id,
@@ -136,7 +136,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_work_heads_of_branch",
+			url: "/work_heads/filtration_logic_of_branches",
 			data: {
 				branch_id: branch_id,
 				signal: signal,
@@ -171,7 +171,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/get_work_heads_of_branch",
+			url: "/work_heads/filtration_logic_of_branches",
 			data: {
 				branch_id: branch_id,
 				signal: signal,

@@ -1,4 +1,7 @@
-<table class="table">
+<%= form_for @worker, :url => worker_path(@worker.id) do |f| %>
+	<h2>Edit Worker</h2>
+	<hr />
+	<table class="table">
 	<tr>
 		<td class="text-center">First Name</td>
 		<td class="text-left">
@@ -33,16 +36,6 @@
 		<td class="text-center">Email</td>
 		<td class="text-left">
 			<%= f.text_field :email, :class => "btn-block btn-block-level-input" %>
-		</td>
-		<td class="text-left">Password</td>
-		<td class="text-left">
-			<%= f.password_field :password, :class => "btn-block btn-block-level-input" %>
-		</td>
-	</tr>
-	<tr>
-		<td class="text-center">Password Confirmation</td>
-		<td class="text-left">
-			<%= f.password_field :password_confirmation, :class => "btn-block btn-block-level-input" %>
 		</td>
 		<td class="text-left">Address</td>
 		<td class="text-left">
@@ -100,11 +93,11 @@
 	<tr>
 		<td>Factory</td>
 		<td>
-			<%= collection_select(:branch, :id, current_user.factories, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+			<%= collection_select(:factory, :id, current_user.factories, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
 		</td>
 		<td>Branch</td>
 		<td>
-			<%= collection_select(:branch, :id, current_user.factories[0].branches, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+			<%= collection_select(:user, :branch_id, current_user.factories[0].branches, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
 		</td>
 	</tr>
 	<tr>
@@ -114,3 +107,4 @@
 		<td><%= f.submit "Create", :class => "btn btn-block btn-primary btn-block-level-input" %></td>
 	</tr>
 </table>
+<% end %>
