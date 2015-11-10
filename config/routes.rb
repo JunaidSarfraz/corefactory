@@ -8,18 +8,19 @@ Rails.application.routes.draw do
   resources :sales, only: [:index]
   resources :settings, only: [:index]
   resources :suppliers, only: [:index]
-  resources :work_heads, only: [:index, :create, :destroy, :update] do
-    collection do
-      post :filtration_logic_of_factories
-      post :filtration_logic_of_branches
-    end
-  end
+  resources :work_heads, only: [:index, :create, :destroy, :update]
   resources :workers do
     member do
       post :change_status
     end
   end
-
+  resources :filtration, only: []  do
+    collection do
+      post :filtration_logic_of_factories
+      post :filtration_logic_of_branches
+      post :worker_or_manager
+    end
+  end
   resources :user do
     get :dashboard
   end

@@ -25,7 +25,7 @@ $(document).ready(function () {
 		// add elements to branches dropdown
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_factories",
+			url: "/filtration/filtration_logic_of_factories",
 			dataType: "json",
 			data: {
 				factory_id: factory_id,
@@ -45,7 +45,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_factories",
+			url: "/filtration/filtration_logic_of_factories",
 			dataType: "html",
 			data: {
 				factory_id: factory_id,
@@ -70,7 +70,7 @@ $(document).ready(function () {
 		// add elements to branches dropdown
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_factories",
+			url: "/filtration/filtration_logic_of_factories",
 			dataType: "json",
 			data: {
 				factory_id: factory_id,
@@ -90,7 +90,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_factories",
+			url: "/filtration/filtration_logic_of_factories",
 			dataType: "html",
 			data: {
 				factory_id: factory_id,
@@ -108,10 +108,34 @@ $(document).ready(function () {
 
 
 
-	$(document).on('change', '#workers_or_manager_work_heads', function(e){
-		alert($('#workers_or_manager_work_heads').find(":selected").val());
-	});
+	$(document).on('change', '#workers_managers_dropdown_workers', function(e){
+		var selection = $('#workers_managers_dropdown_workers').find(":selected").val();
+		var factory = $('#all_factories_dropdown_workers').find(":selected").val();
+		var branch = $('#all_branches_dropdown_workers').find(":selected").val();
+		if(selection == ''){
+			selection = "all";
+		}
+		if(factory == ''){
+			factory = "all";
+		}
+		if(branch == ''){
+			branch = "all";
+		}
+		$.ajax({
+			type: "post",
+			url: "/filtration/worker_or_manager",
+			data: {
+				factory_id: factory,
+				branch_id: branch,
+				selection: selection
+			},
+			success: function(data){
+				$('#all_workers_table').html("");
+				$('#all_workers_table').html(data);
+			}
+		}); // end of ajax call
 
+	});
 
 
 
@@ -136,7 +160,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_branches",
+			url: "/filtration/filtration_logic_of_branches",
 			data: {
 				branch_id: branch_id,
 				signal: signal,
@@ -171,7 +195,7 @@ $(document).ready(function () {
 		// Update page content
 		$.ajax({
 			type: "post",
-			url: "/work_heads/filtration_logic_of_branches",
+			url: "/filtration/filtration_logic_of_branches",
 			data: {
 				branch_id: branch_id,
 				signal: signal,
