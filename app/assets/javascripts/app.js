@@ -101,7 +101,7 @@ $(document).ready(function () {
 				$('#all_workers_table').html(data);
 			}
 		}); // end of ajax call
-
+		$('#workers_managers_dropdown_workers').val('');
 	});
 
 
@@ -207,6 +207,7 @@ $(document).ready(function () {
 				$('#all_workers_table').html(data);
 			}
 		}); // end of ajax call
+		$('#workers_managers_dropdown_workers').val('');
 	});
 
 
