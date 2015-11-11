@@ -1,7 +1,7 @@
 <% if @workers.count > 0 %>
 	<table class="table table-bordered table-hover">
 		<tr>
-			<td>Factory Name</td>
+			<td>Company Name</td>
 			<td>Branch Name</td>
 			<td>First Name</td>
 			<td>Primary Phone</td>
@@ -15,7 +15,7 @@
 		<% @workers.each do |worker| %>
 			<tr>
 				<td class="hide"><%= hidden_field_tag :id, worker.id, :class => "worker_id" %></td>
-				<td><%= worker.branch.factory.name rescue nil %></td>
+				<td><%= worker.branch.company.name rescue nil %></td>
 				<td><%= worker.branch.name rescue nil %></td>
 				<td><%= worker.first_name rescue nil%></td>
 				<td><%= worker.primary_phone rescue nil%></td>

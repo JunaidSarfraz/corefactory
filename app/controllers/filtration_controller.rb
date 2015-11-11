@@ -5,20 +5,20 @@ class FiltrationController < ApplicationController
 	def filtration_logic_of_factories
 	    if params[:factory_id] == "0" && params[:page_identity] == "work_heads"
 	      @branches = Array.new
-	      current_user.factories.each do |factory|
-	        @branches = @branches + factory.branches
+	      current_user.companies.each do |company|
+	        @branches = @branches + company.branches
 	      end
 	    elsif params[:page_identity] == "work_heads"
-	      @factory = Factory.find(params[:factory_id].to_i)
-	      @branches = @factory.branches
+	      @company = Company.find(params[:factory_id].to_i)
+	      @branches = @company.branches
 	    end
 
 	    if params[:factory_id] == "0" && params[:page_identity] == "workers"
 	    	load_workers
 	    elsif params[:page_identity] == "workers"
 	    	@workers = Array.new
-	    	@factory = Factory.find(params[:factory_id].to_i)
-	    	@factory.branches.each do |branch|
+	    	@company = Company.find(params[:factory_id].to_i)
+	    	@company.branches.each do |branch|
 	    		@workers = @workers + branch.employees
 	    	end
 	    end
@@ -32,8 +32,8 @@ class FiltrationController < ApplicationController
 	      		end
 	      	}
 	      format.json {
-	        if @factory.present? 
-	          render json: @factory.branches.to_json
+	        if @company.present? 
+	          render json: @company.branches.to_json
 	        else
 	          render json: false
 	        end 
@@ -49,19 +49,19 @@ class FiltrationController < ApplicationController
   		#one of the following branches or workers are used in this controller
   		@branches = Array.new
   		@workers = Array.new
-  		@factory = Factory.find(params[:factory_id].to_i)
+  		@company = Company.find(params[:factory_id].to_i)
   		if signal == "" && params[:page_identity] == "work_heads"
-  			@branches = @factory.branches
+  			@branches = @company.branches
   		elsif signal == "All" && params[:page_identity] == "work_heads"
-			current_user.factories.each do |factory|
-				@branches = @branches + factory.branches
+			current_user.companies.each do |company|
+				@branches = @branches + company.branches
 	  		end
 	  	elsif signal == "consider" && params[:page_identity] == "work_heads"
 	  		@branches << Branch.find(params[:branch_id])
 	  	end
 		
 		if signal == "" && params[:page_identity] == "workers"
-  			@factory.branches.each do |branch|
+  			@company.branches.each do |branch|
 	    			@workers = @workers + branch.employees
 	    		end
   		elsif signal == "All" && params[:page_identity] == "workers"
@@ -91,17 +91,17 @@ class FiltrationController < ApplicationController
   				load_workers
   			end	
   		elsif branch_id == "all"
-	  		factory = Factory.find(factory_id)
+	  		company = Company.find(factory_id)
   			if selection == "worker"
-	  			factory.branches.each do |branch|
+	  			company.branches.each do |branch|
 		    			@workers = @workers + branch.employees.where(:_type => 2)
 		    		end
 		    	elsif selection == "manager"
-		    		factory.branches.each do |branch|
+		    		company.branches.each do |branch|
 	    				@workers = @workers + branch.employees.where(:_type => 1)
 	    			end
 	    		elsif selection == "all"
-	    			factory.branches.each do |branch|
+	    			company.branches.each do |branch|
 	    				@workers = @workers + branch.employees
 	    			end
 		    	end

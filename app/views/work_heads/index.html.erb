@@ -1,10 +1,10 @@
-<% if current_user.factories.present? %>
+<% if current_user.companies.present? %>
 	<div>
 		<h1 class="element-inline">Work Heads</h1>
 		<%= collection_select(:branch, :id, Array.new , :id, :name, {:include_blank => 'All Branches'}, {:id => "all_branches_dropdown_work_heads",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
 		
 
-		<%= collection_select(:factory, :id, current_user.factories, :id, :name, {:include_blank => 'All Factories'}, {:id => "all_factories_dropdown_work_heads",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
+		<%= collection_select(:company, :id, current_user.companies, :id, :name, {:include_blank => 'All companies'}, {:id => "all_factories_dropdown_work_heads",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
 		<hr />
 		<hr />
 	</div>

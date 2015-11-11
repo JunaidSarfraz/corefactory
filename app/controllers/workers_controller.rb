@@ -24,10 +24,6 @@ class WorkersController < ApplicationController
 	end
 
 	def update
-		puts "=-=-=-=-=-=--=-=-\n" * 10
-		puts params.to_yaml
-		puts "=-=-=-=-=-=--=-=-\n" * 10
-
 		@worker.update_without_password(worker_params)
 		redirect_to action: "index"
 	end

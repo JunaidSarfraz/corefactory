@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101201647) do
+ActiveRecord::Schema.define(version: 20151111174946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,24 @@ ActiveRecord::Schema.define(version: 20151101201647) do
     t.string   "primary_phone"
     t.string   "secondary_phone"
     t.string   "email_address"
-    t.integer  "factory_id"
+    t.integer  "company_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "branch_head_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.text     "vision"
+    t.text     "work_description"
+    t.string   "email"
+    t.string   "password_of_company_email"
+    t.string   "primary_phone"
+    t.string   "secondary_phone"
+    t.text     "tax_information"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "contract_payrolls", force: :cascade do |t|
@@ -63,20 +77,6 @@ ActiveRecord::Schema.define(version: 20151101201647) do
     t.datetime "updated_at",          null: false
     t.integer  "pay"
     t.integer  "number_of_item"
-  end
-
-  create_table "factories", force: :cascade do |t|
-    t.string   "name"
-    t.text     "vision"
-    t.text     "work_description"
-    t.string   "email"
-    t.string   "password_of_factory_email"
-    t.string   "primary_phone"
-    t.string   "secondary_phone"
-    t.text     "tax_information"
-    t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   create_table "hobbies", force: :cascade do |t|

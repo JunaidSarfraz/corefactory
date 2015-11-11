@@ -1,21 +1,21 @@
-class FactoriesController < ApplicationController
+class CompaniesController < ApplicationController
   before_action :authenticate_user!
   helper_method :calculate_number_of_employees
   helper_method :calculate_last_year_sale
   helper_method :calculate_last_year_profit
   before_action :load_factory
   def index
-  	@factories = current_user.factories
+  	@companies = current_user.companies
   end
   
   def new
-  	@factory = Factory.new
+  	@company = Company.new
   end
   
   def create
-  	@factory = Factory.create(factory_params)
-  	@factory.owner = current_user
-  	@factory.save!
+  	@company = Company.create(factory_params)
+  	@company.owner = current_user
+  	@company.save!
   	redirect_to :action => "index"
   end
 
@@ -26,44 +26,49 @@ class FactoriesController < ApplicationController
   end
 
   def update
-  	@factory.update_attributes(factory_params)
-  	@factory.save
+  	@company.update_attributes(factory_params)
+  	@company.save
   	redirect_to action: "index"
   end
 
   def destroy
-  	@factory.destroy
+  	@company.destroy
   	redirect_to :action => "index"
+  end
+
+  def get_all_branches
+    company = Company.find(params[:company_id].to_i)
+    render json: company.branches
   end
 
   private
 
   def factory_params
-  	params.require(:factory).permit(:id, :name, :vision, :work_description, :email, 
-  	:password_of_factory_email, :primary_phone, :secondary_phone, :tax_information,
+  	params.require(:company).permit(:id, :name, :vision, :work_description, :email, 
+  	:password_of_company_email, :primary_phone, :secondary_phone, :tax_information,
   	branches_attributes: [:id, :name, :address, :city, :country, :zip_code, :primary_phone, :secondary_phone, :email,
   	:branch_head_id, :_destroy])
   end
 
   def load_factory
   	if params[:id].present?
-  		@factory = Factory.find(params[:id])
+  		@company = Company.find(params[:id])
   	end
   end
 
-  def calculate_number_of_employees(factory)
+  def calculate_number_of_employees(company)
   	result = 0
-  	factory.branches.each do |branch|
+  	company.branches.each do |branch|
   		result = result + branch.employees.count
   	end
   	return result
   end
 
-  def calculate_last_year_sale(factory)
+  def calculate_last_year_sale(company)
   	return 0
   end
 
-  def calculate_last_year_profit(factory)
+  def calculate_last_year_profit(company)
   	return 0
   end
 end

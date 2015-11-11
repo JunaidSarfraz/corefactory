@@ -1,44 +1,44 @@
 <table class="table table-bordered">
 	<tr>
 		<td class="text-center">Name</td>
-		<td class="text-center"><%= label_tag :name, @factory.name %></td>
+		<td class="text-center"><%= label_tag :name, @company.name %></td>
 	</tr>
 	<tr>
 		<td class="text-center">Vision</td>
-		<td class="text-center"><%= label_tag :vision, @factory.vision %></td>
+		<td class="text-center"><%= label_tag :vision, @company.vision %></td>
 	</tr>
 	<tr>
 		<td class="text-center">Work Description</td>
 		<td class="text-center">
-			<%= label_tag :work_description, @factory.work_description %>
+			<%= label_tag :work_description, @company.work_description %>
 		</td>
 	</tr>
 	<tr>
 		<td class="text-center">Email</td>
-		<td class="text-center"><%= label_tag :email , @factory.email %></td>
+		<td class="text-center"><%= label_tag :email , @company.email %></td>
 	</tr>
 	<tr>
 		<td class="text-center">Password for email</td>
 		<td class="text-center">
-			<%= label_tag :password_of_factory_email, @factory.password_of_factory_email %>
+			<%= label_tag :password_of_factory_email, @company.password_of_company_email %>
 		</td>
 	</tr>
 	<tr>
 		<td class="text-center">Primary Phone</td>
 		<td class="text-center">
-			<%= label_tag :primary_phone, @factory.primary_phone %>
+			<%= label_tag :primary_phone, @company.primary_phone %>
 		</td>
 	</tr>
 	<tr>
 		<td class="text-center">Secondary Phone</td>
 		<td class="text-center">
-			<%= label_tag :secondary_phone, @factory.secondary_phone %>
+			<%= label_tag :secondary_phone, @company.secondary_phone %>
 		</td>
 	</tr>
 	<tr>
 		<td class="text-center">Tax Information</td>
 		<td class="text-center">
-			<%= text_area_tag :tax_information, @factory.tax_information, :readonly => "true" %>
+			<%= text_area_tag :tax_information, @company.tax_information, :readonly => "true" %>
 		</td>
 	</tr>
 </table>
@@ -54,7 +54,7 @@
 		<th>Number Of Employees</th>
 	</thead>
 	<tbody>
-		<% @factory.branches.each do |branch| %>
+		<% @company.branches.each do |branch| %>
 			<tr>
 				<td><%= branch.name %></td>
 				<td>

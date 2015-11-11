@@ -98,13 +98,13 @@
 		</td>
 	</tr>
 	<tr>
-		<td>Factory</td>
+		<td>Company</td>
 		<td>
-			<%= collection_select(:branch, :id, current_user.factories, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+			<%= collection_select(:factory, :id, current_user.companies, :id, :name, {}, { :id => "factories_on_worker_form_table", :class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
 		</td>
 		<td>Branch</td>
 		<td>
-			<%= collection_select(:branch, :id, current_user.factories[0].branches, :id, :name, {}, {:class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+			<%= collection_select(:branch, :id, current_user.companies[0].branches, :id, :name, {}, { :id => "all_branches_on_worker_form_table", :class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
 		</td>
 	</tr>
 	<tr>

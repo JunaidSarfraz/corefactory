@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
    enum gender: [:male, :female, :undefinded]
    enum blood_group: [:"A+",:"A-",:"AB+",:"AB-",:"O+",:"O-",:unknown]
    enum _type: [:owner, :manager, :worker]
-   has_many	:factories, :dependent => :delete_all
+   has_many	:companies, :dependent => :delete_all
    has_many  	:hobbies, :dependent => :delete_all
    has_many  	:accounts, :dependent => :delete_all
    belongs_to 	:branch

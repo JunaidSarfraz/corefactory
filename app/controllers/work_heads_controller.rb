@@ -2,8 +2,8 @@ require 'shared_functions'
 class WorkHeadsController < ApplicationController
 	def index
 		@branches = Array.new
-		current_user.factories.each do |factory|
-			@branches = @branches + factory.branches
+		current_user.companies.each do |company|
+			@branches = @branches + company.branches
 		end
 	end
 

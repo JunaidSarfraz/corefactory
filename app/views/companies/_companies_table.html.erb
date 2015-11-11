@@ -47,7 +47,7 @@
 <div id="branches">
 	<%= f.fields_for :branches, :wrapper => true do |branch_form| %>
 		<table class="table fields table-bordered">
-			<%= render partial: "factories/nested_branches_form" , locals: {branch_form: branch_form} %>
+			<%= render partial: "companies/nested_branches_form" , locals: {branch_form: branch_form} %>
 		</table>
 	<% end %>
 </div>

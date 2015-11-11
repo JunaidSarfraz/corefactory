@@ -39,6 +39,9 @@ $(document).ready(function () {
 						$('#all_branches_dropdown_work_heads').append("<option value='"+value.id+"'>"+value.name+"</option>");
 					});
 				}
+			},
+			error: function(jqXHR, exception){
+				console.log(exception);
 			}
 		}); // end of ajax call
 
@@ -52,6 +55,7 @@ $(document).ready(function () {
 				page_identity: "work_heads"
 			},
 			success: function(data){
+				debugger;
 				$('#all_work_heads').html("");
 				$('#all_work_heads').html(data);
 			}
@@ -228,6 +232,29 @@ $(document).ready(function () {
 				}else if(button_text == "Disable"){
 					$(element).text("Enable");
 				}
+			}
+		}); // end of ajax call
+	});
+
+
+	$(document).on('change','#factories_on_worker_form_table', function(e){
+		var selected_company_id = $('#factories_on_worker_form_table').val();
+		// add elements to branches dropdown
+		$.ajax({
+			type: "post",
+			url: "/companies/"+selected_company_id+"/get_all_branches",
+			data: {
+			},
+			success: function(data){
+				$('#all_branches_on_worker_form_table').children().remove().end();
+				if(data != false){					
+					$.each(data, function(index,value){
+						$('#all_branches_on_worker_form_table').append("<option value='"+value.id+"'>"+value.name+"</option>");
+					});
+				}
+			},
+			error: function(jqXHR, exception){
+				console.log(exception);
 			}
 		}); // end of ajax call
 	});
