@@ -14,8 +14,8 @@ class AccountsController < ApplicationController
 
 	def load_account_holders
 		@account_holders = Array.new
-		current_user.factories.each do |factory|
-			factory.branches.each do |branch|
+		current_user.companies.each do |company|
+			company.branches.each do |branch|
 				@account_holders = @account_holders + branch.employees
 			end
 		end
