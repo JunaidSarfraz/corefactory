@@ -1,0 +1,29 @@
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#company_accounts" aria-controls="company_accounts" role="tab" data-toggle="tab">Company Accounts</a></li>
+    <li role="presentation"><a href="#employee_accounts" aria-controls="employee_accounts" role="tab" data-toggle="tab">Empoyee Accounts</a></li>
+    <li role="presentation"><a href="#supplier_accounts" aria-controls="supplier_accounts" role="tab" data-toggle="tab">Supplier Accounts</a></li>
+    <li role="presentation"><a href="#client_account" aria-controls="client_accounts" role="tab" data-toggle="tab">Client Accounts</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="company_accounts">
+    	<%= render partial: "show_company_accounts", locals: { companies_accounts: @companies_accounts } %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="employee_accounts">
+    	<%= render partial: "show_employee_accounts", locals: { employee_accounts: @employee_accounts } %>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="supplier_accounts">
+    	<%= render partial: "show_supplier_accounts", locals: { supplier_accounts: @supplier_accounts } %>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="client_accounts">
+    	<%= render partial: "show_client_accounts", locals: { client_accounts: @client_accounts } %>
+    </div>
+  </div>
+</div>

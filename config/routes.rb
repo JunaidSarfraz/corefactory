@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :companies do
     post :get_all_branches
   end
-  resources :accounts, only: [:index, :new, :create]
+  resources :accounts, only: [:index, :new, :create, :destroy] do
+    collection do
+      post :extract_users_by_account_holer_type
+    end
+  end
   resources :clients, only: [:index]
   resources :payrolls, only: [:index]
   resources :reports, only: [:index]

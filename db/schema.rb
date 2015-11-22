@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111174946) do
+ActiveRecord::Schema.define(version: 20151121190259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,15 @@ ActiveRecord::Schema.define(version: 20151111174946) do
     t.string   "bank_city"
     t.integer  "current_balance"
     t.integer  "user_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "bank_state"
+    t.string   "bank_country"
+    t.integer  "bank_zip_code"
+    t.string   "bank_primary_phone"
+    t.string   "bank_secondary_phone"
+    t.integer  "account_holder_type"
+    t.integer  "company_id"
   end
 
   create_table "branches", force: :cascade do |t|

@@ -18,4 +18,7 @@
 //= require bootstrap
 //= require bootstrap.min
 //= require app
+//= require work_heads_js
+//= require workers_js
+//= require accounts_js
 //= require jquery_nested_form

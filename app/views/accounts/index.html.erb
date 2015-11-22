@@ -1,17 +1,21 @@
 <%
 	account_types = {
-		'----- Select Account Type -----' => '',
-		'bank_account' => 'bank_account',
-		'company_account' => 'company_account'		
+		'Account Type' => '',
+		'Bank Account' => 'bank_account',
+		'Company Account' => 'company_account'		
 	}
 %>
 
 <div>
 	<%= link_to "Add New Account", new_account_path, :class => "btn btn-primary" %>
 	
-	<%= collection_select(:branch, :id, Array.new, :id, :name, {:include_blank => '----- Select Account holder -----'}, {:id => "all_branches_dropdown_workers",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
+	<%= collection_select(:branch, :id, Array.new, :id, :name, {:include_blank => 'Select Account holder'}, {:id => "account_holder_selector",:class => 'dropdown dropdown-menue btn btn-default pull-right relative-position'}) rescue nil %>
 
-	<%= select_tag :option, options_for_select(account_types), { :id => "workers_managers_dropdown_workers", :class => 'btn btn-default pull-right relative-position' } rescue nil %>
+	<%= select_tag :option, options_for_select(account_types), { :id => "account_type_selector", :class => 'btn btn-default pull-right relative-position' } rescue nil %>
 	<hr />
 	<hr />
+</div>
+
+<div id="all_accounts_table">
+	<%= render partial: "accounts/accounts_table" %>
 </div>
