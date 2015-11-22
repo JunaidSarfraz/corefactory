@@ -98,6 +98,22 @@ $(document).ready(function(){
 							});
 	});
 
-	
+	$(document).on('click','.account_search_button',function(e){
+		e.preventDefault();
+		debugger;
+		if ($(this).parent().parent().find('.search_bar_comapny_accounts').length > 0){
+			var search_query = $(this).parent().parent().find('.search_bar_comapny_accounts').val();
+			alert(search_query);
+		} else if ($(this).parent().parent().find('.search_bar_employee_accounts').length > 0){
+			var search_query = $(this).parent().parent().find('.search_bar_employee_accounts').val();
+			alert(search_query);
+		} else if ($(this).parent().parent().find('.search_bar_client_accounts').length > 0){
+			var search_query = $(this).parent().parent().find('.search_bar_client_accounts').val();
+			alert(search_query);
+		} else if ($(this).parent().parent().find('.search_bar_supplier_accounts').length > 0){
+			var search_query = $(this).parent().parent().find('.search_bar_supplier_accounts').val();
+			alert(search_query);
+		}
+	});
 
 }); // end of document.ready

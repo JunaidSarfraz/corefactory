@@ -1,4 +1,15 @@
 <% if client_accounts.count > 0 %>
+	<hr />
+	<div id="custom-search-input">
+	    <div class="input-group col-md-12">
+	        <input type="text" class="search_bar_client_accounts form-control" placeholder="Search" />
+	        <span class="input-group-btn">
+	            <button class="btn btn-danger account_search_button" type="button">
+	                <span class=" glyphicon glyphicon-search"></span>
+	            </button>
+	        </span>
+	    </div>
+	</div>
 <% else %>
     <h2>No Client Accounts to Show</h2>
 <% end %>
