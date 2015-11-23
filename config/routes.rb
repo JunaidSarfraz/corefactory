@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :new, :create, :destroy] do
     collection do
       post :extract_users_by_account_holer_type
+      post :account_names
     end
   end
   resources :clients, only: [:index]

@@ -1,18 +1,4 @@
-
-
-function send_ajax_request(req_type, req_url, data_type, req_data, success_callback, error_callback){
-	debugger;
-	$.ajax({
-		type: req_type,
-		url: req_url,
-		dataType: data_type,
-		data: req_data,
-		success: success_callback,
-		error: error_callback
-	});
-}
-
-
+//= require app
 $(document).ready(function(){
 	$(document).on('change', '#account__type', function(){
 		var selected = $('#account__type').val();
@@ -56,21 +42,22 @@ $(document).ready(function(){
 			$('.assosiated_company_dropdown option:first-child').attr("selected", "selected");
 			$('.assosiated_company_tr').hide();	
 			send_ajax_request("post", 
-								"/accounts/extract_users_by_account_holer_type",
-								"json",
-								request_data,
-								function(data){
-									// data contains users put these users to assosiated user dropdown
-									$('.assosiated_user_dropdown').children().remove();
-									$('.assosiated_user_dropdown').append("<option value=0></option>");
-									$.each(data, function(index, obj){
-										$('.assosiated_user_dropdown').append("<option value= '"+obj.id+"'>"+obj.first_name+"</option>");	
-									});
-									$('.assosiated_user_tr').show();
-								},
-								function(jqXHR, exception){
-									console.log(exception);
-								});
+				"/accounts/extract_users_by_account_holer_type",
+				"json",
+				request_data,
+				function(data){
+					// data contains users put these users to assosiated user dropdown
+					$('.assosiated_user_dropdown').children().remove();
+					$('.assosiated_user_dropdown').append("<option value=0></option>");
+					$.each(data, function(index, obj){
+						$('.assosiated_user_dropdown').append("<option value= '"+obj.id+"'>"+obj.first_name+"</option>");	
+					});
+					$('.assosiated_user_tr').show();
+				},
+				function(jqXHR, exception){
+					console.log(exception);
+				}
+			);
 		}
 	});
 	
@@ -79,28 +66,119 @@ $(document).ready(function(){
 		var account_id = $(this).attr('account-id');
 		var tab_identity = $(this).attr('tab-identity');
 		send_ajax_request("DELETE",
-							"/accounts/" + account_id,
-							"html",
-							{},
-							function(data){
-								if (tab_identity === "company"){
-									$('#company_accounts').html(data);
-								} else if (tab_identity === "employee"){
-									$('#employee_accounts').html(data);
-								} else if (tab_identity === "supplier"){
-									$('#supplier_accounts').html(data);
-								} else if (tab_identity === "client"){
-									$('#client_accounts').html(data);
-								}
-							},
-							function(jqXHR, exception){
-								console.log(exception);
-							});
+			"/accounts/" + account_id,
+			"html",
+			{},
+			function(data){
+				if (tab_identity === "company"){
+					$('#company_accounts').html(data);
+				} else if (tab_identity === "employee"){
+					$('#employee_accounts').html(data);
+				} else if (tab_identity === "supplier"){
+					$('#supplier_accounts').html(data);
+				} else if (tab_identity === "client"){
+					$('#client_accounts').html(data);
+				}
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}
+		);
 	});
+
+
+	//auto complete
+	if ($('.search_bar_comapny_accounts').length > 0){
+		send_ajax_request("post",
+			"/accounts/account_names",
+			"json",
+			{
+				identity: "company"
+			},
+			function(data){
+				$( ".search_bar_comapny_accounts" ).autocomplete({
+					source: data,
+						messages: {
+				        		noResults: '',
+				        		results: function() {}
+						}
+					});
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}
+		);
+	}
+
+	if ($('.search_bar_employee_accounts').length > 0){
+		send_ajax_request("post",
+			"/accounts/account_names",
+			"json",
+			{
+				identity: "employee"
+			},
+			function(data){
+				$( ".search_bar_employee_accounts" ).autocomplete({
+					source: data,
+					messages: {
+			        		noResults: '',
+			        		results: function() {}
+					}
+				});
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}
+		);
+	}
+
+	if ($('.search_bar_client_accounts').length > 0){
+		send_ajax_request("post",
+			"/accounts/account_names",
+			"json",
+			{
+				identity: "client"
+			},
+			function(data){
+				$( ".search_bar_client_accounts" ).autocomplete({
+					source: data,
+					messages: {
+			        		noResults: '',
+			        		results: function() {}
+					}
+				});
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}
+		);
+	}
+
+	if ($('.search_bar_supplier_accounts').length > 0){
+		send_ajax_request("post",
+			"/accounts/account_names",
+			"json",
+			{
+				identity: "supplier"
+			},
+			function(data){
+				$( ".search_bar_supplier_accounts" ).autocomplete({
+					source: data,
+					messages: {
+			        		noResults: '',
+			        		results: function() {}
+					}
+				});
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}
+		);
+	}
+
 
 	$(document).on('click','.account_search_button',function(e){
 		e.preventDefault();
-		debugger;
 		if ($(this).parent().parent().find('.search_bar_comapny_accounts').length > 0){
 			var search_query = $(this).parent().parent().find('.search_bar_comapny_accounts').val();
 			alert(search_query);
@@ -115,5 +193,6 @@ $(document).ready(function(){
 			alert(search_query);
 		}
 	});
+
 
 }); // end of document.ready

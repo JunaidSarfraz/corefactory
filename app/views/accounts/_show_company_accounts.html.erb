@@ -18,6 +18,7 @@
       <th>Description</th>
       <th>Account Holder</th>
       <th>Current Balance</th>
+      <th>Type</th>
       <th>&nbsp</th>
       <th>&nbsp</th>
       <th>&nbsp</th>
@@ -29,6 +30,11 @@
           <td><%= company_account.description %></td>
           <td><%= company_account.company.name%></td>
           <td><%= company_account.current_balance %></td>
+          <% if company_account.bank_account? %>
+            <td>Bank Account</td>
+          <% elsif company_account.company_account? %>
+            <td>Company Account</td>
+          <% end %>
           <td><%= link_to "Show", "#", :class => "btn btn-primary" %></td>
           <td><%= link_to "Edit", "#", :class => "btn btn-primary" %></td>
           <td><%= link_to "Delete", "#", :class => "btn btn-primary delete_account", :'account-id' => company_account.id, :'tab-identity' => "company" %></td>

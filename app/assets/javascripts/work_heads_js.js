@@ -1,3 +1,4 @@
+//= require app
 $(document).ready(function(){
 
 	$('table').accordion({header: '.category' });
@@ -16,15 +17,14 @@ $(document).ready(function(){
 			factory_id = 0;
 		}
 		// add elements to branches dropdown
-		$.ajax({
-			type: "post",
-			url: "/filtration/filtration_logic_of_factories",
-			dataType: "json",
-			data: {
+		send_ajax_request("post",
+			"/filtration/filtration_logic_of_factories",
+			"json",
+			{
 				factory_id: factory_id,
 				page_identity: "work_heads"
 			},
-			success: function(data){
+			function(data){
 				$('#all_branches_dropdown_work_heads').children().remove().end();
 				$('#all_branches_dropdown_work_heads').append("<option selected value='' selected='selected'>All Branches</option>");
 				if(data != false){					
@@ -33,26 +33,26 @@ $(document).ready(function(){
 					});
 				}
 			},
-			error: function(jqXHR, exception){
+			function(jqXHR, exception){
 				console.log(exception);
-			}
-		}); // end of ajax call
+			}); // end of ajax call
 
 		// Update page content
-		$.ajax({
-			type: "post",
-			url: "/filtration/filtration_logic_of_factories",
-			dataType: "html",
-			data: {
+		send_ajax_request("post",
+			"/filtration/filtration_logic_of_factories",
+			"html",
+			{
 				factory_id: factory_id,
 				page_identity: "work_heads"
 			},
-			success: function(data){
+			function(data){
 				debugger;
 				$('#all_work_heads').html("");
 				$('#all_work_heads').html(data);
-			}
-		}); // end of ajax call
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}); // end of ajax call
 
 	});
 
@@ -75,19 +75,21 @@ $(document).ready(function(){
 			signal = "consider"
 		}
 		// Update page content
-		$.ajax({
-			type: "post",
-			url: "/filtration/filtration_logic_of_branches",
-			data: {
+		send_ajax_request("post",
+			"/filtration/filtration_logic_of_branches",
+			"html",
+			{
 				branch_id: branch_id,
 				signal: signal,
 				factory_id: factory_id,
 				page_identity: "work_heads"
 			},
-			success: function(data){
+			function(data){
 				$('#all_work_heads').html("");
 				$('#all_work_heads').html(data);
-			}
-		}); // end of ajax call
+			},
+			function(jqXHR, exception){
+				console.log(exception);
+			}); // end of ajax call
 	});
 })

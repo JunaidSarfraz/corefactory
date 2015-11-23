@@ -43,6 +43,26 @@ class AccountsController < ApplicationController
 		end	
 	end
 
+	def account_names
+		identity = params[:identity]
+		tags = Array.new
+		if identity == "company"
+			load_company_accounts
+			tags = @companies_accounts
+		elsif identity == "employee"
+			load_employee_accounts
+			tags = @employee_accounts
+		elsif identity == "client"
+			load_clients_accounts
+			tags = @client_accounts
+		elsif identity == "supplier"
+			load_suppliers_accounts
+			tags = @supplier_accounts
+		end
+		tags = Account.where(id: tags.map(&:id)).pluck(:title)
+		render json: tags
+	end
+
 private
 
 	def load_accounts

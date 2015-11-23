@@ -18,21 +18,27 @@
 	        <th>Description</th>
 	        <th>Account Holder</th>
 	        <th>Current Balance</th>
+	        <th>Type</th>
 	        <th>&nbsp</th>
 	        <th>&nbsp</th>
 	        <th>&nbsp</th>
 	      </thead>
 	      <tbody>
 	      	<% employee_accounts.each do |employee_account| %>
-		          <tr>
-		            <td><%= employee_account.title %></td>
-		            <td><%= employee_account.description %></td>
-		            <td><%= employee_account.user.first_name + employee_account.user.last_name %></td>
-		            <td><%= employee_account.current_balance %></td>
-		            <td><%= link_to "Show",  "#", :class => "btn btn-primary" %></td>
-		            <td><%= link_to "Edit",  "#", :class => "btn btn-primary" %></td>
-		            <td><%= link_to "Delete", "#", :class => "btn btn-primary delete_account", :'account-id' => employee_account.id, :'tab-identity' => "employee" %></td>
-		          </tr>
+			<tr>
+		       	<td><%= employee_account.title %></td>
+		       	<td><%= employee_account.description %></td>
+		            	<td><%= employee_account.user.first_name + employee_account.user.last_name %></td>
+		            	<td><%= employee_account.current_balance %></td>
+		            	<% if employee_account.bank_account? %>
+		            		<td>Bank Account</td>
+		          	<% elsif employee_account.company_account? %>
+		            		<td>Company Account</td>
+		          	<% end %>
+		            	<td><%= link_to "Show",  "#", :class => "btn btn-primary" %></td>
+		            	<td><%= link_to "Edit",  "#", :class => "btn btn-primary" %></td>
+		            	<td><%= link_to "Delete", "#", :class => "btn btn-primary delete_account", :'account-id' => employee_account.id, :'tab-identity' => "employee" %></td>
+		 	</tr>
 	       	<% end %>
 	      </tbody>
 	</table>
