@@ -1,1 +1,9 @@
-<h1>Suppliers Index</h1>
+<div>
+	<%= link_to "Add New Supplier", new_supplier_path, :class => "btn btn-primary" %>
+	<hr />
+	<hr />
+</div>
+
+<div id="all_supplier_table">
+	<%= render partial: "supplier_table", locals: {suppliers: @suppliers} %>
+</div>

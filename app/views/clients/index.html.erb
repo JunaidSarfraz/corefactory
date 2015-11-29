@@ -1,1 +1,9 @@
-<h1>Client Index</h1>
+<div>
+	<%= link_to "Add New Client", new_client_path, :class => "btn btn-primary" %>
+	<hr />
+	<hr />
+</div>
+
+<div id="all_workers_table">
+	<%= render partial: "clients_table" %>
+</div>

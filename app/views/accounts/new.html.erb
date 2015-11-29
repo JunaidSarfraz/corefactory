@@ -1,5 +1,5 @@
 <%= form_for @account, :url => accounts_path do |form| %>
 	<h2>New Account</h2>
 	<hr />
-	<%= render partial: "accounts/accounts_form", locals: {f: form} %>
+	<%= render partial: "form", locals: {f: form} %>
 <% end %>

@@ -16,5 +16,6 @@
  *= require bootstrap.min
  *= require bootstrap-theme
  *= require bootstrap-theme.min
+ *= require font-awesome
  *= require app
  */

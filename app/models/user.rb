@@ -6,12 +6,14 @@ class User < ActiveRecord::Base
 
    enum gender: [:male, :female, :undefinded]
    enum blood_group: [:"A+",:"A-",:"AB+",:"AB-",:"O+",:"O-",:unknown]
-   enum _type: [:owner, :manager, :worker]
+   enum _type: [:owner, :manager, :worker, :client, :supplier]
    has_many	:companies, :dependent => :delete_all
    has_many  	:hobbies, :dependent => :delete_all
    has_many  	:accounts, :dependent => :delete_all
    belongs_to 	:branch
-   has_one 		:payroll
+   belongs_to      :company
+   belongs_to      :client_company, :class_name => "Company", :foreign_key => "client_company_id"
+   has_one 		 :payroll
    has_many       :branches, :class_name => "Branch", :foreign_key => "branch_head_id", :dependent => :delete_all
    has_many       :work_diaries, :class_name => "WorkDiary", :foreign_key => "user_id", :dependent => :delete_all
    #self relation ship of manager and employees
@@ -21,5 +23,5 @@ class User < ActiveRecord::Base
    #-----------------------------------------------------------------------------------------------------
 
    belongs_to :branch, :class_name => "Branch", :foreign_key => "branch_id" 
-
+   accepts_nested_attributes_for :hobbies, :allow_destroy => true
 end

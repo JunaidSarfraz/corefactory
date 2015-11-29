@@ -1,5 +1,10 @@
+.show_records{
+    cursor: pointer;
+}
 
-
+.show_records tr:hover{
+    background-color: grey;
+}
 #custom-search-input {
     margin:0;
     margin-top: 10px;

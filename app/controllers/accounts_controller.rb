@@ -1,10 +1,29 @@
 class AccountsController < ApplicationController
+	
+	before_filter :set_account, :only => [:edit, :update,:show,:destroy]
 	def index
 		load_accounts
 	end
 
 	def new
 		@account = Account.new
+	end
+
+	def create
+		Account.create(account_params)
+  		redirect_to :action => "index"
+	end
+
+	def edit
+	end
+
+	def update
+	end
+
+	def show
+		if !(@account.present?)
+			redirect_to :action => "index"
+		end
 	end
 
 	def extract_users_by_account_holer_type
@@ -20,27 +39,26 @@ class AccountsController < ApplicationController
 		render json: assosiated_users
 	end
 
-	def create
-		Account.create(account_params)
-  		redirect_to :action => "index"
-	end
 
 	def destroy
-		account = Account.find(params[:id])
-		account.destroy
-		if account.company?
-			load_company_accounts
-			render partial: "accounts/show_company_accounts", locals: { companies_accounts: @companies_accounts }			
-		elsif account.employee?
-			load_employee_accounts
-			render partial: "accounts/show_employee_accounts", locals: { employee_accounts: @employee_accounts }
-		elsif account.supplier?
-			load_suppliers_accounts
-			render partial: "accounts/show_supplier_accounts", locals: { supplier_accounts: @supplier_accounts }
-		elsif account.client?
-			load_clients_accounts
-			render partial: "accounts/show_client_accounts", locals: { client_accounts: @client_accounts }
-		end	
+		if(@account.present?)
+			@account.destroy
+			if @account.company?
+				load_company_accounts
+				render partial: "accounts/show_company_accounts", locals: { companies_accounts: @companies_accounts }			
+			elsif @account.employee?
+				load_employee_accounts
+				render partial: "accounts/show_employee_accounts", locals: { employee_accounts: @employee_accounts }
+			elsif @account.supplier?
+				load_suppliers_accounts
+				render partial: "accounts/show_supplier_accounts", locals: { supplier_accounts: @supplier_accounts }
+			elsif @account.client?
+				load_clients_accounts
+				render partial: "accounts/show_client_accounts", locals: { client_accounts: @client_accounts }
+			end	
+		else
+			redirect_to :action => "index"
+		end
 	end
 
 	def account_names
@@ -128,5 +146,9 @@ private
 		params.require(:account).permit(:title, :description, :_type, :bank_account_number, :bank_name,
 			:bank_address, :bank_city, :current_balance, :user_id, :bank_state, :bank_country, :bank_zip_code,
 			:bank_primary_phone, :bank_secondary_phone, :account_holder_type, :company_id)
+	end
+
+	def set_account
+		@account = Account.where(:id => params[:id]).first
 	end
 end

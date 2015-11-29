@@ -1,0 +1,81 @@
+
+<h2><%= @supplier.first_name + " " + @supplier.middle_name + " " + @supplier.last_name %></h2>
+<hr />
+<table class="table table-condensed table-hover">
+	<tr>
+		<td>First Name</td>
+		<td><%= @supplier.first_name %></td>
+	</tr>
+	<tr>
+		<td>Middle Name</td>
+		<td><%= @supplier.middle_name %></td>
+	</tr>
+	<tr>
+		<td>Last Name</td>
+		<td><%= @supplier.last_name %></td>
+	</tr>
+	<tr>
+		<td>Gender</td>
+		<td><%= @supplier.gender %></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= @supplier.email %></td>
+	</tr>
+	<tr>
+		<td>Primary Phoe</td>
+		<td><%= @supplier.primary_phone %></td>
+	</tr>
+	<tr>
+		<td>Secondary Phone</td>
+		<td><%= @supplier.secondary_phone %></td>
+	</tr>
+	<tr>
+		<td>CNIC</td>
+		<td><%= @supplier.cnic %></td>
+	</tr>
+	<tr>
+		<td>Religion</td>
+		<td><%= @supplier.religion %></td>
+	</tr>
+	<tr>
+		<td>Cast</td>
+		<td><%= @supplier.cast %></td>
+	</tr>
+	<tr>
+		<td>Address</td>
+		<td><%= @supplier.address %></td>
+	</tr>
+	<tr>
+		<td>City</td>
+		<td><%= @supplier.city %></td>
+	</tr>
+	<tr>
+		<td>Country</td>
+		<td><%= @supplier.country %></td>
+	</tr>
+	<tr>
+		<td>Zip Code</td>
+		<td><%= @supplier.zip_code %></td>
+	</tr>
+	<tr>
+		<td>Height</td>
+		<td><%= @supplier.height %></td>
+	</tr>
+	<tr>
+		<td>Blood Group</td>
+		<td><%= @supplier.blood_group %></td>
+	</tr>
+	<tr>
+		<td>Company</td>
+		<td><%= @supplier.company.name %></td>
+	</tr>
+	<tr>
+		<td>Status</td>
+		<td><%= @supplier.disabled == true ? "Disabled" : "Enabled" %></td>
+	</tr>
+	<tr>
+		<td>Join Date</td>
+		<td><%= @supplier.join_date %></td>
+	</tr>
+</table>

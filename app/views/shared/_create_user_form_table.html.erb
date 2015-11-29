@@ -1,0 +1,179 @@
+<h4>Personal Details</h4>
+<table class="user_personal_details table">
+	<tr>
+		<td class="text-center">First Name</td>
+		<td class="text-left">
+			<%= f.text_field :first_name, :class => "btn-block btn-block-level-input", :autofocus => true %>
+		</td>
+		<td class="text-left">Last Name</td>
+		<td class="text-left">
+			<%= f.text_field :last_name, :class => "btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Middle name</td>
+		<td class="text-left">
+			<%= f.text_field :middle_name, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Gender</td>
+		<td class="text-left">
+			<%= f.select :gender, [["Not Telling", 'undefinded'], ["Male", 'male'], ["Female", 'female']], {}, { :class => 'btn-block btn-block-level-input' } %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">CNIC (Without Dashes)</td>
+		<td class="text-left">
+			<%= f.number_field :cnic, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Religion</td>
+		<td class="text-left">
+			<%= f.text_field :religion, :class => "btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Cast</td>
+		<td class="text-left">
+			<%= f.text_field :cast, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Blood Group</td>
+		<td class="text-left">
+			<%= f.select :blood_group,[["unknown","unknown"],["A+","A+"],["A-","A-"],["AB+","AB+"],["AB-","AB-"],["O+","O+"],["O-","O-"]], {}, { :class => 'btn-block btn-block-level-input' } %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Height</td>
+		<td class="text-left">
+			<%= f.text_field :height, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<hr />
+<h4>Account Details</h4>
+<table class="user_account_details table">
+	<tr>
+		<td class="text-center">Email</td>
+		<td class="text-left">
+			<%= f.email_field :email, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Password</td>
+		<td class="text-left">
+			<%= f.password_field :password, :class => "btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Password Confirmation</td>
+		<td class="text-left">
+			<%= f.password_field :password_confirmation, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Status</td>
+		<td class="text-left">
+			<%= f.select :disabled, [["Enable", false], ["Disabled", true]], {}, { :class => 'btn-block btn-block-level-input' } %>
+		</td>
+		
+	</tr>
+	<tr>
+		<% if controller.controller_name == "workers" %>
+			<td class="text-center">Type</td>
+			<td class="text-left">
+				<%= f.select :_type, [["Manager", 'manager'], ["Worker", 'worker']], {}, { :class => 'btn-block btn-block-level-input' } %>
+			</td>
+		<% elsif controller.controller_name == "suppliers" %>
+			<td class="text-center"><%= f.hidden_field :_type, :value => "supplier" %></td>
+			<td>&nbsp</td>
+		<% elsif controller.controller_name == "clients" %>
+			<td class="text-center"><%= f.hidden_field :_type, :value => "client" %></td>
+			<td>&nbsp</td>
+		<% end %>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<hr />
+<h4>Contact Information</h4>
+<table class="user_contact_details table">
+	<tr>
+		<td class="text-center">Primary Phone</td>
+		<td class="text-left">
+			<%= f.text_field :primary_phone, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td class="text-left">Secondary Phone</td>
+		<td class="text-left">
+			<%= f.text_field :secondary_phone, :class => "btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<% if controller.controller_name == "clients" || controller.controller_name == "suppliers"%>
+			<td class="text-center">Fax</td>
+			<td class="text-left">
+				<%= f.text_field :fax, :class => "btn-block btn-block-level-input" %>
+			</td>
+		<% elsif controller.controller_name == "workers" %>
+			<td class="text-center">Home Contact</td>
+			<td class="text-left">
+				<%= f.text_field :home_contact, :class => "btn-block btn-block-level-input" %>
+			</td>
+		<% end %>
+		<td class="text-left">Social Media Links</td>
+		<td class="text-left">
+			<%= f.text_area :social_media_links, :class => "btn-block btn-block-level-input" %>
+		</td>		
+	</tr>
+	<tr>
+		<td class="text-center">Secondary Email</td>
+		<td>
+			<%= f.email_field :secondary_email, :class => "btn-block btn-block-level-input" %>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<hr />
+<h4>Joining Information</h4>
+<table class="table">
+	<tr>
+		<td class="text-center">Company</td>
+		<td class="text-left">
+			<%= collection_select(:company, :id, current_user.companies, :id, :name, {}, { :id => "factories_on_worker_form_table", :class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+		</td>
+		<td class="text-left">Join Date</td>
+		<td class="text-left">
+			<%= f.text_field :join_date, "data-provide" => 'datepicker', :class => "datepicker" %>
+		</td>
+	</tr>
+	<tr>
+		<% if controller.controller_name == "workers" %>
+			<td>Branch</td>
+			<td>
+				<%= collection_select(:branch, :id, current_user.companies[0].branches, :id, :name, {}, { :id => "all_branches_on_worker_form_table", :class => 'dropdown dropdown-menue btn btn-block btn-block-level-input'}) %>
+			</td>
+		<% end %>
+	</tr>
+</table>
+
+<hr />
+<h4>Hobbies</h4>
+<table id="hobbies" class="table table-bordered">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Description</td>
+			<td>
+				<%= f.link_to_add :hobbies, :data => { :target => "#hobbies" } do %>
+					<button class="btn">
+						<i class="fa fa-plus"></i> Hobby
+					</button>
+				<% end %>
+			</td>
+		</tr>
+	</thead>
+	<%= f.fields_for :hobbies, :wrapper => false do |hobby_form| %>
+		<%= render partial: "shared/hobby_fields", locals: {f: hobby_form} %>
+	<% end %>
+</table>
+
+<%= f.submit "Create", :class =>"btn btn-primary" %>

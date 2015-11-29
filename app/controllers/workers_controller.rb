@@ -51,9 +51,9 @@ class WorkersController < ApplicationController
 		@worker = User.find(params[:id].to_i)
 	end
 	def worker_params
-		params.require(:user).permit(:first_name, :middle_name, :last_name, :gender, :cnic,
+		params.require(:user).permit(:first_name, :middle_name, :last_name, :gender, :cnic, :cast,
 		:religion, :email, :password, :password_confirmation, :address, :city, :country, :zip_code,
 		:primary_phone, :secondary_phone, :disabled, :_type, :blood_group, :height, :join_date, 
-		:branch_id)
+		:branch_id, :hobbies_attributes => [:id, :name,:description,:_destroy])
 	end
 end

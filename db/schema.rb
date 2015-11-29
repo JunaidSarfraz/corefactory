@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121190259) do
+ActiveRecord::Schema.define(version: 20151129121029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,38 @@ ActiveRecord::Schema.define(version: 20151121190259) do
     t.integer  "number_of_days_for_notification"
   end
 
+  create_table "product_clients", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "client_id"
+    t.integer  "price"
+    t.integer  "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_suppliers", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "supplier_id"
+    t.integer  "price"
+    t.integer  "discount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "_type"
+    t.string   "category"
+    t.integer  "product_supplier_id"
+    t.integer  "company_id"
+    t.integer  "cost"
+    t.integer  "sale_price"
+    t.integer  "max_discount"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "transections", force: :cascade do |t|
     t.integer  "payment_type"
     t.text     "description"
@@ -169,6 +201,14 @@ ActiveRecord::Schema.define(version: 20151121190259) do
     t.boolean  "disabled",               default: true
     t.integer  "_type"
     t.integer  "zip_code",               default: 0
+    t.integer  "company_id"
+    t.integer  "client_company_id"
+    t.string   "fax"
+    t.string   "secondary_email"
+    t.string   "ntn"
+    t.integer  "refferal_id"
+    t.text     "social_media_links"
+    t.text     "home_contact"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

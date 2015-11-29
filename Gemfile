@@ -42,6 +42,7 @@ group :development, :test do
   gem 'byebug'
   gem 'railroady'
   gem "better_errors"
+  gem "font-awesome-rails"
 end
 
 group :development do

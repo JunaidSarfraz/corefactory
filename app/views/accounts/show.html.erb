@@ -1,0 +1,66 @@
+<h1> <%= @account.title %> </h1>
+<hr>
+<table class="table show_account">
+	<tr>
+		<td>Title</td>
+		<td><%= @account.title %></td>
+	</tr>
+	<tr>
+		<td>Description</td>
+		<td><%= @account.description %></td>
+	</tr>
+	<% if @account.company? %>
+		<tr>
+			<td>Company Name</td>
+			<td><%= @account.company.name %></td>
+		</tr>
+	<% elsif @account.employee? %>
+		<tr>
+			<td>Employee Name</td>
+			<td><%= @account.user.first_name + @account.user.last_name %></td>
+		</tr>
+	<% elsif @account.client? %>
+		<tr>
+			<td>Client Name</td>
+			<td>Here to show Client Name After Implementation of client</td>
+		</tr>
+	<% elsif @account.supplier? %>
+		<tr>
+			<td>Supplier Name</td>
+			<td>Here to show Supplier Name After implementation of Supplier Name</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td>Current Balance</td>
+		<td><%= @account.current_balance %></td>
+	</tr>
+	<tr>
+		<td>Type</td>
+		<% if @account.bank_account? %>
+            		<td>Bank Account</td>
+          	<% elsif @account.company_account? %>
+            		<td>Company Account</td>
+          	<% end %>
+	</tr>
+</table>
+
+<div>
+	<!-- Nav tabs -->
+	<ul class="nav nav-pills" role="tablist">
+		<%= render partial: "transection_tabs"%>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <div role="tabpanel" class="tab-pane active" id="all_transections">
+	  	<%= render partial: "show_all_transections", locals: { account: @account } %>
+	  </div>
+
+	  <div role="tabpanel" class="tab-pane" id="withdraw_transections">
+	  	<%= render partial: "show_withdraw_transections", locals: { account: @account } %>
+	  </div>
+	  
+	  <div role="tabpanel" class="tab-pane" id="deposit_transections">
+	  	<%= render partial: "show_deposit_transections", locals: { account: @account } %>
+	  </div>
+	</div>
+</div>

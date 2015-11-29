@@ -11,10 +11,13 @@ function send_ajax_request(req_type, req_url, data_type, req_data, success_callb
 
 $(document).ready(function () { 
 	
-
 	$('.dropdown-toggle').dropdown(); 
 	$('.datepicker').dcalendarpicker({
   		format: 'yyyy-mm-dd'
+	});
+
+	$(document).on('click', '.show_records tr[data-link]', function(){
+		window.location = $(this).data("link");
 	});
 	
 }); // end of document.ready

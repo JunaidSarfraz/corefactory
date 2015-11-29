@@ -21,4 +21,5 @@
 //= require work_heads_js
 //= require workers_js
 //= require accounts_js
+//= require supplier_js
 //= require jquery_nested_form
