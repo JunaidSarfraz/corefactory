@@ -37,12 +37,12 @@ gem 'devise'
   gem 'rails_12factor'
   gem "nested_form"
   gem "rails-erd"
+  gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'railroady'
   gem "better_errors"
-  gem "font-awesome-rails"
 end
 
 group :development do
