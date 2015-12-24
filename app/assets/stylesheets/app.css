@@ -1,8 +1,7 @@
-.show_records{
+table.show_records{
     cursor: pointer;
 }
-
-.show_records tr:hover{
+table.show_records tr:hover{
     background-color: grey;
 }
 #custom-search-input {

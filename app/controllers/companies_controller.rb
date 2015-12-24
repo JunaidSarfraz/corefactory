@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   helper_method :calculate_number_of_employees
   helper_method :calculate_last_year_sale
   helper_method :calculate_last_year_profit
-  before_action :load_factory
+  before_action :load_company
   def index
   	@companies = current_user.companies
   end
@@ -20,9 +20,6 @@ class CompaniesController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
   end
 
   def update
@@ -44,13 +41,40 @@ class CompaniesController < ApplicationController
   private
 
   def factory_params
-  	params.require(:company).permit(:id, :name, :vision, :work_description, :email, 
-  	:password_of_company_email, :primary_phone, :secondary_phone, :tax_information,
-  	branches_attributes: [:id, :name, :address, :city, :country, :zip_code, :primary_phone, :secondary_phone, :email,
-  	:branch_head_id, :_destroy])
+  	params.require(:company).permit(
+        :id, 
+        :name, 
+        :vision, 
+        :work_description, 
+        :email, 
+        :password_of_company_email, 
+        :primary_phone, 
+        :secondary_phone, 
+        :tax_information, 
+        branches_attributes: [
+          :id, 
+          :name, 
+          :address, 
+          :city, :country, 
+          :zip_code, 
+          :primary_phone, 
+          :secondary_phone, 
+          :email,
+          :branch_head_id, 
+          :_destroy],
+          products_attributes:[
+            :id,
+            :name,
+            :description,
+            :_type,
+            :category,
+            :cost,
+            :_destroy
+          ]
+      )
   end
 
-  def load_factory
+  def load_company
   	if params[:id].present?
   		@company = Company.find(params[:id])
   	end

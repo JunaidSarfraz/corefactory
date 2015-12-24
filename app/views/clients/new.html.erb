@@ -2,4 +2,5 @@
 	<h2>New Client</h2>
 	<hr />
 	<%= render partial: "shared/create_user_form_table", locals: {f: form} %>
+	<%= form.submit "Create", :class =>"btn btn-primary pull-right" %>
 <% end %>

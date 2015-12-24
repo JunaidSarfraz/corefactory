@@ -2,7 +2,7 @@
 <hr />
 <hr />
 <% if @companies.count > 0%>
-	<table class="table table-condensed table-hover table-bordered">
+	<table class="table table-condensed table-bordered show_records">
 		<thead>
 			<tr>
 				<td>Name</td>
@@ -10,26 +10,26 @@
 				<td>Number of employees</td>
 				<td>Last year sales</td>
 				<td>Last year Profit</td>
-				<td>Show</td>
-				<td>Edit</td>
 				<td>Delete</td>
 			</tr>
 		</thead>
 		<tbody>
 			<% @companies.each do |company| %>
-				<tr>
+				<tr data-link="<%= company_path(company) %>">
 					<td class="text-center"><%= company.name %></td>
 					<td class="text-center"><%= company.branches.count %></td>
 					<td class="text-center"><%= calculate_number_of_employees(company) %></td>
 					<td class="text-center"><%= calculate_last_year_sale(company) %></td>
 					<td class="text-center"><%= calculate_last_year_profit(company) %></td>
-					<td class="text-center"><%= link_to "Show", company_path(company) %></td>
-					<td class="text-center"><%= link_to "Edit", edit_company_path(company) %></td>
-					<td class="text-center"><%= link_to "Delete", company_path(company), method: "delete" %></td>
+					<td class="text-center">
+						<%= link_to company_path(company), method: "delete"  do %>
+                					<i class="fa fa-times"></i>
+						<% end %>
+					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 <% else %>
-	<h3>No Factory to show</h3>
+	<h3>No Company to show</h3>
 <% end %>

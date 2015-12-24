@@ -1,5 +1,6 @@
 <%= nested_form_for(@supplier, url: suppliers_path ) do |f| %>
 	<h2>New Suppliers</h2>
 	<hr />
-	<%= render partial: "shared/create_user_form_table", locals: { f: f } %>
+	<%= render partial: "new_supplier_tabs", locals: { f: f } %>
+	<%= f.submit "Create", :class =>"btn btn-primary pull-right" %>
 <% end %>

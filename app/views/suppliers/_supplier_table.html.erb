@@ -4,9 +4,11 @@
 			<tr>
 				<td>Company Name</td>
 				<td>First Name</td>
+				<td>Last Name</td>
 				<td>Primary Phone</td>
 				<td>Secondary Phone</td>
 				<td>Status</td>
+				<td>Number of Products</td>
 				<td>&nbsp</td>
 			</tr>
 		</thead>
@@ -16,6 +18,7 @@
 					<td class="hide"><%= hidden_field_tag :id, supplier.id, :class => "supplier_id" %></td>
 					<td><%= supplier.company.name rescue nil %></td>
 					<td><%= supplier.first_name rescue nil%></td>
+					<td><%= supplier.last_name rescue nil%></td>
 					<td><%= supplier.primary_phone rescue nil%></td>
 					<td><%= supplier.secondary_phone rescue nil%></td>
 					<% if supplier.disabled %>
@@ -23,6 +26,7 @@
 					<% else %>
 						<td><%= link_to "Disable" , "#", :class => "btn btn-primary supplier_enable_disable_button", :value => "Disable" %></td>
 					<% end %>
+					<td><%= supplier.supplier_products.count %></td>
 					<td>
 						<%= link_to supplier_path(supplier), :class => "delete_supplier", method: "delete" do %>
 							<i class="fa fa-times"></i>

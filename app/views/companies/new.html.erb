@@ -1,3 +1,5 @@
+<h1>New Company</h1>
 <%= nested_form_for @company, url: companies_path do |form| %>
-	<%= render partial: "companies/companies_table", locals: { f: form}%>
+	<%= render partial: "companies/companies_tabs", locals: { f: form}%>
+	<%= form.submit "Create", :class =>"btn-block btn-block-level-input btn-primary pull-right" %>
 <% end %>

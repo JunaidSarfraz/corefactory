@@ -128,7 +128,7 @@ $(document).ready(function () {
 
 
 
-	$(document).on('click', '.worker_enable_disable_button', function(){
+	$(document).on('click', '.worker_enable_disable_button', function(e){
 		var worker_id = $(this).parent().parent().find('.worker_id').val();
 		var button_text = $(this).text();
 		var element = this;
@@ -148,6 +148,7 @@ $(document).ready(function () {
 				console.log(exception);
 			}
 		); // end of ajax call
+		e.stopPropagation();
 	});
 
 
