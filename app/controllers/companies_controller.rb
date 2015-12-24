@@ -44,10 +44,37 @@ class CompaniesController < ApplicationController
   private
 
   def factory_params
-  	params.require(:company).permit(:id, :name, :vision, :work_description, :email, 
-  	:password_of_company_email, :primary_phone, :secondary_phone, :tax_information,
-  	branches_attributes: [:id, :name, :address, :city, :country, :zip_code, :primary_phone, :secondary_phone, :email,
-  	:branch_head_id, :_destroy])
+  	params.require(:company).permit(
+        :id, 
+        :name, 
+        :vision, 
+        :work_description, 
+        :email, 
+        :password_of_company_email, 
+        :primary_phone, 
+        :secondary_phone, 
+        :tax_information, 
+        branches_attributes: [
+          :id, 
+          :name, 
+          :address, 
+          :city, :country, 
+          :zip_code, 
+          :primary_phone, 
+          :secondary_phone, 
+          :email,
+          :branch_head_id, 
+          :_destroy],
+          products_attributes:[
+            :id,
+            :name,
+            :description,
+            :_type,
+            :category,
+            :cost,
+            :_destroy
+          ]
+      )
   end
 
   def load_factory

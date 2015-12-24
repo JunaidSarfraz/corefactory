@@ -24,4 +24,12 @@ class User < ActiveRecord::Base
 
    belongs_to :branch, :class_name => "Branch", :foreign_key => "branch_id" 
    accepts_nested_attributes_for :hobbies, :allow_destroy => true
+
+      has_many  :product_suppliers, :class_name => "ProductSupplier", :foreign_key => "supplier_id"
+      has_many  :supplier_products, :through => :product_suppliers, :source => :product
+      accepts_nested_attributes_for :supplier_products
+
+      has_many  :product_clients, :class_name => "ProductClient", :foreign_key => "client_id"
+      has_many  :client_products, :through => :product_clients, :source => :product
+      accepts_nested_attributes_for :client_products
 end

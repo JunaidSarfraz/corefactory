@@ -45,13 +45,22 @@
 <hr />
 <h4>Branches</h3>
 <div id="branches">
-	<%= f.fields_for :branches, :wrapper => true do |branch_form| %>
+	<%= f.fields_for :branches, :wrapper => false do |branch_form| %>
 		<table class="table fields table-bordered">
 			<%= render partial: "companies/nested_branches_form" , locals: {branch_form: branch_form} %>
 		</table>
 	<% end %>
 </div>
 <p><%= f.link_to_add "Add a Add a branch", :branches, :data => { :target => "#branches" } %></p>
+<h4>Products</h3>
+<div id="products">
+	<%= f.fields_for :products, :wrapper => true do |product_form| %>
+		<table class="table fields table-bordered">
+			<%= render partial: "companies/nested_product_form" , locals: {f: product_form} %>
+		</table>
+	<% end %>
+</div>
+<p><%= f.link_to_add "Add New Product", :products, :data => { :target => "#products" } %></p>
 <table class="table">
 	<tr>
 		<% if params[:action] == "new" %>

@@ -1,0 +1,45 @@
+<tbody class="fields">
+	<tr>
+		<td>Name</td>
+		<td>
+			<%= f.hidden_field :id %>
+			<%= f.text_field :name, :class => 'btn form-control btn-block btn-block-level-input' %>
+		</td>
+	</tr>
+	<tr>
+		<td>Description</td>	
+		<td><%= f.text_field :description, :class => 'btn btn-block btn-block-level-input' %></td>
+	</tr>
+	<tr>
+		<td>Type</td>
+		<td><%= f.text_field :_type, :class => 'btn btn-block btn-block-level-input' %></td>
+	</tr>	
+	<tr>
+		<td>Category</td>
+		<td><%= f.text_field :category, :class => 'btn btn-block btn-block-level-input' %></td>
+	</tr>
+	<tr>
+		<td>Cost</td>	
+		<td><%= f.number_field :cost, :class => 'btn btn-block btn-block-level-input' %></td>
+	</tr>
+
+	<!-- Setting it's initial value in supplier_js.js -->
+	<tr>
+		<td>Company</td>
+		<td class="text-left">
+			<%= collection_select(:company, :id, current_user.companies, :id, :name, {}, {:class => 'company_id_dropdown_on_new_supplier dropdown dropdown-menue btn btn-block btn-block-level-input', :company_id => f.object.company_id}) %>
+			<%= f.hidden_field :company_id, :class => "company_id_hidden_field" %>
+		</td>
+	</tr>
+	
+	<tr>	
+		<td>&nbsp</td>
+		<td>
+			<%= f.link_to_remove do %>
+				<button class="btn btn-danger">
+					<i class="fa fa-times"></i> Product
+				</button>
+			<% end %>
+		</td>
+	</tr>
+</tbody>

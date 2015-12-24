@@ -24,6 +24,14 @@ $(document).ready(function () {
 		e.stopPropagation();
 	});
 
+	$.each($('.company_id_dropdown_on_new_supplier'), function(index, obj){
+		obj.value = obj.getAttribute('company_id');
+	});
+
+	$(document).on('change','.company_id_dropdown_on_new_supplier',function(e){
+		($(this).parent().find($('.company_id_hidden_field'))).val( $(this).val() );
+	});
+
 	// show supplier
 
 

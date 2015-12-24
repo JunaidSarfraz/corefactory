@@ -1,5 +1,5 @@
 <% if @workers.count > 0 %>
-	<table class="table table-bordered table-hover">
+	<table class="table table-bordered show_records">
 		<tr>
 			<td>Company Name</td>
 			<td>Branch Name</td>
@@ -9,11 +9,9 @@
 			<td>Type</td>
 			<td>Status</td>
 			<td>&nbsp</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
 		</tr>
 		<% @workers.each do |worker| %>
-			<tr>
+			<tr data-link="<%= worker_path(worker) %>">
 				<td class="hide"><%= hidden_field_tag :id, worker.id, :class => "worker_id" %></td>
 				<td><%= worker.branch.company.name rescue nil %></td>
 				<td><%= worker.branch.name rescue nil %></td>
@@ -22,14 +20,14 @@
 				<td><%= worker.secondary_phone rescue nil%></td>
 				<td><%= worker._type rescue nil %></td>
 				<% if worker.disabled %>
-					<td><%= link_to "Enable" , "#", :class => "btn btn-primary worker_enable_disable_button", :value => "Enable" %></td>
+					<td><%= link_to "Enable" , "#", :class => "worker_enable_disable_button", :value => "Enable" %></td>
 				<% else %>
-					<td><%= link_to "Disable" , "#", :class => "btn btn-primary worker_enable_disable_button", :value => "Disable" %></td>
+					<td><%= link_to "Disable" , "#", :class => "worker_enable_disable_button", :value => "Disable" %></td>
 				<% end %>
-				<td><%= link_to "Show", worker_path(worker), :class => "btn btn-primary" %></td>
-				<td><%= link_to "Edit", edit_worker_path(worker), :class => "btn btn-primary" %></td>
 				<td>
-					<%= link_to "Delete", worker_path(worker), :class => "btn btn-primary", method: "delete" %>
+					<%= link_to worker_path(worker), method: "delete" do %>
+						<i class="fa fa-times"></i>
+					<% end %>
 				</td>
 			</tr>
 		<% end %>
