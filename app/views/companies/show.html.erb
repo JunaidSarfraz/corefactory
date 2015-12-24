@@ -1,5 +1,6 @@
 <h1><%= @company.name %></h1>
 <hr />
 <%= nested_form_for @company, url: company_path, method: "put" do |form| %>
-	<%= render partial: "companies/companies_table", locals: { f: form}%>
+	<%= render partial: "companies/companies_tabs", locals: { f: form}%>
+	<%= form.submit "Update", :class =>"btn-block btn-block-level-input btn-primary" %>
 <% end %>

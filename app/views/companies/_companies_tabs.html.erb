@@ -1,0 +1,28 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#company_general_information" aria-controls="company_general_information" role="tab" data-toggle="tab">General Information</a></li>
+    <li role="presentation"><a href="#branches" aria-controls="branches" role="tab" data-toggle="tab">Branches</a></li>
+    <li role="presentation"><a href="#company_products" aria-controls="company_products" role="tab" data-toggle="tab">Products</a></li>
+    <li role="presentation"><a href="#company_accounts" aria-controls="company_accounts" role="tab" data-toggle="tab">Accounts</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="company_general_information">
+      <%= render partial: "general_information", locals: { supplier: @supplier, f: f } %>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="branches">
+      <%= render partial: "branches", locals: { supplier: @supplier, f: f } %>
+    </div>
+     
+    <div role="tabpanel" class="tab-pane" id="company_products">
+      <%= render partial: "products", locals: { supplier: @supplier, f: f } %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="company_accounts">
+        <%= render partial: "company_accounts", locals: { supplier: @supplier, f: f } %>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}, :controllers => { :registrations => "registrations" }
-  resources :companies do
+  resources :companies, except: [:edit] do
     post :get_all_branches
   end
   resources :accounts do

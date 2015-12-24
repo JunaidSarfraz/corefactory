@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+	<tr>
+		<td class="text-center">Name</td>
+		<td class="text-center"><%= f.text_field :name, :class =>"btn-block btn-block-level-input" %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Vision</td>
+		<td class="text-center"><%= f.text_area :vision, :class => "btn-block btn-block-level-input" %></td>
+	</tr>
+	<tr>
+		<td class="text-center">Work Description</td>
+		<td class="text-center">
+			<%= f.text_area :work_description, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Email</td>
+		<td class="text-center"><%= f.email_field :email , :class =>"btn-block btn-block-level-input"%></td>
+	</tr>
+	<tr>
+		<td class="text-center">Primary Phone</td>
+		<td class="text-center">
+			<%= f.text_field :primary_phone, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Secondary Phone</td>
+		<td class="text-center">
+			<%= f.text_field :secondary_phone, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Tax Information</td>
+		<td class="text-center">
+			<%= f.text_area :tax_information, :class =>"btn-block btn-block-level-input" %>
+		</td>
+	</tr>
+</table>
