@@ -20,6 +20,9 @@ class SuppliersController < ApplicationController
 	end
 
 	def update
+		puts "=-=-=-=-=-=-=-=-\n" * 10
+		puts params.to_yaml
+		puts "=-=-=-=-=-=-=-=-\n" * 10
 		if @supplier.update_without_password(supplier_params)
 			flash[:alert] = "Successfully Updated"
 		end

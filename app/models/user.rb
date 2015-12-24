@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
 
       has_many  :product_suppliers, :class_name => "ProductSupplier", :foreign_key => "supplier_id"
       has_many  :supplier_products, :through => :product_suppliers, :source => :product
-      accepts_nested_attributes_for :supplier_products
+      accepts_nested_attributes_for :supplier_products, :allow_destroy => true
 
       has_many  :product_clients, :class_name => "ProductClient", :foreign_key => "client_id"
       has_many  :client_products, :through => :product_clients, :source => :product
-      accepts_nested_attributes_for :client_products
+      accepts_nested_attributes_for :client_products, :allow_destroy => true
 end
