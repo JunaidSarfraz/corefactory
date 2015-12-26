@@ -86,6 +86,7 @@ class CompaniesController < ApplicationController
             :bank_primary_phone,
             :bank_secondary_phone,
             :current_balance,
+            :account_holder_type,
             :_destroy
           ]
       )

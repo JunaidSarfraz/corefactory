@@ -114,10 +114,24 @@ private
 
 	def load_suppliers_accounts
 		@supplier_accounts = Array.new
+		current_user.companies.each do |company|
+			company.suppliers.each do |supplier|
+				supplier.accounts.each do |supplier_account|
+					@supplier_accounts << supplier_account
+				end
+			end
+		end
 	end
 
 	def load_clients_accounts
 		@client_accounts = Array.new
+		current_user.companies.each do |company|
+			company.clients.each do |client|
+				client.accounts.each do |client_account|
+					@client_accounts << client_account
+				end
+			end
+		end
 	end
 
 	def get_all_employees
@@ -134,11 +148,21 @@ private
 
 	def get_all_clients
 		all_clients = Array.new
+		current_user.companies.each do |company|
+			company.clients.each do |client|
+				all_clients << client
+			end
+		end
 		all_clients
 	end
 
 	def get_all_suppliers
 		all_suppliers = Array.new
+		current_user.companies.each do |company|
+			company.suppliers.each do |supplier|
+				all_suppliers << supplier
+			end
+		end
 		all_suppliers
 	end
 

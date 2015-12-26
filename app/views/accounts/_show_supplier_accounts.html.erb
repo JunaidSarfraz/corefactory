@@ -10,6 +10,37 @@
 	        </span>
 	    </div>
 	</div>
+
+	<table class="table table-bordered show_records">
+		<thead>
+	        <th>Title</th>
+	        <th>Description</th>
+	        <th>Account Holder</th>
+	        <th>Current Balance</th>
+	        <th>Type</th>
+	        <th>&nbsp</th>
+	      </thead>
+	      <tbody>
+	      	<% supplier_accounts.each do |supplier_account| %>
+			<tr data-link="<%= account_path(supplier_account) %>">
+		       	<td><%= supplier_account.title %></td>
+		       	<td><%= supplier_account.description %></td>
+		            	<td><%= supplier_account.user.first_name + supplier_account.user.last_name %></td>
+		            	<td><%= supplier_account.current_balance %></td>
+		            	<% if supplier_account.bank_account? %>
+		            		<td>Bank Account</td>
+		          	<% elsif supplier_account.company_account? %>
+		            		<td>Company Account</td>
+		          	<% end %>
+		            	<td>
+		            		<%= link_to "#", :class => "delete_account", :'account-id' => supplier_account.id, :'tab-identity' => "supplier" do %>
+		            			<i class="fa fa-times"></i>
+		            		<% end %>
+		            	</td>
+		 	</tr>
+	       	<% end %>
+	      </tbody>
+	</table>
 <% else %>
     <h2>No Supplier Accounts to Show</h2>
 <% end %>

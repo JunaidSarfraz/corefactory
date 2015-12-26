@@ -10,6 +10,37 @@
 	        </span>
 	    </div>
 	</div>
+
+	<table class="table table-bordered show_records">
+		<thead>
+	        <th>Title</th>
+	        <th>Description</th>
+	        <th>Account Holder</th>
+	        <th>Current Balance</th>
+	        <th>Type</th>
+	        <th>&nbsp</th>
+	      </thead>
+	      <tbody>
+	      	<% client_accounts.each do |client_account| %>
+			<tr data-link="<%= account_path(client_account) %>">
+		       	<td><%= client_account.title %></td>
+		       	<td><%= client_account.description %></td>
+		            	<td><%= client_account.user.first_name + client_account.user.last_name %></td>
+		            	<td><%= client_account.current_balance %></td>
+		            	<% if client_account.bank_account? %>
+		            		<td>Bank Account</td>
+		          	<% elsif client_account.company_account? %>
+		            		<td>Company Account</td>
+		          	<% end %>
+		            	<td>
+		            		<%= link_to "#", :class => "delete_account", :'account-id' => client_account.id, :'tab-identity' => "client" do %>
+		            			<i class="fa fa-times"></i>
+		            		<% end %>
+		            	</td>
+		 	</tr>
+	       	<% end %>
+	      </tbody>
+	</table>
 <% else %>
     <h2>No Client Accounts to Show</h2>
 <% end %>

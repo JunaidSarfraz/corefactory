@@ -142,16 +142,16 @@
 		<td class="hidden">
 			<% if controller.controller_name == "workers" %>
 				<%# 0 represent employee as account holder %>
-				<%= f.text_field :account_holder_type, :value => 0 %>
+				<%= f.text_field :account_holder_type, :value => 'employee' %>
 			<% elsif controller.controller_name == "clients" %>
 				<%# 1 represent client as account holder %>
-				<%= f.text_field :account_holder_type, :value => 1 %>
+				<%= f.text_field :account_holder_type, :value => 'client' %>
 			<% elsif controller.controller_name == "suppliers" %>
 				<%# 2 represent supplier as account holder %>
-				<%= f.text_field :account_holder_type, :value => 2 %>
+				<%= f.text_field :account_holder_type, :value => 'supplier' %>
 			<% elsif controller.controller_name == "companies" %>
 				<%# 3 represent company as account holder %>
-				<%= f.text_field :account_holder_type, :value => 3 %>
+				<%= f.text_field :account_holder_type, :value => 'company' %>
 			<% end %>
 		</td>
 	</tr>
