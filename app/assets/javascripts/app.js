@@ -19,5 +19,16 @@ $(document).ready(function () {
 	$(document).on('click', '.show_records tr[data-link]', function(){
 		window.location = $(this).data("link");
 	});
+
+	// This is for shared/nested_account_form and it's structure specific
+	$('body').on('change', '.account-type-selector', function(){
+		var selected = $(this).val();
+		if(selected === "bank_account"){
+			$(this).parent().parent().parent().find('.bank_info_fields').removeClass('hide');
+		}
+		else{
+			$(this).parent().parent().parent().find('.bank_info_fields').addClass('hide');
+		}
+	});
 	
 }); // end of document.ready

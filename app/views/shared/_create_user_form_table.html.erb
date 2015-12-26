@@ -1,5 +1,6 @@
 <h4>Personal Details</h4>
-<table class="user_personal_details table">
+<hr />
+<table class="user_personal_details table table-bordered">
 	<tr>
 		<td class="text-center">First Name</td>
 		<td class="text-left">
@@ -52,7 +53,7 @@
 
 <hr />
 <h4>Account Details</h4>
-<table class="user_account_details table">
+<table class="user_account_details table table-bordered">
 	<tr>
 		<td class="text-center">Email</td>
 		<td class="text-left">
@@ -94,7 +95,7 @@
 
 <hr />
 <h4>Contact Information</h4>
-<table class="user_contact_details table">
+<table class="user_contact_details table table-bordered">
 	<tr>
 		<td class="text-center">Primary Phone</td>
 		<td class="text-left">
@@ -132,28 +133,26 @@
 	</tr>
 </table>
 
-<% if controller.controller_name == "workers" %>
-	<hr />
-	<h4>Joining Information</h4>
-	<table class="table">
-		<tr>
-			<td class="text-center">Company</td>
-			<td class="text-left">
-				<%= collection_select(:company, :id, current_user.companies, :id, :name, {}, { :id => "factories_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'}) %>
-			</td>
-			<td class="text-left">Join Date</td>
-			<td class="text-left">
-				<%= f.text_field :join_date, "data-provide" => 'datepicker', :class => "datepicker" %>
-			</td>
-		</tr>
-		<tr>
-			<td class="text-center">Branch</td>
-			<td class="text-left">
-				<%= collection_select(:branch, :id, current_user.companies[0].branches, :id, :name, {}, { :id => "all_branches_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'}) %>
-			</td>
-		</tr>
-	</table>
-<% end %>
+<hr />
+<h4>Joining Information</h4>
+<table class="table">
+	<tr>
+		<td class="text-center">Company</td>
+		<td class="text-left">
+			<%= collection_select(:company, :id, current_user.companies, :id, :name, {}, { :id => "factories_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'}) %>
+		</td>
+		<td class="text-left">Join Date</td>
+		<td class="text-left">
+			<%= f.text_field :join_date, "data-provide" => 'datepicker', :class => "datepicker" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="text-center">Branch</td>
+		<td class="text-left">
+			<%= collection_select(:branch, :id, current_user.companies[0].branches, :id, :name, {}, { :id => "all_branches_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'}) %>
+		</td>
+	</tr>
+</table>
 
 <hr />
 <h4>Hobbies</h4>

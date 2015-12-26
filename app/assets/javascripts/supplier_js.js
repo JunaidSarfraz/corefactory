@@ -1,12 +1,11 @@
 //= require app
 $(document).ready(function () {
-
 	$(document).on('click', '.supplier_enable_disable_button', function(){
-		var worker_id = $(this).parent().parent().find('.supplier_id').val();
+		var supplier_id = $(this).parent().parent().find('.supplier_id').val();
 		var button_text = $(this).text();
 		var element = this;
 		send_ajax_request("post",
-			"/suppliers/"+worker_id+"/change_status",
+			"/suppliers/"+supplier_id+"/change_status",
 			"json",
 			{ },
 			function(data){	

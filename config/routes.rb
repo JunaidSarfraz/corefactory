@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       post :account_names
     end
   end
-  resources :clients
+  resources :clients do
+    member do
+      post :change_status
+    end
+  end
   resources :payrolls, only: [:index]
   resources :reports, only: [:index]
   resources :sales, only: [:index]

@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
   end
   
   def create
-  	@company = Company.create(factory_params)
+  	@company = Company.create(company_params)
   	@company.owner = current_user
   	@company.save!
   	redirect_to :action => "index"
@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-  	@company.update_attributes(factory_params)
+  	@company.update_attributes(company_params)
   	@company.save
   	redirect_to action: "index"
   end
@@ -40,7 +40,7 @@ class CompaniesController < ApplicationController
 
   private
 
-  def factory_params
+  def company_params
   	params.require(:company).permit(
         :id, 
         :name, 
@@ -69,6 +69,23 @@ class CompaniesController < ApplicationController
             :_type,
             :category,
             :cost,
+            :_destroy
+          ],
+          accounts_attributes: [
+            :id,
+            :title,
+            :description,
+            :_type,
+            :bank_name,
+            :bank_account_number,
+            :bank_address,
+            :bank_city,
+            :bank_state,
+            :bank_country,
+            :bank_zip_code,
+            :bank_primary_phone,
+            :bank_secondary_phone,
+            :current_balance,
             :_destroy
           ]
       )

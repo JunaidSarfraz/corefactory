@@ -1,0 +1,10 @@
+<h4>Products</h4>
+<hr />
+<table class="table table-bordered" id="client_products_table">
+	<tbody>
+		<%= f.fields_for :client_products, f.object.client_products.order(:created_at), :wrapper => false do |product_form| %>
+			<%= render partial: "client_product_fields", locals: { client: @user, f: product_form } %>
+		<% end %>
+	</tbody>
+</table>
+<%= f.link_to_add "Add New Product", :client_products, :data => { :target => "#client_products_table" }, :class => "btn btn-primary" %>

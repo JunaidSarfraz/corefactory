@@ -1,4 +1,5 @@
-<h4>Branches</h3>
+<h2>Branches</h2>
+<hr />
 <div id="branches">
 	<%= f.fields_for :branches, :wrapper => false do |branch_form| %>
 		<table class="table fields table-bordered">
@@ -6,4 +7,4 @@
 		</table>
 	<% end %>
 </div>
-<p><%= f.link_to_add "Add a Add a branch", :branches, :data => { :target => "#branches" } %></p>
+<p><%= f.link_to_add "Add a branch", :branches, :data => { :target => "#branches" } %></p>

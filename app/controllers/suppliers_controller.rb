@@ -20,9 +20,6 @@ class SuppliersController < ApplicationController
 	end
 
 	def update
-		puts "=-=-=-=-=-=-=-=-\n" * 10
-		puts params.to_yaml
-		puts "=-=-=-=-=-=-=-=-\n" * 10
 		if @supplier.update_without_password(supplier_params)
 			flash[:alert] = "Successfully Updated"
 		end
@@ -90,6 +87,23 @@ class SuppliersController < ApplicationController
 				:category,
 				:cost,
 				:company_id,
+				:_destroy
+			],
+			:accounts_attributes => [
+				:id,
+				:title,
+				:description,
+				:_type,
+				:bank_name,
+				:bank_account_number,
+				:bank_address,
+				:bank_city,
+				:bank_state,
+				:bank_country,
+				:bank_zip_code,
+				:bank_primary_phone,
+				:bank_secondary_phone,
+				:current_balance,
 				:_destroy
 			]
 		)

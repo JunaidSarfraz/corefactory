@@ -1,14 +1,5 @@
 //= require app
 $(document).ready(function(){
-	$('body').on('change', '#account__type', function(){
-		var selected = $('#account__type').val();
-		if(selected === "bank_account"){
-			$('.bank_info_fields').removeClass('hide');
-		}
-		else{
-			$('.bank_info_fields').addClass('hide');
-		}
-	});
 
 	$('#myTabs a').click(function (e) {
 		e.preventDefault()

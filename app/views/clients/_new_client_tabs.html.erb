@@ -1,0 +1,43 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#client_personal_info" aria-controls="client_personal_info" role="tab" data-toggle="tab">Personal Information</a>
+    </li>
+    <li role="presentation">
+      <a href="#client_products" aria-controls="client_products" role="tab" data-toggle="tab">Products</a>
+    </li>
+    <li role="presentation">
+      <a href="#client_payment_history" aria-controls="client_payment_history" role="tab" data-toggle="tab">Supplier Payment History</a>
+    </li>
+    <li role="presentation">
+      <a href="#client_accounts" aria-controls="client_accounts" role="tab" data-toggle="tab">Supplier Accounts</a>
+    </li>
+    <li role="presentation">
+      <a href="#client_orders" aria-controls="client_orders" role="tab" data-toggle="tab">Orders Placed</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="client_personal_info">
+      <%= render partial: "shared/create_user_form_table", locals: { client: @user, f: f } %>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="client_products">
+      <%= render partial: "client_products", locals: { client: @user, f: f } %>
+    </div>
+     
+    <div role="tabpanel" class="tab-pane" id="client_payment_history">
+      <%= render partial: "client_payment_history", locals: { client: @user, f: f } %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="client_accounts">
+      <%= render partial: "client_accounts", locals: { client: @user, f: f } %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="client_orders">
+        <%= render partial: "client_orders", locals: { client: @user, f: f } %>
+    </div>
+  </div>
+</div>
