@@ -1,0 +1,38 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#worker_personal_information" aria-controls="supplier_orders" role="tab" data-toggle="tab">Personal Information </a>
+    </li>
+    <li role="presentation">
+      <a href="#Worker_pay_record" aria-controls="employee_accounts" role="tab" data-toggle="tab">Pay Record </a>
+    </li>
+    <li role="presentation">
+      <a href="#work_report" aria-controls="supplier_payment_history" role="tab" data-toggle="tab">Work Report</a>
+    </li>
+    <li role="presentation">
+      <a href="#worker_accounts" aria-controls="supplier_accounts" role="tab" data-toggle="tab">Accounts
+      </a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="worker_personal_information">
+      	<%= render partial: "shared/create_user_form_table", locals: { supplier: @supplier, f: f } %>
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="Worker_pay_record">
+      <%= render partial: "worker_pay_record", locals: { supplier: @supplier, f: f } %>
+    </div>
+      
+    <div role="tabpanel" class="tab-pane" id="work_report">
+      <%= render partial: "work_report", locals: { supplier: @supplier, f: f } %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="worker_accounts">
+      <%= render partial: "worker_accounts", locals: { supplier: @supplier, f: f } %>
+    </div>
+  </div>
+</div>
