@@ -1,4 +1,3 @@
-
 <h2><%= @supplier.first_name + " " + @supplier.middle_name + " " + @supplier.last_name %></h2>
 <hr />
 <%= nested_form_for @supplier, :url =>supplier_path, method: 'put' do |f| %>
