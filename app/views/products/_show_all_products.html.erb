@@ -1,0 +1,41 @@
+<hr />
+<%= link_to "#", :class => 'btn btn-primary' do %>
+	<i class="fa fa-plus"></i>
+	<span>Add New Company</span>
+<% end %>
+<% if companies.size > 0 %>
+	<% companies.each do |company| %>
+		<h3> <%= company.name %> </h3>
+		<hr />
+		<% if company.products.size > 0%>
+			<table class="table table-condensed table-hover">
+				<tr>
+					<td>Name</td>
+					<td>Price</td>
+					<td>Discount</td>
+					<td>Today Sale</td>
+					<td>Yearly Sale</td>
+					<td>&nbsp</td>
+				</tr>
+				<% company.products.each do |product| %>
+					<tr>
+						<td><%= product.name %></td>
+						<td><%= product.sale_price %></td>
+						<td><%= product.max_discount %></td>
+						<td><%= calculate_today_sale(product) %></td>
+						<td><%= calculate_yearly_sale(product) %></td>
+						<td>
+							<%= link_to "#" do %>
+								<i class="fa fa-edit"></i>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		<% else %>
+			<h1>You haven't add any products in this company please add some products</h1>
+		<% end %>
+	<% end %>
+<% else %>
+	<h1>You haven't add any company yet please add a company to manage products</h1>
+<% end %>

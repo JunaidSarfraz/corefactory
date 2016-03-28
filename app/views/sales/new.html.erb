@@ -1,0 +1,5 @@
+<%= form_for @sale, :url => sales_path do |form| %>
+	<h2>New Sale</h2>
+	<hr />
+	<%= render partial: "form", locals: {f: form} %>
+<% end %>

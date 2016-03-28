@@ -1,0 +1,25 @@
+<div>
+	<!-- Nav tabs -->
+	<ul class="nav nav-pills" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#products" aria-controls="products" role="tab" data-toggle="tab">
+				Products
+			</a>
+		</li>
+		<li role="presentation">
+			<a href="#products_groups" aria-controls="products_groups" role="tab" data-toggle="tab">
+				Product Groups
+			</a>
+		</li>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <div role="tabpanel" class="tab-pane active" id="products">
+	  	<%= render partial: "show_all_products", locals: { companies: @companies } %>
+	  </div>
+
+	  <div role="tabpanel" class="tab-pane" id="products_groups">
+	  	<%= render partial: "show_product_groups", locals: { groups: @product_groups } %>
+	  </div>
+	</div>
+</div>

@@ -69,6 +69,9 @@ class CompaniesController < ApplicationController
             :_type,
             :category,
             :cost,
+            :sale_price,
+            :max_discount,
+            :discount_percentage,
             :_destroy
           ],
           accounts_attributes: [

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129121029) do
+ActiveRecord::Schema.define(version: 20160221091538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,8 +150,9 @@ ActiveRecord::Schema.define(version: 20151129121029) do
     t.integer  "cost"
     t.integer  "sale_price"
     t.integer  "max_discount"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "discount_percentage", default: 0
   end
 
   create_table "transections", force: :cascade do |t|
@@ -162,6 +163,9 @@ ActiveRecord::Schema.define(version: 20151129121029) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "payroll_schedule_id"
+    t.integer  "status"
+    t.date     "checque_date"
+    t.date     "transection_date"
   end
 
   create_table "users", force: :cascade do |t|

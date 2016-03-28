@@ -22,8 +22,18 @@
   <td><%= f.number_field :cost, :class => 'form-control btn-block btn-block-level-input' %></td>
 </tr>
 <tr>
+  <td>Selling Price</td>
+  <td><%= f.number_field :sale_price, :class => 'form-control btn-block btn-block-level-input' %></td>  
 </tr>
-<tr>  
+<tr>
+  <td>Max Discount</td>
+  <td><%= f.number_field :max_discount, :class => 'form-control btn-block btn-block-level-input' %></td>  
+</tr>
+<tr>
+  <td>Max Discount percentage</td>
+  <td><%= f.number_field :discount_percentage, :class => 'form-control btn-block btn-block-level-input percentage-input' %></td>  
+</tr>
+<tr> 
   <td>&nbsp</td>
   <td>
     <%= f.link_to_remove "Remove This Product" %>

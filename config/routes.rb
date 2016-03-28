@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       post :change_status
     end
   end
+  resources :products
   resources :payrolls, only: [:index]
   resources :reports, only: [:index]
-  resources :sales, only: [:index]
+  resources :sales
   resources :settings, only: [:index]
   resources :suppliers do
     member do
