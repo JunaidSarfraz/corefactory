@@ -8,7 +8,16 @@ function send_ajax_request(req_type, req_url, data_type, req_data, success_callb
 		error: error_callback
 	});
 }
-
+function update_total_cost(element, prize, quantity, discount){
+	$(element).val(prize * quantity)
+}
+function update_grand_total(element, array_of_prizes){
+	var total = 0;
+	$.each(array_of_prizes,function(){
+		total += parseFloat(this) || 0;
+	});
+	$(element).val(total);
+}
 $(document).ready(function () { 
 	
 	$('.dropdown-toggle').dropdown(); 

@@ -14,7 +14,7 @@
 		%thead
 			%tr
 				%th{:width => "30%"} Select Product
-				%th{:width => "12%"} Cost per Unit
+				%th{:width => "12%"} Unit prize
 				%th Number of Units
 				%th Discount
 				%th Total
@@ -29,6 +29,6 @@
 			%td &nbsp
 			%td &nbsp
 			%td &nbsp
-			%td &nbsp
-			%td 
+			%td Grand Total
+			%td= text_field_tag :grand_total, 0, :class => "order-grand-total form-control"
 			%td &nbsp
