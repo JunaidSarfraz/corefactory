@@ -42,5 +42,13 @@ Rails.application.routes.draw do
     get :dashboard
   end
 
+  resources :orders do
+  end
+
+  resources :products do
+    member do
+      post :get_price
+    end
+  end
   root "home#index"
 end

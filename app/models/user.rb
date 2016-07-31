@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
    has_many  	:accounts, :dependent => :delete_all
    accepts_nested_attributes_for :accounts, :allow_destroy => true
    
+   has_many :orders, as: :orderable   
+   
    belongs_to      :branch
    belongs_to      :company
    belongs_to      :client_company, :class_name => "Company", :foreign_key => "client_company_id"

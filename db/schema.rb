@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221091538) do
+ActiveRecord::Schema.define(version: 20160731185412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,28 @@ ActiveRecord::Schema.define(version: 20160221091538) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "product_description"
+    t.integer  "cost"
+    t.integer  "discount"
+    t.integer  "quantity"
+    t.integer  "order_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.date     "order_date"
+    t.date     "delivery_date"
+    t.integer  "orderable_id"
+    t.string   "orderable_type"
+    t.integer  "status"
+    t.integer  "company_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "pay_heads", force: :cascade do |t|
     t.string   "name"
     t.text     "work_description"
@@ -153,6 +175,12 @@ ActiveRecord::Schema.define(version: 20160221091538) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "discount_percentage", default: 0
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transections", force: :cascade do |t|

@@ -219,3 +219,10 @@ td.panel-title{
         margin-right: 0;
     }
 }
+label{
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal !important;
+}

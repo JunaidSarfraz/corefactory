@@ -1,0 +1,16 @@
+%tr.fields
+	%td= f.select :product_id, @product_list, {:include_blank => true}, { :class => 'order-item-product-selector btn-block form-control' }
+	%td.element-cost
+		= f.number_field :cost, :class => "product-cost form-control"
+	%td.element-quantity
+		= f.number_field :quantity, :class => "product-quantity form-control"
+	%td.element-discount
+		= f.number_field :discount, :class => "product-discount form-control"
+	%td.element-total
+		%span.product-total
+			0
+	%td
+		= f.link_to_remove do
+			%button.btn.btn-danger
+				%i.fa.fa-times
+				Remove

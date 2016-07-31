@@ -39,6 +39,8 @@ gem 'devise'
   gem "nested_form"
   gem "rails-erd"
   gem "font-awesome-rails"
+  gem 'rake', '11.2.2'
+  gem 'haml'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

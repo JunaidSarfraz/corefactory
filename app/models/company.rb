@@ -13,4 +13,5 @@ class Company < ActiveRecord::Base
 	has_many :products, :class_name => "Product", :foreign_key => "company_id"
 	accepts_nested_attributes_for :products, :allow_destroy => true
 
+	has_many 	:orders
 end

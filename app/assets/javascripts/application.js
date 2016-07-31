@@ -23,3 +23,4 @@
 //= require accounts_js
 //= require supplier_js
 //= require jquery_nested_form
+//= require orders

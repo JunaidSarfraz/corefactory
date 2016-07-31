@@ -1,0 +1,4 @@
+= nested_form_for(@order, url: orders_path) do |form|
+	%h2 New Order
+	%hr
+	= render partial: "orders/form", locals: {f: form}
