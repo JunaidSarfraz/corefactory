@@ -1,5 +1,4 @@
 /*
-@import "font-awesome";
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -11,13 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require bootstrap
- *= require bootstrap.min
- *= require bootstrap-theme
- *= require bootstrap-theme.min
- *= require font-awesome
  *= require app
+ *= require_tree ./theme-css
  */
-

@@ -46,49 +46,49 @@ class CompaniesController < ApplicationController
         :name, 
         :vision, 
         :work_description, 
-        :email, 
+        :email,
+        :secondary_email,
         :password_of_company_email, 
         :primary_phone, 
         :secondary_phone, 
         :tax_information, 
         branches_attributes: [
           :id, 
-          :name, 
+          :name,
+          :email_address,
           :address, 
-          :city, :country, 
-          :zip_code, 
+          :city, 
           :primary_phone, 
-          :secondary_phone, 
-          :email,
           :branch_head_id, 
-          :_destroy],
-          products_attributes:[
-            :id,
-            :name,
-            :description,
-            :_type,
-            :category,
-            :cost,
-            :_destroy
-          ],
-          accounts_attributes: [
-            :id,
-            :title,
-            :description,
-            :_type,
-            :bank_name,
-            :bank_account_number,
-            :bank_address,
-            :bank_city,
-            :bank_state,
-            :bank_country,
-            :bank_zip_code,
-            :bank_primary_phone,
-            :bank_secondary_phone,
-            :current_balance,
-            :account_holder_type,
-            :_destroy
-          ]
+          :_destroy
+        ],
+        products_attributes:[
+          :id,
+          :name,
+          :description,
+          :_type,
+          :category,
+          :cost,
+          :_destroy
+        ],
+        accounts_attributes: [
+          :id,
+          :title,
+          :description,
+          :_type,
+          :bank_name,
+          :bank_account_number,
+          :bank_address,
+          :bank_city,
+          :bank_state,
+          :bank_country,
+          :bank_zip_code,
+          :bank_primary_phone,
+          :bank_secondary_phone,
+          :current_balance,
+          :account_holder_type,
+          :_destroy
+        ]
       )
   end
 

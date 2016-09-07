@@ -1,0 +1,21 @@
+%div
+  / Nav tabs
+  %ul.nav.nav-pills{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "company_general_information", "data-toggle" => "tab", :href => "#company_general_information", :role => "tab"} General Information
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "branches", "data-toggle" => "tab", :href => "#branches", :role => "tab"} Branches
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "company_products", "data-toggle" => "tab", :href => "#company_products", :role => "tab"} Products
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "company_accounts", "data-toggle" => "tab", :href => "#company_accounts", :role => "tab"} Accounts
+  / Tab panes
+  .tab-content
+    #company_general_information.tab-pane.active{:role => "tabpanel"}
+      = render partial: "general_information", locals: { supplier: @supplier, f: f }
+    #branches.tab-pane{:role => "tabpanel"}
+      = render partial: "branches", locals: { supplier: @supplier, f: f }
+    #company_products.tab-pane{:role => "tabpanel"}
+      = render partial: "products", locals: { supplier: @supplier, f: f }
+    #company_accounts.tab-pane{:role => "tabpanel"}
+      = render partial: "company_accounts", locals: { supplier: @supplier, f: f }

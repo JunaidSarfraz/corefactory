@@ -1,0 +1,6 @@
+%h2 Branches
+%hr/
+= f.link_to_add "Add Branch", :branches, :data => { :target => "#branches_records" }
+#branches_records
+  = f.fields_for :branches do |branch_form|
+    = render partial: "companies/nested_branches_form" , locals: {branch_form: branch_form}

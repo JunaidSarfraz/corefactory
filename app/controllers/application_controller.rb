@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-
+  before_filter :set_current_user_companies
+	
 	def after_sign_in_path_for(resource)
 		if resource.disabled? == true
 			sign_out resource
@@ -20,5 +21,13 @@ class ApplicationController < ActionController::Base
 
 	def after_update_path_for(resource) 
 		user_dashboard_path(current_user)
+	end
+
+	private
+
+	def set_current_user_companies
+		if current_user.present?
+			@sidebar_companies = current_user.companies.includes(:owner)
+		end
 	end 
 end

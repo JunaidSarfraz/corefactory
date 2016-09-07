@@ -1,0 +1,40 @@
+.fields
+  .col-sm-12.row
+    .col-sm-4
+      .form-group
+        = branch_form.text_field :branch_head_id, value: current_user.id, :type => "hidden", :class =>"btn-block btn-block-level-input"
+        %label Name
+        = branch_form.text_field :name, :class =>"form-control"
+    .col-sm-4
+      .form-group
+        %label Email Address
+        = branch_form.email_field :email_address, :class =>"form-control"
+    .col-sm-4
+      .form-group
+        %label Primary Phone
+        = branch_form.text_field :primary_phone, :class =>"form-control"
+  .col-sm-12.row
+    .col-sm-4
+      .form-group
+        %label Secondary Phone
+        = branch_form.text_field :secondary_phone, :class =>"form-control"
+    .col-sm-4
+      .form-group
+        %label City
+        = branch_form.select :city, get_pakistan_cities.zip(get_pakistan_cities), { :include_blank => true } , { :class => "form-control" }
+    .col-sm-4
+      .form-group
+        %label State
+        = branch_form.select :state, get_pakistan_states.zip(get_pakistan_states), { :include_blank => true } , { :class => "form-control" }
+  .col-sm-12.row
+    .col-sm-4
+      .form-group
+        %label Zip Code
+        = branch_form.number_field :zip_code, :class =>"form-control"
+    .col-sm-4
+      .form-group
+        %label Address
+        = branch_form.text_area :address, :class =>"form-control"
+    .col-sm-4
+      %p= branch_form.link_to_remove "Remove"
+  %hr

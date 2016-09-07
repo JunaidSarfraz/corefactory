@@ -37,4 +37,9 @@ class User < ActiveRecord::Base
    has_many  :product_clients, :class_name => "ProductClient", :foreign_key => "client_id"
    has_many  :client_products, :through => :product_clients, :source => :product
    accepts_nested_attributes_for :client_products, :allow_destroy => true
+   
+
+   def full_name
+      self.first_name + " " + self.last_name
+   end
 end

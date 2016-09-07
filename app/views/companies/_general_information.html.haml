@@ -1,0 +1,37 @@
+%h2 General Information
+%hr/
+.col-sm-12.row
+	.col-sm-4
+		.form-group
+			%label Name
+			= f.text_field :name, :class =>"form-control"
+	.col-sm-4
+		.form-group
+			%label Email Address
+			= f.email_field :email , :class =>"form-control"
+	.col-sm-4
+		.form-group
+			%label Secondary Email
+			= f.email_field :secondary_email , :class =>"form-control"
+.col-sm-12.row
+	.col-sm-4
+		.form-group
+			%label Primary Phone
+			= f.text_field :primary_phone, :class =>"form-control"
+	.col-sm-4
+		.form-group
+			%label Secondary Phone
+			= f.text_field :secondary_phone, :class =>"form-control"
+	.col-sm-4
+		.form-group
+			%label Vision Statement
+			= f.text_field :vision, :class => "form-control"
+.col-sm-12.row
+	.col-sm-4
+		.form-group
+			%label Work Description
+			= f.text_area :work_description, :class =>"form-control"
+	.col-sm-4
+		.form-group
+			%label Tax Information
+			= f.text_area :tax_information, :class =>"form-control"

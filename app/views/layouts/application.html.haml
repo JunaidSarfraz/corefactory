@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Corefactory
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+    = csrf_meta_tags
+  %body{:class => "#{controller.controller_name} #{controller.action_name} page-header-fixed page-sidebar-closed-hide-logo page-content-white"}
+    .page-wrapper
+      = render partial: "layouts/application_header"
+      / BEGIN HEADER & CONTENT DIVIDER
+      .clearfix
+      / END HEADER & CONTENT DIVIDER
+      / Start sidebar and contents
+      .page-container
+        - if current_user.present?
+          .page-sidebar-wrapper
+            - if current_user.owner?
+              = render partial: "user/sidebars/owner_sidebar"
+            - elsif current_user.manager?
+              = render partial: "user/sidebars/owner_sidebar"
+            - elsif current_user.worker?
+              = render partial: "user/sidebars/worker_sidebar"
+          .page-content-wrapper
+            = yield
+        - else
+          .page-content-wrapper
+            = yield

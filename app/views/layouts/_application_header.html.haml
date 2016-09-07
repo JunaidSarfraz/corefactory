@@ -1,0 +1,40 @@
+.page-header.navbar.navbar-fixed-top
+  / BEGIN HEADER INNER
+  .page-header-inner
+    / BEGIN LOGO
+    .page-logo
+      %a{:href => "#{root_path}"}
+        = image_tag 'corefactorylogo.png', :alt => 'logo'
+      .menu-toggler.sidebar-toggler
+        %span
+    / END LOGO
+    / BEGIN RESPONSIVE MENU TOGGLER
+    %a.menu-toggler.responsive-toggler{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
+      %span
+    / END RESPONSIVE MENU TOGGLER
+    / BEGIN TOP NAVIGATION MENU
+    .top-menu
+      %ul.nav.navbar-nav.pull-right
+        %li.dropdown.dropdown-user
+          %a.dropdown-toggle{"data-close-others" => "true", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "javascript:;"}
+            %span.username.username-hide-on-mobile= current_user.full_name
+            %i.fa.fa-angle-down
+          %ul.dropdown-menu.dropdown-menu-default
+            %li
+              %a{:href => "page_user_profile_1.html"}
+                %i.icon-user
+                My Profile
+            %li
+              %a{:href => "app_calendar.html"}
+                %i.icon-calendar
+                My Calendar
+            %li
+              %a{:href => "app_todo.html"}
+                %i.icon-rocket
+                My Tasks
+                %span.badge.badge-success 7
+            %li.divider
+            %li
+              %a{:href => "page_user_login_1.html"}
+                %i.icon-key
+                Log Out

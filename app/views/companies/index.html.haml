@@ -1,0 +1,27 @@
+.page-content
+	= link_to "Add New Company", new_company_path, :class => "btn btn-primary"
+	%hr/
+	%hr/
+	- if @companies.count > 0
+		%table.table.table-condensed.table-bordered.show_records
+			%thead
+				%tr
+					%td Name
+					%td Number of Branches
+					%td Number of employees
+					%td Last year sales
+					%td Last year Profit
+					%td Delete
+			%tbody
+				- @companies.each do |company|
+					%tr{"data-link" => "#{company_path(company)}"}
+						%td.text-center= company.name
+						%td.text-center= company.branches.count
+						%td.text-center= calculate_number_of_employees(company)
+						%td.text-center= calculate_last_year_sale(company)
+						%td.text-center= calculate_last_year_profit(company)
+						%td.text-center
+							= link_to company_path(company), method: "delete"  do
+								%i.fa.fa-times
+	- else
+		%h3 No Company to show
