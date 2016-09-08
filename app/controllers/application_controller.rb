@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_current_user_companies
-	
+	before_filter :load_suppliers
+
 	def after_sign_in_path_for(resource)
 		if resource.disabled? == true
 			sign_out resource
@@ -27,7 +28,17 @@ class ApplicationController < ActionController::Base
 
 	def set_current_user_companies
 		if current_user.present?
-			@sidebar_companies = current_user.companies.includes(:owner)
+			@sidebar_companies = current_user.companies
 		end
 	end 
+
+	def load_suppliers
+		@suppliers = Array.new
+		current_user.companies(:created_at).each do |company|
+			company.suppliers(:created_at).each do |supplier|
+				@suppliers << supplier
+			end
+		end
+	end
+
 end

@@ -1,0 +1,7 @@
+%h4 Products
+%hr/
+%table#client_products_table.table.table-bordered
+  %tbody
+    = f.fields_for :supplier_products, f.object.supplier_products.order(:created_at), :wrapper => false do |product_form|
+      = render partial: "supplier_product_fields", locals: { supplier: @supplier, f: product_form }
+= f.link_to_add "Add New Product", :supplier_products, :data => { :target => "#client_products_table" }, :class => "btn btn-primary"

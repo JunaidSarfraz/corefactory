@@ -82,4 +82,14 @@ module ApplicationHelper
 		# we can return open as class if we want to open the accordion
 		value.include?(key) ? "start active" : ""
 	end
+	def flash_messsage_type_for flash_type
+	    case flash_type
+	      when :success, :notice, 'success', 'notice'
+	        'success'
+	      when :error, :alert, 'error', 'alert'
+	        'danger'
+	      else
+	        'success'
+	    end
+  	end
 end

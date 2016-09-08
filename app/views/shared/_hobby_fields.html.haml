@@ -1,0 +1,10 @@
+%tr.fields
+  %td
+    = f.hidden_field :id
+    = f.text_field :name, :class => "btn-block btn-block-level-input"
+  %td= f.text_field :description, :class => "btn-block btn-block-level-input"
+  %td
+    = f.link_to_remove do
+      %button.btn.btn-danger
+        %i.fa.fa-times
+        Hobby

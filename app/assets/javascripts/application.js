@@ -20,6 +20,7 @@
 //= require theme-js/bootstrap-switch.min
 //= require theme-js/moment.min
 //= require theme-js/daterangepicker.min
+//= require theme-js/bootstrap-datepicker.min
 //= require theme-js/morris.min
 //= require theme-js/raphael.min
 //= require theme-js/jquery.waypoints.min
@@ -48,12 +49,11 @@
 //= require theme-js/jquery.vmap.usa
 //= require theme-js/jquery.vmap.sampledata
 //= require theme-js/app.min
+//= require theme-js/components-date-time-pickers
 //= require theme-js/layout.min
 //= require theme-js/demo.min
 //= require theme-js/quick-sidebar
 //= require theme-js/quick-nav.min
-//= require jquery-ui
-//= require jquery_ujs
 //= require jquery.turbolinks
 //= require dcalendar.picker
 //= require app

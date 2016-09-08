@@ -1,0 +1,24 @@
+- flash.each do |name, msg|
+  :javascript
+    $(document).ready(function () {
+      if("#{flash_messsage_type_for(name)}" == "success")
+      {
+        message = pre_processing(#{msg});
+        success_alert(message);
+      }
+      else
+      {
+        message = pre_processing(#{msg});
+        warning_alert(message);
+      }
+      
+    });
+    function pre_processing(message){
+      var msg = "";
+      if(message instanceof Array){
+        msg = message.join(" and ");
+      }
+      // Here you have to write one line for every punctuation mark if it is creating problem
+      msg = msg.replace("'", "\'");
+      return msg;
+    }

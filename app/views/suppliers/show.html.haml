@@ -1,0 +1,6 @@
+.page-content.ofh
+	%h2= @supplier.first_name + " " + @supplier.middle_name + " " + @supplier.last_name
+	%hr/
+	= nested_form_for @supplier, :url => supplier_path, method: 'put' do |f|
+		= render partial: "show_supplier_tabs", locals: { f: f }
+		= f.submit "Update", :class => "btn btn-primary pull-right"

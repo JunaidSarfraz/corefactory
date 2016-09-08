@@ -11,14 +11,13 @@ function send_ajax_request(req_type, req_url, data_type, req_data, success_callb
 
 $(document).ready(function () { 
 	
-	$('.dropdown-toggle').dropdown(); 
-	$('.datepicker').dcalendarpicker({
-  		format: 'yyyy-mm-dd'
-	});
+	$('.dropdown-toggle').dropdown();
 
 	$(document).on('click', '.show_records tr[data-link]', function(){
 		window.location = $(this).data("link");
 	});
+
+	$('.date-picker').datepicker();
 
 	// This is for shared/nested_account_form and it's structure specific
 	$('body').on('change', '.account-type-selector', function(){
@@ -109,3 +108,68 @@ function remove_number_of_records(field, field_element, text_initial){
   	}
   });
 }
+
+warning_alert = function(msg, auto_hide) {
+  var closeButton_opt, closeOnClick_opt, sticky_opt;
+  if (auto_hide == null) {
+    auto_hide = true;
+  }
+  sticky_opt = closeButton_opt = false;
+  closeOnClick_opt = true;
+  if (auto_hide === false) {
+    sticky_opt = true;
+    closeOnClick_opt = false;
+    closeButton_opt = true;
+  }
+  return $.amaran({
+    content: {
+      bgcolor: '#D04B2B',
+      color: '#fff',
+      message: msg
+    },
+    theme: 'colorful',
+    position: 'top right',
+    cssanimationIn: 'swing',
+    inEffect: 'slideRight',
+    cssanimationOut: 'bounceOut',
+    sticky: sticky_opt,
+    closeOnClick: closeOnClick_opt,
+    closeButton: true,
+    delay: 5000
+  });
+};
+
+success_alert = function(msg, auto_hide) {
+	debugger;
+  var closeButton_opt, closeOnClick_opt, sticky_opt;
+  if (auto_hide == null) {
+    auto_hide = true;
+  }
+  sticky_opt = closeButton_opt = false;
+  closeOnClick_opt = true;
+  if (auto_hide === false) {
+    sticky_opt = true;
+    closeOnClick_opt = false;
+    closeButton_opt = true;
+  }
+  return $.amaran({
+    content: {
+      bgcolor: '#73AA58',
+      color: '#fff',
+      message: msg
+    },
+    theme: 'colorful',
+    position: 'top right',
+    cssanimationIn: 'swing',
+    inEffect: 'slideRight',
+    cssanimationOut: 'bounceOut',
+    sticky: sticky_opt,
+    closeOnClick: closeOnClick_opt,
+    closeButton: true,
+    delay: 3000
+  });
+};
+
+window.warning_alert = warning_alert;
+
+window.success_alert = success_alert;

@@ -21,8 +21,11 @@ class SuppliersController < ApplicationController
 
 	def update
 		if @supplier.update_without_password(supplier_params)
-			flash[:alert] = "Successfully Updated"
+			flash[:notice] = "Successfully Updated"
 		end
+		if @supplier.errors.messages.any?
+			flash[:error] = @supplier.errors.messages
+    end
 		redirect_to :action => "index"
 	end
 
@@ -42,14 +45,7 @@ class SuppliersController < ApplicationController
 	end
 
 	private
-	def load_suppliers
-		@suppliers = Array.new
-		current_user.companies(:created_at).each do |company|
-			company.suppliers(:created_at).each do |supplier|
-				@suppliers << supplier
-			end
-		end
-	end
+	
 
 	def supplier_params
 		params.require(:user).permit(
@@ -74,6 +70,9 @@ class SuppliersController < ApplicationController
 			:height, 
 			:join_date, 
 			:company_id,
+			:fax,
+			:social_media_links,
+			:secondary_email,
 			:hobbies_attributes => [
 				:id, 
 				:name, 

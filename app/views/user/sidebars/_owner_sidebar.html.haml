@@ -41,11 +41,25 @@
         %ul.sub-menu{:style => "display: none"}
           %li.nav-item
             %a.nav-link{:href => "#{companies_path}"}
-              %span.title Company List
+              %span.title Companies List
           - @sidebar_companies.each do |company|
             %li.nav-item
               %a.nav-link{:href => "#{company_path(company)}"}
                 %span.title= company.name
+      %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['suppliers/index','suppliers/show'])}"}
+        %a.nav-link.nav-toggle{:href => "#{companies_path}"}
+          %i.icon-users
+          %span.title Suppliers
+          %span.arrow
+          %span.selected
+        %ul.sub-menu{:style => "display: none"}
+          %li.nav-item
+            %a.nav-link{:href => "#{suppliers_path}"}
+              %span.title Supliers List
+          - @suppliers.each do |supplier|
+            %li.nav-item
+              %a.nav-link{:href => "#{supplier_path(supplier)}"}
+                %span.title= supplier.full_name
       %li.nav-item
         %a.nav-link.nav-toggle{:href => "javascript:;"}
           %i.icon-puzzle

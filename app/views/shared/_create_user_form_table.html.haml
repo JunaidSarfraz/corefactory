@@ -1,0 +1,124 @@
+%h4 Personal Details
+%hr/
+%table.user_personal_details.table.table-bordered
+  %tr
+    %td.text-center First Name
+    %td.text-left
+      = f.text_field :first_name, :class => "form-control btn-block btn-block-level-input", :autofocus => true
+    %td.text-left Last Name
+    %td.text-left
+      = f.text_field :last_name, :class => "form-control btn-block btn-block-level-input"
+  %tr
+    %td.text-center Middle name
+    %td.text-left
+      = f.text_field :middle_name, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Gender
+    %td.text-left
+      = f.select :gender, [["Not Telling", 'undefinded'], ["Male", 'male'], ["Female", 'female']], {}, { :class => 'form-control btn-block btn-block-level-input' }
+  %tr
+    %td.text-center CNIC (Without Dashes)
+    %td.text-left
+      = f.number_field :cnic, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Religion
+    %td.text-left
+      = f.text_field :religion, :class => "form-control btn-block btn-block-level-input"
+  %tr
+    %td.text-center Cast
+    %td.text-left
+      = f.text_field :cast, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Blood Group
+    %td.text-left
+      = f.select :blood_group,[["unknown","unknown"],["A+","A+"],["A-","A-"],["AB+","AB+"],["AB-","AB-"],["O+","O+"],["O-","O-"]], {}, { :class => 'form-control btn-block btn-block-level-input' }
+  %tr
+    %td.text-center Height
+    %td.text-left
+      = f.text_field :height, :class => "form-control btn-block btn-block-level-input"
+    %td
+    %td
+%hr/
+%h4 Account Details
+%table.user_account_details.table.table-bordered
+  %tr
+    %td.text-center Email
+    %td.text-left
+      = f.email_field :email, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Password
+    %td.text-left
+      = f.password_field :password, :class => "form-control btn-block btn-block-level-input"
+  %tr
+    %td.text-center Password Confirmation
+    %td.text-left
+      = f.password_field :password_confirmation, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Status
+    %td.text-left
+      = f.select :disabled, [["Enable", false], ["Disabled", true]], {}, { :class => 'form-control btn-block btn-block-level-input' }
+  %tr
+    - if controller.controller_name == "workers"
+      %td.text-center Type
+      %td.text-left
+        = f.select :_type, [["Manager", 'manager'], ["Worker", 'worker']], {}, { :class => 'form-control btn-block btn-block-level-input' }
+    - elsif controller.controller_name == "suppliers"
+      %td.text-center= f.hidden_field :_type, :value => "supplier"
+      %td &amp;nbsp
+    - elsif controller.controller_name == "clients"
+      %td.text-center= f.hidden_field :_type, :value => "client"
+      %td &amp;nbsp
+    %td
+    %td
+%hr/
+%h4 Contact Information
+%table.user_contact_details.table.table-bordered
+  %tr
+    %td.text-center Primary Phone
+    %td.text-left
+      = f.text_field :primary_phone, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Secondary Phone
+    %td.text-left
+      = f.text_field :secondary_phone, :class => "form-control btn-block btn-block-level-input"
+  %tr
+    - if controller.controller_name == "clients" || controller.controller_name == "suppliers"
+      %td.text-center Fax
+      %td.text-left
+        = f.text_field :fax, :class => "form-control btn-block btn-block-level-input"
+    - elsif controller.controller_name == "workers"
+      %td.text-center Home Contact
+      %td.text-left
+        = f.text_field :home_contact, :class => "form-control btn-block btn-block-level-input"
+    %td.text-left Social Media Links
+    %td.text-left
+      = f.text_area :social_media_links, :class => "form-control btn-block btn-block-level-input"
+  %tr
+    %td.text-center Secondary Email
+    %td
+      = f.email_field :secondary_email, :class => "form-control btn-block btn-block-level-input"
+    %td
+    %td
+%hr/
+%h4 Joining Information
+%table.table
+  %tr
+    %td.text-center Company
+    %td.text-left
+      = collection_select(:company, :id, current_user.companies, :id, :name, {}, { :id => "factories_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'})
+    %td.text-left Join Date
+    %td.text-left
+      = f.text_field :join_date, :class => "form-control form-control-inline input-medium date date-picker"
+  %tr
+    %td.text-center Branch
+    %td.text-left
+      = collection_select(:branch, :id, current_user.companies[0].branches, :id, :name, {}, { :id => "all_branches_on_worker_form_table", :class => 'dropdown dropdown-menue btn-block btn-block-level-input'})
+%hr/
+%h4 Hobbies
+%table#hobbies.table.table-bordered
+  %thead
+    %tr
+      %td Name
+      %td Description
+      %td
+        = f.link_to_add :hobbies, :data => { :target => "#hobbies" } do
+          %button.btn
+            %i.fa.fa-plus
+            Hobby
+  %tbody
+    = f.fields_for :hobbies, :wrapper => false do |hobby_form|
+      = render partial: "shared/hobby_fields", locals: {f: hobby_form}
