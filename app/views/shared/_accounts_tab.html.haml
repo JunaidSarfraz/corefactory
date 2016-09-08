@@ -1,0 +1,7 @@
+%h4 Accounts
+%hr/
+= f.link_to_add "Add Account", :accounts, :data => { :target => "#accounts" }, :class => "btn btn-primary"
+#accounts
+	- i = 0
+	= f.fields_for :accounts, :wrapper => false do |account_form|
+		= render partial: "shared/nested_account_form" , locals: { f: account_form, i: i = i + 1}

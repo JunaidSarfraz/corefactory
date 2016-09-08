@@ -1,0 +1,7 @@
+%h2 Products
+%hr/
+= f.link_to_add "Add Product", :products, :data => { :target => "#products" }, :class => "btn btn-primary"
+#products
+	- i = 0
+	= f.fields_for :products, :wrapper => true do |product_form|
+		= render partial: "companies/nested_product_form" , locals: { f: product_form, i: i = i + 1 }

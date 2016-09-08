@@ -1,0 +1,38 @@
+.fields.nested_fields_div.product-fields
+  %h4.branch-number-heading Product # #{i}
+  %hr/
+  .col-sm-12.row
+    .col-sm-6
+      .form-group
+        = f.hidden_field :id
+        %label Name
+        = f.text_field :name, :class =>"form-control"
+    .col-sm-6
+      .form-group
+        %label Category
+        = f.text_field :category, :class => 'form-control'
+  .col-sm-12.row  
+    .col-sm-6
+      .form-group
+        %label Product Cost
+        = f.number_field :cost, :class => 'form-control product_cost'
+    .col-sm-6
+      .form-group
+        %label Sale Prize
+        = f.number_field :sale_price, :class => 'form-control product_sale_price'
+  .col-sm-12.row  
+    .col-sm-6
+      .form-group
+        %label Profit
+        = f.number_field :profit, :class => 'form-control product_profit'
+    .col-sm-6
+      .form-group
+        %label Profit Percentage
+        = f.number_field :profit_percentage, :class => 'form-control product_profit_percentage', :step => 'any'
+  .col-sm-12.row
+    .col-sm-6
+      .form-group
+        %label Description
+        = f.text_field :description, :class => 'form-control'
+    .col-sm-6
+      %p= f.link_to_remove "Remove"

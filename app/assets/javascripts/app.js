@@ -22,13 +22,90 @@ $(document).ready(function () {
 
 	// This is for shared/nested_account_form and it's structure specific
 	$('body').on('change', '.account-type-selector', function(){
+		debugger;
 		var selected = $(this).val();
 		if(selected === "bank_account"){
-			$(this).parent().parent().parent().find('.bank_info_fields').removeClass('hide');
+			$(this).closest('.account-fields').find('.bank_info_fields').removeClass('hide');
 		}
 		else{
-			$(this).parent().parent().parent().find('.bank_info_fields').addClass('hide');
+			$(this).closest('.account-fields').find('.bank_info_fields').addClass('hide');
 		}
 	});
+	$(document).on('nested:fieldAdded:branches', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  set_number_of_records(field, $("#branches_records"), "Branch # ");
+	})
 	
+	$(document).on('nested:fieldRemoved:branches', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  remove_number_of_records(field, $("#branches_records"), "Branch # ");
+	})
+	
+	$(document).on('nested:fieldAdded:products', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  set_number_of_records(field, $("#products"), "Product # ");
+	})
+
+	$(document).on('nested:fieldRemoved:products', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  remove_number_of_records(field, $("#products"), "Product # ");
+	})
+
+	$(document).on('nested:fieldAdded:accounts', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  set_number_of_records(field, $("#accounts"), "Account # ");
+	})
+
+	$(document).on('nested:fieldRemoved:accounts', function(event){
+	  // this field was just inserted into your form
+	  var field = event.field;
+	  remove_number_of_records(field, $("#accounts"), "Account # ");
+	})
+
+	// ------------------ Product profit and sale price calculations --------------
+	$('body').on('change', '.product_sale_price', function(){
+		var cost = parseInt($(this).closest('.product-fields').find('.product_cost').val());
+		var sale_price = parseInt($(this).val());
+		var profit = sale_price - cost;
+		var profit_percentage = ((profit/cost) * 100).toFixed(2);
+		$(this).closest('.product-fields').find('.product_profit').val(profit);
+		$(this).closest('.product-fields').find('.product_profit_percentage').val(profit_percentage);
+	})
+
+	$('body').on('change', '.product_profit', function(){
+		var cost = parseInt($(this).closest('.product-fields').find('.product_cost').val());
+		var profit = parseInt($(this).val());
+		var sale_price = cost + profit;
+		var profit_percentage = ((profit/cost) * 100).toFixed(2);
+		$(this).closest('.product-fields').find('.product_sale_price').val(sale_price);
+		$(this).closest('.product-fields').find('.product_profit_percentage').val(profit_percentage);
+	})
+
+	$('body').on('change', '.product_profit_percentage', function(){
+		var cost = parseInt($(this).closest('.product-fields').find('.product_cost').val());
+		var profit_percentage = parseFloat($(this).val());
+		var profit = Math.ceil(((profit_percentage * cost)/100));
+		var sale_price = cost + profit;
+		$(this).closest('.product-fields').find('.product_sale_price').val(sale_price);
+		$(this).closest('.product-fields').find('.product_profit').val(profit);
+	})
 }); // end of document.ready
+
+function set_number_of_records(field, field_element, text_initial){
+	var number_element = field.find(".branch-number-heading");
+	number_element.text(text_initial + field_element.find(".nested_fields_div:visible").length);
+}
+function remove_number_of_records(field, field_element, text_initial){
+	var number_removed = parseInt(field.find(".branch-number-heading").text().split("#")[1]);
+  $.each( field_element.find(".nested_fields_div:visible"), function(index, value){
+  	var found_value = parseInt($(value).find(".branch-number-heading").text().split("#")[1]);
+  	if(found_value > number_removed){
+  		$(value).find(".branch-number-heading").text(text_initial + (found_value - 1));
+  	}
+  });
+}

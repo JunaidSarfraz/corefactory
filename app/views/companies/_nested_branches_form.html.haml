@@ -1,4 +1,6 @@
-.fields
+.fields.nested_fields_div
+  %h4.branch-number-heading Branch # #{i}
+  %hr/
   .col-sm-12.row
     .col-sm-4
       .form-group
@@ -37,4 +39,3 @@
         = branch_form.text_area :address, :class =>"form-control"
     .col-sm-4
       %p= branch_form.link_to_remove "Remove"
-  %hr

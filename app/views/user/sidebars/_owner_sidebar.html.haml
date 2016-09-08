@@ -27,17 +27,21 @@
               %a.btn.submit{:href => "javascript:;"}
                 %i.icon-magnifier
         / END RESPONSIVE QUICK SEARCH FORM
-      %li.nav-item.start.active.open
+      %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['user/dashboard'])}"}
         %a.nav-link.nav-toggle{:href => "#{user_dashboard_path(current_user)}"}
           %i.icon-home
           %span.title Dashboard
           %span.selected
-      %li.nav-item
-        %a.nav-link.nav-toggle{:href => "javascript:;"}
+      %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['companies/index','companies/show'])}"}
+        %a.nav-link.nav-toggle{:href => "#{companies_path}"}
           %i.icon-diamond
           %span.title Companies
           %span.arrow
-        %ul.sub-menu
+          %span.selected
+        %ul.sub-menu{:style => "display: none"}
+          %li.nav-item
+            %a.nav-link{:href => "#{companies_path}"}
+              %span.title Company List
           - @sidebar_companies.each do |company|
             %li.nav-item
               %a.nav-link{:href => "#{company_path(company)}"}

@@ -1,0 +1,111 @@
+- account_types = Array.new
+- account_types <<  ['Company Account', 'company_account']
+- account_types <<  ['Bank Account', 'bank_account']
+.fields.nested_fields_div.account-fields
+	%h4.branch-number-heading Account # #{i}
+	%hr/
+	.col-sm-12.row
+		.hidden
+			- if controller.controller_name == "workers"
+				= f.text_field :account_holder_type, :value => 'employee'
+			- elsif controller.controller_name == "clients"
+				= f.text_field :account_holder_type, :value => 'client'
+			- elsif controller.controller_name == "suppliers"
+				= f.text_field :account_holder_type, :value => 'supplier'
+			- elsif controller.controller_name == "companies"
+				= f.text_field :account_holder_type, :value => 'company'
+		.col-sm-6
+			.form-group
+				%label Title
+				= f.text_field :title, :class => "form-control", :autofocus => true
+		.col-sm-6
+			.form-group
+				%label Type
+				= f.select :_type, account_types, {}, { :class => 'account-type-selector form-control' }
+
+	- if f.object.present? && f.object.bank_account?
+		.bank_info_fields
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Name
+						= f.text_field :bank_name, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Account Number
+						= f.number_field :bank_account_number, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Address
+						= f.text_field :bank_address, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Bank City
+						= f.text_field :bank_city, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank State
+						= f.text_field :bank_state, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Bank Country
+						= f.text_area :bank_country, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Zipcode
+						= f.number_field :bank_zip_code, :class => "form-control"
+			.col-sm-6
+				.form-group
+					%label Bank Phone
+					= f.text_field :bank_primary_phone, :class => "form-control"
+	- else
+		.bank_info_fields.hide
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Name
+						= f.text_field :bank_name, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Account Number
+						= f.number_field :bank_account_number, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Address
+						= f.text_field :bank_address, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Bank City
+						= f.text_field :bank_city, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank State
+						= f.text_field :bank_state, :class => "form-control"
+				.col-sm-6
+					.form-group
+						%label Bank Country
+						= f.text_area :bank_country, :class => "form-control"
+			.col-sm-12.row
+				.col-sm-6
+					.form-group
+						%label Bank Zipcode
+						= f.number_field :bank_zip_code, :class => "form-control"
+			.col-sm-6
+				.form-group
+					%label Bank Phone
+					= f.text_field :bank_primary_phone, :class => "form-control"
+	.col-sm-12.row
+		.col-sm-6
+			.form-group
+				%label Current Balance
+				= f.number_field :current_balance, :class => "btn-block form-control btn-block-level-input"
+		.col-sm-6
+			.form-group
+				%label Description
+				= f.text_area :description, :class => "btn-block form-control btn-block-level-input"
+	= f.link_to_remove "Remove this Account"
