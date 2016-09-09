@@ -140,7 +140,6 @@ warning_alert = function(msg, auto_hide) {
 };
 
 success_alert = function(msg, auto_hide) {
-	debugger;
   var closeButton_opt, closeOnClick_opt, sticky_opt;
   if (auto_hide == null) {
     auto_hide = true;

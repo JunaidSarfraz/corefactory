@@ -57,6 +57,7 @@
 //= require jquery.turbolinks
 //= require dcalendar.picker
 //= require app
+//= require jquery.amaran
 //= require work_heads_js
 //= require workers_js
 //= require accounts_js

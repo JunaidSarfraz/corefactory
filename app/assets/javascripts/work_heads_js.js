@@ -1,7 +1,9 @@
 //= require app
 $(document).ready(function(){
-
-	$('table').accordion({header: '.category' });
+	// $.getScript("/app/assets/javascripts/jquery-ui.js", function()
+	// {
+	// 	$('table').accordion({header: '.category' });
+	// });
 
 	$('.clear_modal_content').on('click', function(e){
 		$('#work_head_name').val("");
