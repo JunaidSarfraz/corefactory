@@ -1,0 +1,31 @@
+- if @suppliers.count > 0
+	%table.table.table-bordered.show_records.table-hover
+		%thead
+			%tr
+				%td Company Name
+				%td First Name
+				%td Last Name
+				%td Primary Phone
+				%td Secondary Phone
+				%td Status
+				%td Number of Products
+				%td Actions
+		%tbody
+			- @suppliers.each do |supplier|
+				%tr.cursor_hand{"data-link" => "#{supplier_path(supplier)}"}
+					%td.hide= hidden_field_tag :id, supplier.id, :class => "supplier_id"
+					%td= supplier.company.name rescue nil
+					%td= supplier.first_name rescue nil
+					%td= supplier.last_name rescue nil
+					%td= supplier.primary_phone rescue nil
+					%td= supplier.secondary_phone rescue nil
+					- if supplier.disabled
+						%td= link_to "Enable" , "#", :class => "btn btn-primary supplier_enable_disable_button", :value => "Enable"
+					- else
+						%td= link_to "Disable" , "#", :class => "btn btn-primary supplier_enable_disable_button", :value => "Disable"
+					%td= supplier.supplier_products.count
+					%td
+						= link_to supplier_path(supplier), :class => "delete_supplier", method: "delete" do
+							%i.fa.fa-times
+- else
+	%h1 No Supplier to Show

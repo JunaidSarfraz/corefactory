@@ -1,6 +1,6 @@
 //= require app
 $(document).ready(function () {
-	$(document).on('click', '.supplier_enable_disable_button', function(){
+	$(document).on('click', '.supplier_enable_disable_button', function(e){
 		var supplier_id = $(this).parent().parent().find('.supplier_id').val();
 		var button_text = $(this).text();
 		var element = this;

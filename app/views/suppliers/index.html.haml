@@ -1,0 +1,7 @@
+.page-content
+	%div
+		= link_to "Add New Supplier", new_supplier_path, :class => "btn btn-primary"
+		%hr/
+		%hr/
+	#all_supplier_table
+		= render partial: "supplier_table", locals: {suppliers: @suppliers}

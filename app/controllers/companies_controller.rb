@@ -30,7 +30,9 @@ class CompaniesController < ApplicationController
 
   def destroy
   	@company.destroy
-  	redirect_to :action => "index"
+    respond_to do |format|
+      format.js { redirect_to :action => "index" }
+    end
   end
 
   def get_all_branches

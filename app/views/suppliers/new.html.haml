@@ -1,0 +1,6 @@
+.page-content
+	= nested_form_for(@supplier, url: suppliers_path ) do |f|
+		%h2 New Suppliers
+		%hr/
+		= render partial: "new_supplier_tabs", locals: { f: f }
+		= f.submit "Create", :class =>"btn btn-primary pull-right"

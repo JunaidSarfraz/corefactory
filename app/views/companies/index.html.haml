@@ -20,8 +20,9 @@
 						%td.text-center= calculate_number_of_employees(company)
 						%td.text-center= calculate_last_year_sale(company)
 						%td.text-center= calculate_last_year_profit(company)
-						%td.text-center
-							= link_to company_path(company), method: "delete", data: { confirm: 'Are you sure you want to delete this company? all of the company branches and data will be deleted and can\'t be recover again.' } do
+						%td.text-center.no-event-bubble-up
+							%a{"data-confirm" => "Are you sure?"} Testing
+							= link_to company_path(company), method: "delete", remote: true, :confirm => 'Are you sure you want to delete this company? all of the company branches and data will be deleted and can\'t be recover again.' do
 								%i.fa.fa-times
 	- else
 		%h3 No Company to show

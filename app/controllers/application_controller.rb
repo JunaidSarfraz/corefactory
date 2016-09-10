@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :set_current_user_companies
+  	before_filter :set_current_user_companies
 	before_filter :load_suppliers
 
 	def after_sign_in_path_for(resource)
@@ -33,10 +33,12 @@ class ApplicationController < ActionController::Base
 	end 
 
 	def load_suppliers
-		@suppliers = Array.new
-		current_user.companies(:created_at).each do |company|
-			company.suppliers(:created_at).each do |supplier|
-				@suppliers << supplier
+		if current_user.present?
+			@suppliers = Array.new
+			current_user.companies(:created_at).each do |company|
+				company.suppliers(:created_at).each do |supplier|
+					@suppliers << supplier
+				end
 			end
 		end
 	end

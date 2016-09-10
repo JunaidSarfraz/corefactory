@@ -1,0 +1,25 @@
+%div
+  / Nav tabs
+  %ul.nav.nav-pills{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "supplier_personal_info", "data-toggle" => "tab", :href => "#supplier_personal_info", :role => "tab"} Personal Information
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "employee_accounts", "data-toggle" => "tab", :href => "#supplier_products", :role => "tab"} Products
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "supplier_payment_history", "data-toggle" => "tab", :href => "#supplier_payment_history", :role => "tab"} Supplier Payment History
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "supplier_accounts", "data-toggle" => "tab", :href => "#supplier_accounts", :role => "tab"} Supplier Accounts
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "supplier_orders", "data-toggle" => "tab", :href => "#supplier_orders", :role => "tab"} Orders Placed
+  / Tab panes
+  .tab-content
+    #supplier_personal_info.tab-pane.active{:role => "tabpanel"}
+      = render partial: "shared/create_user_form_table", locals: { supplier: @supplier, f: f }
+    #supplier_products.tab-pane{:role => "tabpanel"}
+      = render partial: "supplier_products", locals: { supplier: @supplier, f: f }
+    #supplier_payment_history.tab-pane{:role => "tabpanel"}
+      = render partial: "supplier_payment_history", locals: { supplier: @supplier, f: f }
+    #supplier_accounts.tab-pane{:role => "tabpanel"}
+      = render partial: "supplier_accounts", locals: { supplier: @supplier, f: f }
+    #supplier_orders.tab-pane{:role => "tabpanel"}
+      = render partial: "supplier_orders", locals: { supplier: @supplier, f: f }

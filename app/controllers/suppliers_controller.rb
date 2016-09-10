@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
 	before_filter :set_supplier, :only => [:edit, :update,:show,:destroy, :change_status]
+	
 	def index
 		load_suppliers
 	end
@@ -24,7 +25,7 @@ class SuppliersController < ApplicationController
 			flash[:notice] = "Successfully Updated"
 		end
 		if @supplier.errors.messages.any?
-			flash[:error] = @supplier.errors.messages
+			flash[:error] = @supplier.errors.full_messages
     end
 		redirect_to :action => "index"
 	end
