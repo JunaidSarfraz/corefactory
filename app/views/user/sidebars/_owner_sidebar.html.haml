@@ -48,7 +48,7 @@
                 %span.title= company.name
       %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['suppliers/index','suppliers/show'])}"}
         %a.nav-link.nav-toggle{:href => "#"}
-          %i.icon-users
+          %i.icon-people
           %span.title Suppliers
           %span.arrow
           %span.selected
@@ -62,7 +62,7 @@
                 %span.title= supplier.full_name
       %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['clients/index','clients/show'])}"}
         %a.nav-link.nav-toggle{:href => "#"}
-          %i.icon-users
+          %i.icon-people
           %span.title Clients
           %span.arrow
           %span.selected
@@ -86,7 +86,7 @@
           %span.selected
       %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['workers/index'])}"}
         %a.nav-link.nav-toggle{:href => "#{workers_path}"}
-          %i.icon-users
+          %i.icon-people
           %span.title Employees
           %span.selected
       %li.nav-item.side-bar-menue-item{ :class => "#{get_active_classes(controller.controller_name + "/" + controller.action_name, ['payrolls/index'])}"}
