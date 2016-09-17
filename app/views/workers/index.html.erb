@@ -1,5 +1,5 @@
 <div>
-	<%= link_to "Add New Worker", new_worker_path, :class => "btn btn-primary" %>
+	<%= link_to "Add New Employee", new_worker_path, :class => "btn btn-primary" %>
 	
 
 	<%= select_tag :option, options_for_select({ 'All Workers' => '','Managers' => 'manager','Workers' => 'worker'},''), { :id => "workers_managers_dropdown_workers", :class => 'btn btn-default pull-right relative-position' } rescue nil %>
