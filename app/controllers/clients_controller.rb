@@ -20,8 +20,9 @@ class ClientsController < ApplicationController
 	end
 
 	def destroy
-		@client.destroy
-		redirect_to :action => "index"
+		respond_to do |format|
+			format.js { @client.destroy and load_clients }
+		end
 	end
 
 	def update
@@ -107,16 +108,6 @@ class ClientsController < ApplicationController
 				:bank_secondary_phone,
 				:current_balance,
 				:account_holder_type,
-				:_destroy
-			],
-			:client_products_attributes => [
-				:id,
-				:name,
-				:description,
-				:_type,
-				:category,
-				:cost,
-				:company_id,
 				:_destroy
 			]
 		)

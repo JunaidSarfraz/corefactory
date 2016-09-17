@@ -29,7 +29,9 @@
             - elsif current_user.worker?
               = render partial: "user/sidebars/worker_sidebar"
           .page-content-wrapper
-            = yield
+            .page-content.ofh
+              = yield
         - else
           .page-content-wrapper
-            = yield
+            .page-content.ofh
+              = yield

@@ -14,7 +14,6 @@ $(document).ready(function () {
 	$('.dropdown-toggle').dropdown();
 
 	$(document).on('click', '.show_records tr[data-link]', function(){
-		debugger;
 		window.location = $(this).data("link");
 	});
 
@@ -93,13 +92,6 @@ $(document).ready(function () {
 		$(this).closest('.product-fields').find('.product_sale_price').val(sale_price);
 		$(this).closest('.product-fields').find('.product_profit').val(profit);
 	})
-
-	$('.no-event-bubble-up').each(function(){
-		$(this).click(function(e){
-			debugger;
-			e.stopPropagation();
-		});
-	});
 }); // end of document.ready
 
 function set_number_of_records(field, field_element, text_initial){

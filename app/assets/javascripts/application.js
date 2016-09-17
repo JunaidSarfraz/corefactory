@@ -63,4 +63,5 @@
 //= require workers_js
 //= require accounts_js
 //= require supplier_js
+//= require client_js
 //= require data-confirm-modal

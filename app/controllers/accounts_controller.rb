@@ -35,27 +35,29 @@ class AccountsController < ApplicationController
 			assosiated_users = get_all_clients
 		elsif account_holder_type === "supplier"
 			assosiated_users = get_all_suppliers
+		elsif account_holder_type == "company"
+			assosiated_users = get_all_companies
 		end
 		render json: assosiated_users
 	end
 
 
 	def destroy
+		@tab = params[:'tab-identity']
 		if(@account.present?)
 			@account.destroy
 			if @account.company?
 				load_company_accounts
-				render partial: "accounts/show_company_accounts", locals: { companies_accounts: @companies_accounts }			
 			elsif @account.employee?
 				load_employee_accounts
-				render partial: "accounts/show_employee_accounts", locals: { employee_accounts: @employee_accounts }
 			elsif @account.supplier?
 				load_suppliers_accounts
-				render partial: "accounts/show_supplier_accounts", locals: { supplier_accounts: @supplier_accounts }
 			elsif @account.client?
 				load_clients_accounts
-				render partial: "accounts/show_client_accounts", locals: { client_accounts: @client_accounts }
-			end	
+			end
+			respond_to do |format|
+				format.js {}
+			end
 		else
 			redirect_to :action => "index"
 		end
@@ -164,6 +166,14 @@ private
 			end
 		end
 		all_suppliers
+	end
+
+	def get_all_companies
+		all_companies = Array.new
+		current_user.companies.each do |company|
+			all_companies << company
+		end
+		all_companies
 	end
 
 	def account_params

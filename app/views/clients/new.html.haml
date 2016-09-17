@@ -1,0 +1,5 @@
+= nested_form_for(@user, url: clients_path ) do |f|
+	%h2 New Client
+	%hr/
+	= render partial: "new_client_tabs", locals: { f: f }
+	= f.submit "Create", :class =>"btn btn-primary pull-right"

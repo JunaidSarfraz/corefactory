@@ -1,5 +1,4 @@
-.page-content
-	%h1 New Company
-	= nested_form_for @company, url: companies_path do |form|
-		= render partial: "companies/companies_tabs", locals: { f: form}
-		= form.submit "Create", :class =>"btn btn-primary pull-right"
+%h1 New Company
+= nested_form_for @company, url: companies_path do |form|
+	= render partial: "companies/companies_tabs", locals: { f: form}
+	= form.submit "Create", :class =>"btn btn-primary pull-right"

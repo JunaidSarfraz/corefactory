@@ -24,152 +24,133 @@ $(document).ready(function(){
 		request_data = {
 			selected_value: selected_value
 		};
-		if (selected_value === "company"){
-			$('.assosiated_user_dropdown option:first-child').attr("selected", "selected");
-			$('.assosiated_user_tr').hide();
-			$('.assosiated_company_tr').show();
-		}
-		else{
-			$('.assosiated_company_dropdown option:first-child').attr("selected", "selected");
-			$('.assosiated_company_tr').hide();	
-			send_ajax_request("post", 
-				"/accounts/extract_users_by_account_holer_type",
-				"json",
-				request_data,
-				function(data){
+		$('.assosiated_company_dropdown option:first-child').attr("selected", "selected");
+		$('.assosiated_company_tr').hide();	
+		send_ajax_request("post", 
+			"/accounts/extract_users_by_account_holer_type",
+			"json",
+			request_data,
+			function(data){
+				if (selected_value === "company"){
+					$('.assosiated_user_dropdown').children().remove();
+					$('.assosiated_user_tr').hide();
+					$.each(data, function(index, obj){
+						console.log(obj)
+						$('.assosiated_company_dropdown').append("<option value= '"+obj.id+"'>"+ obj.name + "</option>");	
+					});
+					$('.assosiated_company_tr').show();
+				}
+				else{
 					// data contains users put these users to assosiated user dropdown
 					$('.assosiated_user_dropdown').children().remove();
-					$('.assosiated_user_dropdown').append("<option value=0></option>");
+					$('.assosiated_company_dropdown').children().remove();
+					$('.assosiated_company_tr').hide();
+
+					// $('.assosiated_user_dropdown').append("<option value=0></option>");
 					$.each(data, function(index, obj){
 						$('.assosiated_user_dropdown').append("<option value= '"+obj.id+"'>"+obj.first_name+"</option>");	
 					});
 					$('.assosiated_user_tr').show();
-				},
-				function(jqXHR, exception){
-					console.log(exception);
-				}
-			);
-		}
-	});
-	
-	$('body').on('click','.delete_account',function(e){
-		e.preventDefault();
-		var account_id = $(this).attr('account-id');
-		var tab_identity = $(this).attr('tab-identity');
-		send_ajax_request("DELETE",
-			"/accounts/" + account_id,
-			"html",
-			{},
-			function(data){
-				if (tab_identity === "company"){
-					$('#company_accounts').html(data);
-				} else if (tab_identity === "employee"){
-					$('#employee_accounts').html(data);
-				} else if (tab_identity === "supplier"){
-					$('#supplier_accounts').html(data);
-				} else if (tab_identity === "client"){
-					$('#client_accounts').html(data);
 				}
 			},
 			function(jqXHR, exception){
 				console.log(exception);
 			}
 		);
-		e.stopPropagation();
 	});
 
 
 	//auto complete in company accounts tab for search bar
-	if ($('.search_bar_comapny_accounts').length > 0){
-		send_ajax_request("post",
-			"/accounts/account_names",
-			"json",
-			{
-				identity: "company"
-			},
-			function(data){
-				$( ".search_bar_comapny_accounts" ).autocomplete({
-					source: data,
-						messages: {
-				        		noResults: '',
-				        		results: function() {}
-						}
-					});
-			},
-			function(jqXHR, exception){
-				console.log(exception);
-			}
-		);
-	}
+	// if ($('.search_bar_comapny_accounts').length > 0){
+	// 	send_ajax_request("post",
+	// 		"/accounts/account_names",
+	// 		"json",
+	// 		{
+	// 			identity: "company"
+	// 		},
+	// 		function(data){
+	// 			$( ".search_bar_comapny_accounts" ).autocomplete({
+	// 				source: data,
+	// 					messages: {
+	// 			        		noResults: '',
+	// 			        		results: function() {}
+	// 					}
+	// 				});
+	// 		},
+	// 		function(jqXHR, exception){
+	// 			console.log(exception);
+	// 		}
+	// 	);
+	// }
 
-	//auto complete in employee accounts tab for search bar
-	if ($('.search_bar_employee_accounts').length > 0){
-		send_ajax_request("post",
-			"/accounts/account_names",
-			"json",
-			{
-				identity: "employee"
-			},
-			function(data){
-				$( ".search_bar_employee_accounts" ).autocomplete({
-					source: data,
-					messages: {
-			        		noResults: '',
-			        		results: function() {}
-					}
-				});
-			},
-			function(jqXHR, exception){
-				console.log(exception);
-			}
-		);
-	}
+	// //auto complete in employee accounts tab for search bar
+	// if ($('.search_bar_employee_accounts').length > 0){
+	// 	send_ajax_request("post",
+	// 		"/accounts/account_names",
+	// 		"json",
+	// 		{
+	// 			identity: "employee"
+	// 		},
+	// 		function(data){
+	// 			$( ".search_bar_employee_accounts" ).autocomplete({
+	// 				source: data,
+	// 				messages: {
+	// 		        		noResults: '',
+	// 		        		results: function() {}
+	// 				}
+	// 			});
+	// 		},
+	// 		function(jqXHR, exception){
+	// 			console.log(exception);
+	// 		}
+	// 	);
+	// }
 
-	//auto complete in client accounts tab for search bar
-	if ($('.search_bar_client_accounts').length > 0){
-		send_ajax_request("post",
-			"/accounts/account_names",
-			"json",
-			{
-				identity: "client"
-			},
-			function(data){
-				$( ".search_bar_client_accounts" ).autocomplete({
-					source: data,
-					messages: {
-			        		noResults: '',
-			        		results: function() {}
-					}
-				});
-			},
-			function(jqXHR, exception){
-				console.log(exception);
-			}
-		);
-	}
+	// //auto complete in client accounts tab for search bar
+	// if ($('.search_bar_client_accounts').length > 0){
+	// 	send_ajax_request("post",
+	// 		"/accounts/account_names",
+	// 		"json",
+	// 		{
+	// 			identity: "client"
+	// 		},
+	// 		function(data){
+	// 			$( ".search_bar_client_accounts" ).autocomplete({
+	// 				source: data,
+	// 				messages: {
+	// 		        		noResults: '',
+	// 		        		results: function() {}
+	// 				}
+	// 			});
+	// 		},
+	// 		function(jqXHR, exception){
+	// 			console.log(exception);
+	// 		}
+	// 	);
+	// }
 
-	//auto complete in supplier accounts tab for search bar
-	if ($('.search_bar_supplier_accounts').length > 0){
-		send_ajax_request("post",
-			"/accounts/account_names",
-			"json",
-			{
-				identity: "supplier"
-			},
-			function(data){
-				$( ".search_bar_supplier_accounts" ).autocomplete({
-					source: data,
-					messages: {
-			        		noResults: '',
-			        		results: function() {}
-					}
-				});
-			},
-			function(jqXHR, exception){
-				console.log(exception);
-			}
-		);
-	}
+	// //auto complete in supplier accounts tab for search bar
+	// if ($('.search_bar_supplier_accounts').length > 0){
+	// 	send_ajax_request("post",
+	// 		"/accounts/account_names",
+	// 		"json",
+	// 		{
+	// 			identity: "supplier"
+	// 		},
+	// 		function(data){
+	// 			$( ".search_bar_supplier_accounts" ).autocomplete({
+	// 				source: data,
+	// 				messages: {
+	// 		        		noResults: '',
+	// 		        		results: function() {}
+	// 				}
+	// 			});
+	// 		},
+	// 		function(jqXHR, exception){
+	// 			console.log(exception);
+	// 		}
+	// 	);
+	// }
 
 
 	$('body').on('click','.account_search_button',function(e){

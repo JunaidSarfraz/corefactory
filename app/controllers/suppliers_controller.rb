@@ -31,8 +31,9 @@ class SuppliersController < ApplicationController
 	end
 
 	def destroy
-		@supplier.destroy
-		redirect_to :action => "index"
+		respond_to do |format|
+			format.js { @supplier.destroy and load_suppliers }
+		end
 	end
 
 	def change_status

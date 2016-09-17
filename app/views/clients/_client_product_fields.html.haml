@@ -1,0 +1,30 @@
+%tbody.fields
+  %tr
+    %td Name
+    %td
+      = f.hidden_field :id
+      = f.text_field :name, :class => 'form-control btn-block btn-block-level-input'
+  %tr
+    %td Description
+    %td= f.text_field :description, :class => 'form-control btn-block btn-block-level-input'
+  %tr
+    %td Type
+    %td= f.text_field :_type, :class => 'form-control btn-block btn-block-level-input'
+  %tr
+    %td Category
+    %td= f.text_field :category, :class => 'form-control btn-block btn-block-level-input'
+  %tr
+    %td Cost
+    %td= f.number_field :cost, :class => 'form-control btn-block btn-block-level-input'
+  %tr
+    %td Company
+    %td.text-left
+      = collection_select(:company, :id, current_user.companies, :id, :name, {:include_blank => "----Select Company----"}, {:class => 'company_id_dropdown_on_new_client dropdown dropdown-menue btn btn-block btn-block-level-input', :company_id => f.object.company_id})
+      = f.hidden_field :company_id, :class => "company_id_hidden_field"
+  %tr
+    %td &amp;nbsp
+    %td
+      = f.link_to_remove do
+        %button.btn.btn-danger
+          %i.fa.fa-times
+          Product

@@ -1,0 +1,71 @@
+- account_types = Array.new
+- account_types <<  ['Company Account', 'company_account']
+- account_types <<  ['Bank Account', 'bank_account']
+- account_holder_types = Array.new
+- account_holder_types <<  ['company', 'company']
+- account_holder_types <<  ['Employee', 'employee']
+- account_holder_types <<  ['Client', 'client']
+- account_holder_types <<  ['Supplier', 'supplier']
+
+.col-sm-12.account-fields
+	.row
+		.col-sm-6
+			%label Title
+			= f.text_field :title, :class => "form-control", :autofocus => true
+		.col-sm-6
+			%label Type
+			= f.select :_type, account_types, {}, { :class => 'account-type-selector form-control' }
+.col-sm-12.bank_info_fields.hide
+	.row
+		.col-sm-6
+			%label Bank Name
+			= f.text_field :bank_name, :class => "form-control"
+		.col-sm-6
+			%label Account Number
+			= f.number_field :bank_account_number, :class => "form-control"
+.col-sm-12.bank_info_fields.hide
+	.row
+		.col-sm-6
+			%label Bank Address
+			= f.text_area :bank_address, :class => "form-control"
+		.col-sm-6
+			%label Bank city
+			= f.text_field :bank_city, :class => "form-control"
+.col-sm-12.bank_info_fields.hide
+	.row
+		.col-sm-6
+			%label Bank State
+			= f.text_field :bank_state, :class => "form-control"
+		.col-sm-6
+			%label Bank Country
+			= f.text_area :bank_country, :class => "form-control"
+.col-sm-12.bank_info_fields.hide
+	.row
+		.col-sm-6
+			%label Zip code
+			= f.number_field :bank_zip_code, :class => "form-control"
+		.col-sm-6
+			%label Bank Phone Number
+			= f.text_field :bank_primary_phone, :class => "form-control"
+.col-sm-12
+	.row
+		.col-sm-6
+			%label Current Balance
+			= f.number_field :current_balance, :class => "form-control"
+		.col-sm-6
+			%label Account Holder Type
+			= f.select :account_holder_type, account_holder_types , {}, { :class => 'form-control account_holder_type_dropdown' }
+.col-sm-12
+	.row
+		.col-sm-6.assosiated_user_tr
+			%label Assosiated User
+			= f.select :user_id, [] , {}, { :class => 'form-control assosiated_user_dropdown' }
+		.col-sm-6.assosiated_company_tr
+			%label Assosiated Company
+			= f.select :company_id, current_user.companies.all.collect {|company| [ company.name, company.id ] } , {:include_blank => false}, { :class => 'form-control assosiated_company_dropdown' }
+		.col-sm-6
+			%label Description
+			= f.text_field :description, :class => "form-control"
+.col-sm-12
+	.row.col-sm-2.text-right
+		= f.submit "Create", :class => "btn btn-primary form-control"

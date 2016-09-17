@@ -1,54 +1,53 @@
-.page-content
-  / we will show breadcurm in the future in this section
-  .page-bar
-    %ul.page-breadcrumb
-      %li
-        %a{:href => "index.html"} Home
-        %i.fa.fa-circle
-      %li
-        %span Dashboard
-    .page-toolbar
-      #dashboard-report-range.pull-right.tooltips.btn.btn-sm.hidden{"data-container" => "body", "data-original-title" => "Change dashboard date range", "data-placement" => "bottom"}
-        %i.icon-calendar
-        %span.thin.uppercase.hidden-xs
-        %i.fa.fa-angle-down
-  %h1.page-title
-    Admin Dashboard
-    %small statistics, charts, recent events and reports
-  .row
-    .col-lg-3.col-md-3.col-sm-6.col-xs-12
-      %a.dashboard-stat.dashboard-stat-v2.blue{:href => "#"}
-        .visual
-          %i.fa.fa-comments
-        .details
-          .number
-            %span{"data-counter" => "counterup", "data-value" => "1349"} 0
-          .desc New Feedbacks
-    .col-lg-3.col-md-3.col-sm-6.col-xs-12
-      %a.dashboard-stat.dashboard-stat-v2.red{:href => "#"}
-        .visual
-          %i.fa.fa-bar-chart-o
-        .details
-          .number
-            %span{"data-counter" => "counterup", "data-value" => "12,5"}> 0
-            M$
-          .desc Total Profit
-    .col-lg-3.col-md-3.col-sm-6.col-xs-12
-      %a.dashboard-stat.dashboard-stat-v2.green{:href => "#"}
-        .visual
-          %i.fa.fa-shopping-cart
-        .details
-          .number
-            %span{"data-counter" => "counterup", "data-value" => "549"} 0
-          .desc New Orders
-    .col-lg-3.col-md-3.col-sm-6.col-xs-12
-      %a.dashboard-stat.dashboard-stat-v2.purple{:href => "#"}
-        .visual
-          %i.fa.fa-globe
-        .details
-          .number
-            +
-            = succeed "%" do
-              %span{"data-counter" => "counterup", "data-value" => "89"}
-          .desc Brand Popularity
-  .clearfix
+/ we will show breadcurm in the future in this section
+.page-bar
+  %ul.page-breadcrumb
+    %li
+      %a{:href => "index.html"} Home
+      %i.fa.fa-circle
+    %li
+      %span Dashboard
+  .page-toolbar
+    #dashboard-report-range.pull-right.tooltips.btn.btn-sm.hidden{"data-container" => "body", "data-original-title" => "Change dashboard date range", "data-placement" => "bottom"}
+      %i.icon-calendar
+      %span.thin.uppercase.hidden-xs
+      %i.fa.fa-angle-down
+%h1.page-title
+  Admin Dashboard
+  %small statistics, charts, recent events and reports
+.row
+  .col-lg-3.col-md-3.col-sm-6.col-xs-12
+    %a.dashboard-stat.dashboard-stat-v2.blue{:href => "#"}
+      .visual
+        %i.fa.fa-comments
+      .details
+        .number
+          %span{"data-counter" => "counterup", "data-value" => "1349"} 0
+        .desc New Feedbacks
+  .col-lg-3.col-md-3.col-sm-6.col-xs-12
+    %a.dashboard-stat.dashboard-stat-v2.red{:href => "#"}
+      .visual
+        %i.fa.fa-bar-chart-o
+      .details
+        .number
+          %span{"data-counter" => "counterup", "data-value" => "12,5"}> 0
+          M$
+        .desc Total Profit
+  .col-lg-3.col-md-3.col-sm-6.col-xs-12
+    %a.dashboard-stat.dashboard-stat-v2.green{:href => "#"}
+      .visual
+        %i.fa.fa-shopping-cart
+      .details
+        .number
+          %span{"data-counter" => "counterup", "data-value" => "549"} 0
+        .desc New Orders
+  .col-lg-3.col-md-3.col-sm-6.col-xs-12
+    %a.dashboard-stat.dashboard-stat-v2.purple{:href => "#"}
+      .visual
+        %i.fa.fa-globe
+      .details
+        .number
+          +
+          = succeed "%" do
+            %span{"data-counter" => "counterup", "data-value" => "89"}
+        .desc Brand Popularity
+.clearfix

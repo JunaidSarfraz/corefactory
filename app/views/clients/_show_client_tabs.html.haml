@@ -1,0 +1,22 @@
+%div
+  / Nav tabs
+  %ul.nav.nav-pills{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "client_orders", "data-toggle" => "tab", :href => "#client_orders", :role => "tab"}
+        Orders
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "client_payment_history", "data-toggle" => "tab", :href => "#client_payment_history", :role => "tab"} Payment History
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "client_accounts", "data-toggle" => "tab", :href => "#client_accounts", :role => "tab"} Client Accounts
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "client_personal_info", "data-toggle" => "tab", :href => "#client_personal_info", :role => "tab"} Personal Information
+  / Tab panes
+  .tab-content
+    #client_orders.tab-pane.active{:role => "tabpanel"}
+      = render partial: "client_orders", locals: { client: @supplier, f: f }
+    #client_payment_history.tab-pane{:role => "tabpanel"}
+      = render partial: "client_payment_history", locals: { client: @supplier, f: f }
+    #client_accounts.tab-pane{:role => "tabpanel"}
+      = render partial: "client_accounts", locals: { f: f }
+    #client_personal_info.tab-pane{:role => "tabpanel"}
+      = render partial: "shared/create_user_form_table", locals: { client: @supplier, f: f}

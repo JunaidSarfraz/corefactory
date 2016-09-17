@@ -1,0 +1,15 @@
+- data = ""
+- data_element = ''
+- if @tab == "company"
+	- data_element = '#company_accounts'
+	- data = render partial: "accounts/show_company_accounts", locals: { companies_accounts: @companies_accounts }
+- elsif @tab == "employee"
+	- data_element = '#employee_accounts'
+	- data = render partial: "accounts/show_employee_accounts", locals: { employee_accounts: @employee_accounts }
+- elsif @tab == "supplier"
+	- data_element = '#supplier_accounts'
+	- data = render partial: "accounts/show_supplier_accounts", locals: { supplier_accounts: @supplier_accounts }
+- elsif @tab == "client"
+	- data_element = '#client_accounts'
+	- data = render partial: "accounts/show_client_accounts", locals: { client_accounts: @client_accounts }
+$("#{data_element}").html("#{escape_javascript(data)}")

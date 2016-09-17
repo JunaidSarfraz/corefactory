@@ -31,11 +31,11 @@
 		.col-sm-6
 			.form-group
 				%label Current Balance
-				= f.number_field :current_balance, :class => "btn-block form-control btn-block-level-input"
+				= f.number_field :current_balance, :class => "form-control"
 		.col-sm-6
 			.form-group
 				%label Description
-				= f.text_area :description, :class => "btn-block form-control btn-block-level-input"
+				= f.text_area :description, :class => "form-control"
 	.col-sm-12.row
 		.col-sm-6
 			= f.link_to_remove "Remove this Account"

@@ -1,13 +1,12 @@
-.page-content.ofh
-	.page-bar
-		%ul.page-breadcrumb
-			%li
-				%a{:href => "index.html"} Home
-				%i.fa.fa-circle
-			%li
-				%span Dashboard
-	%h1= @company.name
-	%hr
-	= nested_form_for @company, url: company_path, method: "put" do |form|
-		= render partial: "companies/companies_tabs", locals: { f: form}
-		= form.submit "Update", :class =>"btn btn-primary pull-right"
+.page-bar
+	%ul.page-breadcrumb
+		%li
+			%a{:href => "index.html"} Home
+			%i.fa.fa-circle
+		%li
+			%span Dashboard
+%h1= @company.name
+%hr
+= nested_form_for @company, url: company_path, method: "put" do |form|
+	= render partial: "companies/companies_tabs", locals: { f: form}
+	= form.submit "Update", :class =>"btn btn-primary pull-right"

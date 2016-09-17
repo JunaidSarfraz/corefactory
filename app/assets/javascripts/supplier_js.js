@@ -30,11 +30,4 @@ $(document).ready(function () {
 	$(document).on('change','.company_id_dropdown_on_new_supplier',function(e){
 		($(this).parent().find($('.company_id_hidden_field'))).val( $(this).val() );
 	});
-
-	// show supplier
-
-
-	$(document).on('click','.delete_supplier',function(e){
-		e.stopPropagation();
-	});
 }); // end of document.ready

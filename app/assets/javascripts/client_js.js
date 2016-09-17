@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$(document).on('click', '.client_enable_disable_button', function(){
+	$(document).on('click', '.client_enable_disable_button', function(e){
 		var client_id = $(this).parent().parent().find('.client_id').val();
 		var button_text = $(this).text();
 		var element = this;
@@ -22,9 +22,7 @@ $(document).ready(function(){
 		); // end of ajax call
 		e.stopPropagation();
 	});
-	$(document).on('click','.delete_client',function(){
-		e.stopPropagation();
-	});
+	
 	$.each($('.company_id_dropdown_on_new_client'), function(index, obj){
 		obj.value = obj.getAttribute('company_id');
 	});

@@ -21,9 +21,10 @@ class User < ActiveRecord::Base
    has_one 	       :payroll
    has_many       :branches, :class_name => "Branch", :foreign_key => "branch_head_id", :dependent => :delete_all
    has_many       :work_diaries, :class_name => "WorkDiary", :foreign_key => "user_id", :dependent => :delete_all
-   #self relation ship of manager and employees
+   
+   # self relation ship of manager and employees
    #-----------------------------------------------------------------------------------------------------
-   has_many	:employees, :class_name => "User", :foreign_key => "manager_id", :dependent => :nullify
+   has_many	   :employees, :class_name => "User", :foreign_key => "manager_id", :dependent => :delete_all
    belongs_to	:manager, :class_name => "User", :foreign_key => "manager_id"
    #-----------------------------------------------------------------------------------------------------
 

@@ -4,8 +4,9 @@ class CompaniesController < ApplicationController
   helper_method :calculate_last_year_sale
   helper_method :calculate_last_year_profit
   before_action :load_company
+
   def index
-  	@companies = current_user.companies
+  	set_companies
   end
   
   def new
@@ -29,9 +30,8 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-  	@company.destroy
     respond_to do |format|
-      format.js { redirect_to :action => "index" }
+      format.js { @company.destroy and set_companies }
     end
   end
 
@@ -119,5 +119,9 @@ class CompaniesController < ApplicationController
 
   def calculate_last_year_profit(company)
   	return 0
+  end
+
+  def set_companies
+    @companies = current_user.companies(true)
   end
 end
