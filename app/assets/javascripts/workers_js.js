@@ -89,7 +89,6 @@ $(document).ready(function () {
 
 	// Branch level filtration in workers
 	$(document).on('change', '#all_branches_dropdown_workers', function(){
-		debugger;
 		var branch_id = $('#all_branches_dropdown_workers').find(":selected").val();
 		var factory_id = $('#all_factories_dropdown_workers').find(":selected").val();
 		// In this state signal is don't care

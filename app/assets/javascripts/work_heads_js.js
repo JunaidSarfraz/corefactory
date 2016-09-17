@@ -48,7 +48,6 @@ $(document).ready(function(){
 				page_identity: "work_heads"
 			},
 			function(data){
-				debugger;
 				$('#all_work_heads').html("");
 				$('#all_work_heads').html(data);
 			},

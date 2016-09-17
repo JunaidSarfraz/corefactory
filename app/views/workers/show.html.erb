@@ -1,8 +1,0 @@
-<div class="page-content">
-	<h2><%= @worker.first_name + " " + @worker.middle_name + " " + @worker.last_name %></h2>
-	<hr />
-	<%= nested_form_for @worker, :url => worker_path, method: 'put' do |f| %>
-		<%= render partial: "show_worker_tabs", locals: { f: f } %>
-		<%= f.submit "Update", :class => "btn btn-primary pull-right" %>
-	<% end %>
-</div>

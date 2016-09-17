@@ -1,5 +1,5 @@
 <% if @workers.count > 0 %>
-	<table class="table table-bordered show_records">
+	<table class="table table-hover table-bordered show_records">
 		<tr>
 			<td>Company Name</td>
 			<td>Branch Name</td>
@@ -11,7 +11,7 @@
 			<td>&nbsp</td>
 		</tr>
 		<% @workers.each do |worker| %>
-			<tr data-link="<%= worker_path(worker) %>">
+			<tr class="cursor_hand" data-link="<%= worker_path(worker) %>">
 				<td class="hide"><%= hidden_field_tag :id, worker.id, :class => "worker_id" %></td>
 				<td><%= worker.branch.company.name rescue nil %></td>
 				<td><%= worker.branch.name rescue nil %></td>
@@ -25,9 +25,9 @@
 					<td><%= link_to "Disable" , "#", :class => "worker_enable_disable_button", :value => "Disable" %></td>
 				<% end %>
 				<td>
-					<%= link_to worker_path(worker), method: "delete" do %>
-						<i class="fa fa-times"></i>
-					<% end %>
+					<%= link_to worker_path(worker), method: "delete", :"data-confirm" => "Are you sure you want to delete this Worker! All Accounts should be deleted and you can't cover those accounts" do %>
+		            	<i class="fa fa-times"></i>
+		            <% end %>
 				</td>
 			</tr>
 		<% end %>
