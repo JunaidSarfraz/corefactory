@@ -95,28 +95,6 @@ ActiveRecord::Schema.define(version: 20160908111238) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.integer  "product_id"
-    t.string   "product_description"
-    t.integer  "cost"
-    t.integer  "discount"
-    t.integer  "quantity"
-    t.integer  "order_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.date     "order_date"
-    t.date     "delivery_date"
-    t.integer  "orderable_id"
-    t.string   "orderable_type"
-    t.integer  "status"
-    t.integer  "company_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "pay_heads", force: :cascade do |t|
     t.string   "name"
     t.text     "work_description"
@@ -173,17 +151,10 @@ ActiveRecord::Schema.define(version: 20160908111238) do
     t.integer  "cost"
     t.integer  "sale_price"
     t.integer  "max_discount"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "discount_percentage", default: 0
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "profit"
     t.decimal  "profit_percentage"
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "transections", force: :cascade do |t|
@@ -194,9 +165,6 @@ ActiveRecord::Schema.define(version: 20160908111238) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "payroll_schedule_id"
-    t.integer  "status"
-    t.date     "checque_date"
-    t.date     "transection_date"
   end
 
   create_table "users", force: :cascade do |t|

@@ -36,7 +36,7 @@
                   %span.badge.badge-success 7
               %li.divider
               %li
-                %a{:href => "page_user_login_1.html"}
+                = link_to destroy_user_session_path, :method => "DELETE" do
                   %i.icon-key
                   Log Out
     - else 
