@@ -25,13 +25,13 @@
 		.col-sm-6
 			.form-group
 				%label Bank Country
-				= f.text_area :bank_country, :class => "form-control"
-		.col-sm-12.row
-			.col-sm-6
-				.form-group
-					%label Bank Zipcode
-					= f.number_field :bank_zip_code, :class => "form-control"
-			.col-sm-6
-				.form-group
-					%label Bank Phone
-					= f.text_field :bank_primary_phone, :class => "form-control"
+				= f.text_field :bank_country, :class => "form-control"
+	.col-sm-12.row
+		.col-sm-6
+			.form-group
+				%label Bank Zipcode
+				= f.number_field :bank_zip_code, :class => "form-control"
+		.col-sm-6
+			.form-group
+				%label Bank Phone
+				= f.text_field :bank_primary_phone, :class => "form-control"
