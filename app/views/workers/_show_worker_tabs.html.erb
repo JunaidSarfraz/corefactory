@@ -19,20 +19,20 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="worker_personal_information">
-      	<%= render partial: "shared/create_user_form_table", locals: { supplier: @supplier, f: f } %>
+      	<%= render partial: "shared/create_user_form_table", locals: { f: f } %>
     </div>
 
 
     <div role="tabpanel" class="tab-pane" id="Worker_pay_record">
-      <%= render partial: "worker_pay_record", locals: { supplier: @supplier, f: f } %>
+      <%= render partial: "worker_pay_record", locals: { f: f } %>
     </div>
       
     <div role="tabpanel" class="tab-pane" id="work_report">
-      <%= render partial: "work_report", locals: { supplier: @supplier, f: f } %>
+      <%= render partial: "work_report", locals: { f: f } %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="worker_accounts">
-      <%= render partial: "worker_accounts", locals: { supplier: @supplier, f: f } %>
+      <%= render partial: "worker_accounts", locals: { f: f } %>
     </div>
   </div>
 </div>

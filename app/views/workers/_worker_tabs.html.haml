@@ -1,0 +1,14 @@
+%div
+  / Nav tabs
+  %ul.nav.nav-pills{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "supplier_orders", "data-toggle" => "tab", :href => "#worker_personal_information", :role => "tab"} Personal Information
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "supplier_accounts", "data-toggle" => "tab", :href => "#worker_accounts", :role => "tab"}
+        Accounts
+  / Tab panes
+  .tab-content
+    #worker_personal_information.tab-pane.active{:role => "tabpanel"}
+      = render partial: "shared/create_user_form_table", locals: { f: f }
+    #worker_accounts.tab-pane{:role => "tabpanel"}
+      = render partial: "worker_accounts", locals: { f: f }

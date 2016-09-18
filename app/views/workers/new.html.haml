@@ -1,5 +1,5 @@
 = nested_form_for @worker, :url => workers_path do |form|
 	%h2 New Employee
 	%hr/
-	= render partial: "shared/create_user_form_table", locals: {f: form}
+	= render partial: "workers/worker_tabs", locals: {f: form}
 	= form.submit "Create", :class =>"btn btn-primary pull-right"
