@@ -75,7 +75,7 @@ module ApplicationHelper
 	def get_pakistan_states
 		return ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'AJK']
 	end
-
+	
 	def get_active_classes key, value
 		# we can return open as class if we want to open the accordion
 		value.include?(key) ? "start active" : ""

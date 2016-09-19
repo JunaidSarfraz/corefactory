@@ -1,3 +1,23 @@
+<!-- BEGIN FORGOT PASSWORD FORM -->
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class => "forget-form" }) do |f| %>
+    <h3 class="font-green">Change password</h3>
+    <p> Enter new password here and try to use the password you never use before. </p>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="form-group">
+      <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => "form-control placeholder-no-fix", placeholder: "New Password #{@minimum_password_length.present? ? "( At least " + @minimum_password_length.to_s + " characters )" : "" }" %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control placeholder-no-fix", placeholder: "Re-Enter New password" %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Change password", :class => "btn btn-success uppercase" %>
+    </div>
+  <%= render "devise/shared/links" %>
+<% end %>
+
+
+
 <h2>Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>

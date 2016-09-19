@@ -1,103 +1,91 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "register-form"}) do |f| %>
+  <h3 class="font-green">Sign Up</h3>
+  <p class="hint"> Enter your personal details below: </p>
+  <!-- Hidden Fields -->
+  <%= f.hidden_field :_type, :value => "owner" %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">First Name</label>
+    <%= f.text_field :first_name, autofocus: true, :class => "form-control placeholder-no-fix", placeholder: "First Name" %>
   </div>
-
-  <div class="field">
-    <%= f.label :middle_name %><br />
-    <%= f.text_field :middle_name %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
+    <%= f.text_field :middle_name, :class => "form-control placeholder-no-fix", placeholder: "Middle Name" %>
   </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
+    <%= f.text_field :last_name, :class => "form-control placeholder-no-fix", placeholder: "Last Name" %>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Gender</label>
+    <%= f.select :gender, [["Gender", ""], ["Male", 'male'], ["Female", 'female']], {} , {:class => "form-control placeholder-no-fix" } %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">CNIC (Without Dashes)</label>
+    <%= f.number_field :cnic, :class => "form-control placeholder-no-fix", placeholder: "CNIC (Without Dashes)" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Religion</label>
+    <%= f.text_field :religion, :class => "form-control placeholder-no-fix", placeholder: "Religion" %>
   </div>
-
-  <div class="field">
-    <%= f.label :CNIC, "CNIC (with dashes included)" %><br />
-    <%= f.number_field :cnic %>
-  </div>  
-  
-  <div class="field">
-    <%= f.label :religion %><br />
-    <%= f.text_field :religion %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Cast</label>
+    <%= f.text_field :cast, :class => "form-control placeholder-no-fix", placeholder: "Cast" %>
   </div>
-
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.select :gender, [["Not Telling", 'undefinded'], ["Male", 'male'], ["Female", 'female']] %>
-  </div>  
-
-  <div class="field">
-    <%= f.label :cast %><br />
-    <%= f.text_field :cast %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Blood Group</label>
+    <%= f.select :blood_group,[["Blood Group","unknown"],["A+","A+"],["A-","A-"],["AB+","AB+"],["AB-","AB-"],["O+","O+"],["O-","O-"]], {}, {:class => "form-control placeholder-no-fix" } %>
   </div>
-
-  <div class="field">
-    <%= f.label :height, "Height (height in feets)" %><br />
-    <%= f.text_field :height %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Height</label>
+    <%= f.text_field :height, :class => "form-control placeholder-no-fix", placeholder: "Height" %>
   </div>
-
-  <div class="field">
-    <%= f.label :blood_group %><br />
-    <%= f.select :blood_group,[["unknown","unknown"],["A+","A+"],["A-","A-"],["AB+","AB+"],["AB-","AB-"],["O+","O+"],["O-","O-"]] %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Address</label>
+    <%= f.text_field :address, :class => "form-control placeholder-no-fix", placeholder: "Address" %>
   </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">City/Town</label>
+    <%= f.text_field :city, :class => "form-control placeholder-no-fix", placeholder: "City/Town" %>
   </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Country</label>
+    <%= f.text_field :country, :class => "form-control placeholder-no-fix", placeholder: "Country", :value => "Pakistan" %>
   </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Primary Phone</label>
+    <%= f.text_field :primary_phone, :class => "form-control placeholder-no-fix", placeholder: "Primary Phone" %>
   </div>
-
-  <div class="field">
-    <%= f.label :primary_phone %><br />
-    <%= f.text_field :primary_phone %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Secondary Phone</label>
+    <%= f.text_field :secondary_phone, :class => "form-control placeholder-no-fix", placeholder: "Secondary Phone" %>
   </div>
-
-  <div class="field">
-    <%= f.label :secondary_phone %><br />
-    <%= f.text_field :secondary_phone %>
+  <p class="hint"> Enter your account details below: </p>
+  <div class="form-group">
+    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+    <label class="control-label visible-ie8 visible-ie9">Email</label>
+    <%= f.email_field :email, :class => "form-control placeholder-no-fix", placeholder: "Email" %>
   </div>
-
-  <div class="field">
-    <%= f.hidden_field :_type, :value => "owner" %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Password</label>
+    <%= f.password_field :password, autocomplete: "off", :class => "form-control placeholder-no-fix", placeholder: "Password #{@minimum_password_length.present? ? "( At least " + @minimum_password_length.to_s + " characters )" : '' }" %>
   </div>
-    
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control placeholder-no-fix", placeholder: "Re-type Your Password" %>
+  </div>
+  <div class="form-group margin-top-20 margin-bottom-20">
+    <label class="mt-checkbox mt-checkbox-outline">
+        <input type="checkbox" name="tnc" /> I agree to the
+        <a href="javascript:;">Terms of Service </a> &
+        <a href="javascript:;">Privacy Policy </a>
+        <span></span>
+    </label>
+    <div id="register_tnc_error"> </div>
+  </div>
+  <div class="form-actions">
+    <%= link_to "Login", new_session_path(resource_name), :id => "register-back-btn", :class => "btn green btn-outline" %>
+    <%= link_to "Confirm Account", new_confirmation_path(resource_name), :class => "btn green btn-outline ml30" %>
+    <%= f.submit "Submit", :id => "register-submit-btn", :class => "btn btn-success uppercase pull-right" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+  

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require theme-js/jquery.validate
+//= require theme-js/additional-methods
 //= require bootstrap
 //= require bootstrap.min
 //= require jquery_nested_form
@@ -49,12 +51,13 @@
 //= require theme-js/jquery.vmap.germany
 //= require theme-js/jquery.vmap.usa
 //= require theme-js/jquery.vmap.sampledata
-//= require theme-js/app.min
+//= require theme-js/app
 //= require theme-js/components-date-time-pickers
 //= require theme-js/layout.min
 //= require theme-js/demo.min
 //= require theme-js/quick-sidebar
 //= require theme-js/quick-nav.min
+//= require theme-js/login
 //= require jquery.turbolinks
 //= require dcalendar.picker
 //= require app

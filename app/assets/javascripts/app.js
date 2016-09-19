@@ -11,7 +11,7 @@ function send_ajax_request(req_type, req_url, data_type, req_data, success_callb
 
 $(document).ready(function () { 
 	
-	$('.dropdown-toggle').dropdown();
+	$('.dropdown-toggle').not(".design-only").dropdown();
 
 	$(document).on('click', '.show_records tr[data-link]', function(){
 		window.location = $(this).data("link");
@@ -22,7 +22,6 @@ $(document).ready(function () {
 	// This is for shared/nested_account_form and it's structure specific
 	$('body').on('change', '.account-type-selector', function(){
 		var selected = $(this).val();
-		debugger;
 		if(selected === "bank_account"){
 			$(this).closest('.account-fields').find('.bank_info_fields').removeClass('hide');
 		}

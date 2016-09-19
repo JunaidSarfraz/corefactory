@@ -12,26 +12,12 @@
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.css", :rel => "stylesheet"}/
     
     = csrf_meta_tags
-  %body{:class => "#{controller.controller_name} #{controller.action_name} page-header-fixed page-sidebar-closed-hide-logo page-content-white"}
-    .page-wrapper
-      = render 'layouts/messages'
-      = render partial: "layouts/application_header"
-      / BEGIN HEADER & CONTENT DIVIDER
-      .clearfix
-      / END HEADER & CONTENT DIVIDER
-      / Start sidebar and contents
-      .page-container
-        - if current_user.present?
-          .page-sidebar-wrapper
-            - if current_user.owner?
-              = render partial: "user/sidebars/owner_sidebar"
-            - elsif current_user.manager?
-              = render partial: "user/sidebars/owner_sidebar"
-            - elsif current_user.worker?
-              = render partial: "user/sidebars/worker_sidebar"
-          .page-content-wrapper
-            .page-content.ofh
-              = yield
-        - else
-          .page-content.ofh
-            = yield
+  %body{:class => "#{controller.controller_name} #{controller.action_name} page-header-fixed login"}
+    = render 'layouts/messages'
+    = render partial: "layouts/application_header"
+    .logo
+      %a{:href => "#{root_path}"}
+        = image_tag 'corefactorylogo.png', :alt => 'logo'
+
+    .content
+      = yield

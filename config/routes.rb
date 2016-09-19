@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}, :controllers => { :registrations => "registrations" }
+  devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => "register"}, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :passwords => "users/passwords" }
   resources :companies, except: [:edit] do
     post :get_all_branches
   end

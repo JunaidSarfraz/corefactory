@@ -3,12 +3,12 @@
     $(document).ready(function () {
       if("#{flash_messsage_type_for(name)}" == "success")
       {
-        message = pre_processing(#{msg});
+        message = pre_processing("#{msg}");
         success_alert(message);
       }
       else
       {
-        message = pre_processing(#{msg});
+        message = pre_processing("#{msg}");
         warning_alert(message);
       }
       
@@ -17,6 +17,9 @@
       var msg = "";
       if(message instanceof Array){
         msg = message.join(" and ");
+      }
+      else{
+        msg = message;
       }
       // Here you have to write one line for every punctuation mark if it is creating problem
       msg = msg.replace("'", "\'");

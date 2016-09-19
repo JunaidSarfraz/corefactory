@@ -5,15 +5,12 @@
     .page-logo
       %a{:href => "#{root_path}"}
         = image_tag 'corefactorylogo.png', :alt => 'logo'
-      .menu-toggler.sidebar-toggler
-        %span
-    / END LOGO
-    / BEGIN RESPONSIVE MENU TOGGLER
-    %a.menu-toggler.responsive-toggler{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
-      %span
-    / END RESPONSIVE MENU TOGGLER
-    / BEGIN TOP NAVIGATION MENU
+      - if current_user.present?
+        .menu-toggler.sidebar-toggler
+          %span
     - if current_user.present?
+      %a.menu-toggler.responsive-toggler{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :href => "javascript:;"}
+        %span
       .top-menu
         %ul.nav.navbar-nav.pull-right
           %li.dropdown.dropdown-user
@@ -39,6 +36,13 @@
                 = link_to destroy_user_session_path, :method => "DELETE" do
                   %i.icon-key
                   Log Out
-    - else 
-      = link_to "signUp", new_user_registration_path
-      = link_to "signIn", new_user_session_path
+    - else
+      .pull-right
+        .top-menu
+          %ul.nav.navbar-nav.pull-right
+            %li.dropdown.dropdown-user
+              %a.dropdown-toggle.design-only{:href => "#{new_user_registration_path}"}
+                %span.username.username-hide-on-mobile SignUp
+            %li.dropdown.dropdown-user
+              %a.dropdown-toggle.design-only{:href => "#{new_user_session_path}"}
+                %span.username.username-hide-on-mobile SignIn
