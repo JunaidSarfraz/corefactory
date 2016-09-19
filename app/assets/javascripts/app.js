@@ -22,6 +22,7 @@ $(document).ready(function () {
 	// This is for shared/nested_account_form and it's structure specific
 	$('body').on('change', '.account-type-selector', function(){
 		var selected = $(this).val();
+		debugger;
 		if(selected === "bank_account"){
 			$(this).closest('.account-fields').find('.bank_info_fields').removeClass('hide');
 		}
